@@ -3,6 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Thoughts on marine science, environmental monitoring, and policy by Kristof Moeller.">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Blog — Kristof Moeller">
+  <meta property="og:description" content="Thoughts on marine science, environmental monitoring, and policy by Kristof Moeller.">
+  <meta property="og:url" content="https://kristofmoeller.com/blog.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://kristofmoeller.com/images/profile.jpg">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Blog — Kristof Moeller">
+  <meta name="twitter:description" content="Thoughts on marine science, environmental monitoring, and policy by Kristof Moeller.">
+  <meta name="twitter:image" content="https://kristofmoeller.com/images/profile.jpg">
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <title>Blog — Kristof Moeller</title>
   <link rel="canonical" href="https://kristofmoeller.com/blog.html">
   <link rel="stylesheet" href="css/style.css">
@@ -21,7 +35,9 @@
       <ul class="navbar-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="cv.html">CV</a></li>
+        <li><a href="publications.html">Publications</a></li>
         <li><a href="r-projects.html">R Projects</a></li>
+        <li><a href="talks.html">Talks</a></li>
         <li><a href="blog.html">Blog</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -38,11 +54,19 @@
 
   <!-- BLOG GRID -->
   <main class="container" style="padding-bottom: 5rem;">
+
+    <!-- Tag filter bar -->
+    <div class="blog-filter-bar">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="marine science">Marine Science</button>
+      <button class="filter-btn" data-filter="data analysis">Data Analysis</button>
+    </div>
+
     <div class="blog-grid">
 
       <!-- Post 1 -->
-      <article class="card">
-        <div class="card-meta">March 6, 2026</div>
+      <article class="card" data-tags="marine science">
+        <div class="card-meta"><span class="js-date" data-date="2026-03-06">March 6, 2026</span> &middot; <span style="color:#64748B;font-size:0.8125rem;">Marine Science</span></div>
         <h2 class="card-title">Hello World</h2>
         <p class="card-description">First post — a brief introduction to this site and what to expect.</p>
         <a href="blog/post-1.html" class="card-link">Read more</a>
@@ -57,7 +81,9 @@
       <span class="footer-copy">&copy; 2026 Kristof Moeller</span>
       <nav class="footer-links">
         <a href="cv.html">CV</a>
+        <a href="publications.html">Publications</a>
         <a href="r-projects.html">R Projects</a>
+        <a href="talks.html">Talks</a>
         <a href="blog.html">Blog</a>
         <a href="contact.html">Contact</a>
       </nav>

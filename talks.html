@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Conference presentations and invited talks by Kristof Moeller on harmful algal blooms and marine science.">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Talks — Kristof Moeller">
+  <meta property="og:description" content="Conference presentations and invited talks by Kristof Moeller on harmful algal blooms and marine science.">
+  <meta property="og:url" content="https://kristofmoeller.com/talks.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://kristofmoeller.com/images/profile.jpg">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Talks — Kristof Moeller">
+  <meta name="twitter:description" content="Conference presentations and invited talks by Kristof Moeller on harmful algal blooms and marine science.">
+  <meta name="twitter:image" content="https://kristofmoeller.com/images/profile.jpg">
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <title>Talks — Kristof Moeller</title>
+  <link rel="canonical" href="https://kristofmoeller.com/talks.html">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-logo">Kristof Moeller</a>
+      <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="navbar-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="cv.html">CV</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="r-projects.html">R Projects</a></li>
+        <li><a href="talks.html">Talks</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="container">
+    <header class="page-header">
+      <h1>Talks &amp; Presentations</h1>
+      <p>Conference presentations, posters, and invited talks.</p>
+    </header>
+  </div>
+
+  <main class="container" style="padding-bottom: 5rem;">
+
+    <!-- Filter bar -->
+    <div class="blog-filter-bar">
+      <button class="filter-btn active" data-filter-talk="all">All</button>
+      <button class="filter-btn" data-filter-talk="oral">Oral</button>
+      <button class="filter-btn" data-filter-talk="poster">Poster</button>
+    </div>
+
+    <!-- ── 2024 ── -->
+    <section class="cv-section">
+      <h2 class="section-title">2024</h2>
+
+      <div class="talk-card" data-talk-type="poster">
+        <span class="talk-type poster">Poster</span>
+        <div class="talk-title">Expansion of the toxic dinoflagellate <em>Alexandrium pseudogonyaulax</em> in Northern European waters — a time series analysis</div>
+        <div class="talk-event">Ocean Sciences Meeting (OSM) 2024</div>
+        <div class="talk-location">New Orleans, USA</div>
+      </div>
+
+    </section>
+
+    <!-- ── 2023 ── -->
+    <section class="cv-section">
+      <h2 class="section-title">2023</h2>
+
+      <div class="talk-card" data-talk-type="oral">
+        <span class="talk-type oral">Oral</span>
+        <div class="talk-title">Toxic effects of <em>Alexandrium pseudogonyaulax</em> on marine food web organisms — from cellular to ecosystem level</div>
+        <div class="talk-event">International Conference on Harmful Algae (ICHA) 2023</div>
+        <div class="talk-location">Hiroshima, Japan</div>
+        <div style="margin-top:0.75rem;">
+          <span class="award-badge">&#9733; ISSHA Maureen Keller Award — Best Oral Student Presentation</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ── 2021 ── -->
+    <section class="cv-section">
+      <h2 class="section-title">2021</h2>
+
+      <div class="talk-card" data-talk-type="oral">
+        <span class="talk-type oral">Oral</span>
+        <div class="talk-title">Expansion factors of <em>Alexandrium pseudogonyaulax</em> in German coastal waters</div>
+        <div class="talk-event">ICYMARE 2021</div>
+        <div class="talk-location">Bremerhaven, Germany</div>
+      </div>
+
+    </section>
+
+    <!-- ── PLACEHOLDER for future talks ── -->
+    <!-- To add a new talk, copy a .talk-card block and set data-talk-type="oral" or "poster" -->
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-copy">&copy; 2026 Kristof Moeller</span>
+      <nav class="footer-links">
+        <a href="cv.html">CV</a>
+        <a href="publications.html">Publications</a>
+        <a href="r-projects.html">R Projects</a>
+        <a href="talks.html">Talks</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+
+  <script>
+    // Talks filter
+    (function () {
+      var filterBar = document.querySelector('.blog-filter-bar');
+      if (!filterBar) return;
+      var cards = document.querySelectorAll('.talk-card[data-talk-type]');
+
+      filterBar.querySelectorAll('.filter-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          filterBar.querySelectorAll('.filter-btn').forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          var filter = btn.getAttribute('data-filter-talk');
+
+          // Toggle year sections
+          document.querySelectorAll('.cv-section').forEach(function (sec) {
+            var visible = Array.from(sec.querySelectorAll('.talk-card')).filter(function (c) {
+              return filter === 'all' || c.getAttribute('data-talk-type') === filter;
+            });
+            sec.style.display = visible.length === 0 ? 'none' : '';
+          });
+
+          cards.forEach(function (card) {
+            if (filter === 'all') {
+              card.style.display = '';
+            } else {
+              card.style.display = card.getAttribute('data-talk-type') === filter ? '' : 'none';
+            }
+          });
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
