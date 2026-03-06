@@ -454,6 +454,23 @@ strong {
   color: #4F9CF9;
 }
 
+.publication-item .pub-doi {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #64748B;
+  border: 1px solid #334155;
+  border-radius: 4px;
+  padding: 0.1rem 0.4rem;
+  margin-left: 0.25rem;
+  vertical-align: middle;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.publication-item .pub-doi:hover {
+  color: #4F9CF9;
+  border-color: #4F9CF9;
+}
+
 .cv-skills-group {
   margin-bottom: 1.5rem;
 }
