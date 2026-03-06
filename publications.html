@@ -3,20 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Peer-reviewed publications by Kristof Moeller on harmful algal blooms, marine biotoxins, and analytical chemistry.">
-  <!-- Open Graph -->
-  <meta property="og:title" content="Publications — Kristof Moeller">
-  <meta property="og:description" content="Peer-reviewed publications by Kristof Moeller on harmful algal blooms, marine biotoxins, and analytical chemistry.">
-  <meta property="og:url" content="https://kristofmoeller.com/publications.html">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://kristofmoeller.com/images/profile.jpg">
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Publications — Kristof Moeller">
-  <meta name="twitter:description" content="Peer-reviewed publications by Kristof Moeller on harmful algal blooms, marine biotoxins, and analytical chemistry.">
-  <meta name="twitter:image" content="https://kristofmoeller.com/images/profile.jpg">
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <title>Publications — Kristof Moeller</title>
   <link rel="canonical" href="https://kristofmoeller.com/publications.html">
   <link rel="stylesheet" href="css/style.css">
@@ -37,7 +23,6 @@
         <li><a href="cv.html">CV</a></li>
         <li><a href="publications.html">Publications</a></li>
         <li><a href="r-projects.html">R Projects</a></li>
-        <li><a href="talks.html">Talks</a></li>
         <li><a href="blog.html">Blog</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -48,111 +33,98 @@
   <div class="container">
     <header class="page-header">
       <h1>Publications</h1>
-      <p>Peer-reviewed research in marine science, analytical chemistry, and toxicology.</p>
-      <p style="margin-top:0.5rem; font-size:0.875rem;">
-        <a href="https://scholar.google.com/citations?user=PtkVV8oAAAAJ&hl=de&oi=ao" target="_blank" rel="noopener noreferrer" style="color:#4F9CF9; font-weight:500;">View on Google Scholar →</a>
-      </p>
+      <p>Peer-reviewed research in marine science, analytical chemistry, and environmental toxicology.</p>
     </header>
   </div>
 
+  <!-- FILTER BAR -->
   <main class="container" style="padding-bottom: 5rem;">
-
-    <!-- Filter bar -->
-    <div class="pub-filter-row blog-filter-bar">
+    <div class="filter-bar">
       <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="first author">First Author</button>
+      <button class="filter-btn" data-filter="first-author">First Author</button>
       <button class="filter-btn" data-filter="co-author">Co-Author</button>
     </div>
 
-    <!-- ── FIRST AUTHOR ── -->
-    <section class="cv-section">
-      <h2 class="section-title">First Author</h2>
+    <!-- PUB LIST -->
+    <div class="pub-list" id="pub-list">
 
-      <div class="pub-entry blog-grid" data-tags="first author">
-        <span class="pub-role-badge first">First Author</span>
-        <div class="pub-entry-title">Time series analysis of the toxic dinoflagellate <em>Alexandrium pseudogonyaulax</em> across Northern European waters</div>
-        <div class="pub-entry-authors">Möller K. et al.</div>
-        <div class="pub-entry-journal">Harmful Algae</div>
-        <div>
-          <span class="pub-entry-year">2026</span>
-          <a href="https://doi.org/10.1016/j.hal.2026.103060" target="_blank" rel="noopener noreferrer" class="pub-entry-doi">DOI</a>
+      <!-- SECTION: First Author -->
+      <p class="pub-section-heading" data-section="first-author">First Author</p>
+
+      <div class="pub-entry" data-tags="first-author">
+        <span class="pub-role-badge">First Author</span>
+        <p class="pub-title">Time series analysis of the toxic dinoflagellate <em>Alexandrium pseudogonyaulax</em> across Northern European waters.</p>
+        <p class="pub-authors">Möller, K. et al.</p>
+        <div class="pub-footer">
+          <span class="pub-journal">Harmful Algae (2026)</span>
+          <a href="https://doi.org/10.1016/j.hal.2026.103060" target="_blank" rel="noopener noreferrer" class="pub-doi-btn">↗ DOI</a>
         </div>
       </div>
 
-      <div class="pub-entry" data-tags="first author">
-        <span class="pub-role-badge first">First Author</span>
-        <div class="pub-entry-title">Toxic effects of the emerging <em>Alexandrium pseudogonyaulax</em> (Dinophyceae) on multiple trophic levels of the pelagic food web</div>
-        <div class="pub-entry-authors">Möller K. et al.</div>
-        <div class="pub-entry-journal">Harmful Algae</div>
-        <div>
-          <span class="pub-entry-year">2024</span>
-          <a href="https://doi.org/10.1016/j.hal.2024.102705" target="_blank" rel="noopener noreferrer" class="pub-entry-doi">DOI</a>
+      <div class="pub-entry" data-tags="first-author">
+        <span class="pub-role-badge">First Author</span>
+        <p class="pub-title">Toxic effects of the emerging <em>Alexandrium pseudogonyaulax</em> (Dinophyceae) on multiple trophic levels of the pelagic food web.</p>
+        <p class="pub-authors">Möller, K. et al.</p>
+        <div class="pub-footer">
+          <span class="pub-journal">Harmful Algae (2024)</span>
+          <a href="https://doi.org/10.1016/j.hal.2024.102705" target="_blank" rel="noopener noreferrer" class="pub-doi-btn">↗ DOI</a>
         </div>
       </div>
 
-      <div class="pub-entry" data-tags="first author">
-        <span class="pub-role-badge first">First Author</span>
-        <div class="pub-entry-title">Effects of bottom-up factors on growth and toxin content of a harmful algae bloom dinoflagellate</div>
-        <div class="pub-entry-authors">Möller K. et al.</div>
-        <div class="pub-entry-journal">Limnology &amp; Oceanography</div>
-        <div>
-          <span class="pub-entry-year">2024</span>
-          <a href="https://doi.org/10.1002/lno.12576" target="_blank" rel="noopener noreferrer" class="pub-entry-doi">DOI</a>
+      <div class="pub-entry" data-tags="first-author">
+        <span class="pub-role-badge">First Author</span>
+        <p class="pub-title">Effects of bottom-up factors on growth and toxin content of a harmful algae bloom dinoflagellate.</p>
+        <p class="pub-authors">Möller, K. et al.</p>
+        <div class="pub-footer">
+          <span class="pub-journal">Limnology &amp; Oceanography (2024)</span>
+          <a href="https://doi.org/10.1002/lno.12576" target="_blank" rel="noopener noreferrer" class="pub-doi-btn">↗ DOI</a>
         </div>
       </div>
 
-      <div class="pub-entry" data-tags="first author">
-        <span class="pub-role-badge first">First Author</span>
-        <div class="pub-entry-title">Method optimization of the simultaneous detection of B12 congeners leading to the detection of a novel isomer of hydroxycobalamin in seawater</div>
-        <div class="pub-entry-authors">Möller K. et al.</div>
-        <div class="pub-entry-journal">Rapid Communications in Mass Spectrometry</div>
-        <div>
-          <span class="pub-entry-year">2022</span>
-          <a href="https://doi.org/10.1002/rcm.9401" target="_blank" rel="noopener noreferrer" class="pub-entry-doi">DOI</a>
+      <div class="pub-entry" data-tags="first-author">
+        <span class="pub-role-badge">First Author</span>
+        <p class="pub-title">Method optimization of the simultaneous detection of B12 congeners leading to the detection of a novel isomer of hydroxycobalamin in seawater.</p>
+        <p class="pub-authors">Möller, K. et al.</p>
+        <div class="pub-footer">
+          <span class="pub-journal">Rapid Communications in Mass Spectrometry (2022)</span>
+          <a href="https://doi.org/10.1002/rcm.9401" target="_blank" rel="noopener noreferrer" class="pub-doi-btn">↗ DOI</a>
         </div>
       </div>
 
-      <div class="pub-entry" data-tags="first author">
-        <span class="pub-role-badge first">First Author</span>
-        <div class="pub-entry-title">Distribution of phycotoxins in Última Esperanza Province during the PROFAN expedition 2019</div>
-        <div class="pub-entry-authors">Möller K. et al.</div>
-        <div class="pub-entry-journal">Progress in Oceanography</div>
-        <div>
-          <span class="pub-entry-year">2022</span>
-          <a href="https://doi.org/10.1016/j.pocean.2022.102851" target="_blank" rel="noopener noreferrer" class="pub-entry-doi">DOI</a>
+      <div class="pub-entry" data-tags="first-author">
+        <span class="pub-role-badge">First Author</span>
+        <p class="pub-title">Distribution of phycotoxins in Última Esperanza Province during the PROFAN expedition 2019.</p>
+        <p class="pub-authors">Möller, K. et al.</p>
+        <div class="pub-footer">
+          <span class="pub-journal">Progress in Oceanography (2022)</span>
+          <a href="https://doi.org/10.1016/j.pocean.2022.102851" target="_blank" rel="noopener noreferrer" class="pub-doi-btn">↗ DOI</a>
         </div>
       </div>
 
-    </section>
-
-    <!-- ── CO-AUTHOR ── -->
-    <section class="cv-section">
-      <h2 class="section-title">Co-Author</h2>
+      <!-- SECTION: Co-Author -->
+      <p class="pub-section-heading" data-section="co-author">Co-Author</p>
 
       <div class="pub-entry" data-tags="co-author">
-        <span class="pub-role-badge co">Co-Author</span>
-        <div class="pub-entry-title">Biofilm Formation on Polyethylene Microplastics Affects Brevetoxin Adsorption and Desorption</div>
-        <div class="pub-entry-authors">Tondu F., Moeller K., Sdiri K. et al.</div>
-        <div class="pub-entry-journal">Bulletin of Environmental Contamination and Toxicology</div>
-        <div>
-          <span class="pub-entry-year">2025</span>
-          <a href="https://doi.org/10.1007/s00128-025-04136-4" target="_blank" rel="noopener noreferrer" class="pub-entry-doi">DOI</a>
+        <span class="pub-role-badge">Co-Author</span>
+        <p class="pub-title">Biofilm Formation on Polyethylene Microplastics Affects Brevetoxin Adsorption and Desorption.</p>
+        <p class="pub-authors">Tondu, F., Moeller, K., Sdiri, K. et al.</p>
+        <div class="pub-footer">
+          <span class="pub-journal">Bulletin of Environmental Contamination and Toxicology (2025)</span>
+          <a href="https://doi.org/10.1007/s00128-025-04136-4" target="_blank" rel="noopener noreferrer" class="pub-doi-btn">↗ DOI</a>
         </div>
       </div>
 
       <div class="pub-entry" data-tags="co-author">
-        <span class="pub-role-badge co">Co-Author</span>
-        <div class="pub-entry-title">A Negishi cross-coupling reaction enables the total synthesis of (+)-stachyflin</div>
-        <div class="pub-entry-authors">Haut F. et al.</div>
-        <div class="pub-entry-journal">Tetrahedron</div>
-        <div>
-          <span class="pub-entry-year">2018</span>
-          <a href="https://doi.org/10.1016/j.tet.2018.02.048" target="_blank" rel="noopener noreferrer" class="pub-entry-doi">DOI</a>
+        <span class="pub-role-badge">Co-Author</span>
+        <p class="pub-title">A Negishi cross-coupling reaction enables the total synthesis of (+)-stachyflin.</p>
+        <p class="pub-authors">Haut, K. et al.</p>
+        <div class="pub-footer">
+          <span class="pub-journal">Tetrahedron (2018)</span>
+          <a href="https://doi.org/10.1016/j.tet.2018.02.048" target="_blank" rel="noopener noreferrer" class="pub-doi-btn">↗ DOI</a>
         </div>
       </div>
 
-    </section>
-
+    </div><!-- /#pub-list -->
   </main>
 
   <!-- FOOTER -->
@@ -163,7 +135,6 @@
         <a href="cv.html">CV</a>
         <a href="publications.html">Publications</a>
         <a href="r-projects.html">R Projects</a>
-        <a href="talks.html">Talks</a>
         <a href="blog.html">Blog</a>
         <a href="contact.html">Contact</a>
       </nav>
@@ -171,41 +142,39 @@
   </footer>
 
   <script src="js/main.js"></script>
-
   <script>
-    // Publications filter: filter by data-tags on .pub-entry elements
     (function () {
-      var filterBar = document.querySelector('.pub-filter-row');
-      if (!filterBar) return;
-      var entries = document.querySelectorAll('.pub-entry[data-tags]');
+      var btns = document.querySelectorAll('.filter-btn');
+      var entries = document.querySelectorAll('.pub-entry');
+      var headings = document.querySelectorAll('.pub-section-heading');
 
-      filterBar.querySelectorAll('.filter-btn').forEach(function (btn) {
+      btns.forEach(function (btn) {
         btn.addEventListener('click', function () {
-          filterBar.querySelectorAll('.filter-btn').forEach(function (b) { b.classList.remove('active'); });
-          btn.classList.add('active');
-          var tag = btn.getAttribute('data-filter');
+          var filter = this.dataset.filter;
 
-          // Also toggle section headings visibility
-          document.querySelectorAll('.cv-section').forEach(function (sec) {
-            var visible = Array.from(sec.querySelectorAll('.pub-entry[data-tags]')).filter(function (e) {
-              if (tag === 'all') return true;
-              return e.getAttribute('data-tags').toLowerCase().indexOf(tag.toLowerCase()) !== -1;
-            });
-            sec.style.display = visible.length === 0 ? 'none' : '';
+          // Update active button
+          btns.forEach(function (b) { b.classList.remove('active'); });
+          this.classList.add('active');
+
+          // Show/hide entries
+          entries.forEach(function (entry) {
+            var tags = (entry.dataset.tags || '').split(' ');
+            var show = filter === 'all' || tags.indexOf(filter) !== -1;
+            entry.style.display = show ? '' : 'none';
           });
 
-          entries.forEach(function (entry) {
-            if (tag === 'all') {
-              entry.style.display = '';
-            } else {
-              var tags = entry.getAttribute('data-tags').toLowerCase();
-              entry.style.display = tags.indexOf(tag.toLowerCase()) !== -1 ? '' : 'none';
+          // Show/hide section headings based on whether any visible entry follows
+          headings.forEach(function (heading) {
+            var section = heading.dataset.section;
+            if (filter === 'all') {
+              heading.style.display = '';
+              return;
             }
+            heading.style.display = section === filter ? '' : 'none';
           });
         });
       });
     })();
   </script>
-
 </body>
 </html>
