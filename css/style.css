@@ -196,15 +196,9 @@ strong {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background-color: #1E293B;
   border: 3px solid #4F9CF9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  font-weight: 700;
-  color: #4F9CF9;
-  letter-spacing: -0.02em;
+  object-fit: cover;
+  object-position: center top;
 }
 
 .hero-content {
