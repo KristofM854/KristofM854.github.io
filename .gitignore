@@ -2,3 +2,8 @@
 .Rhistory
 .RData
 .Ruserdata
+
+# Quiz app development files
+quiz-src/node_modules/
+quiz-src/.env
+quiz-src/dist/
