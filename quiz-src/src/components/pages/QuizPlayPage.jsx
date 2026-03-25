@@ -10,7 +10,7 @@ import Button from '../shared/Button.jsx'
 import Card from '../shared/Card.jsx'
 import ProgressRing from '../shared/ProgressRing.jsx'
 import Modal from '../shared/Modal.jsx'
-import { categories } from '../../data/index.js'
+import { categories, getQuestionType } from '../../data/index.js'
 
 function QuizPlayPage() {
   const location = useLocation()
@@ -119,8 +119,8 @@ function QuizPlayPage() {
   )
 
   return (
-    <div className="flex-1 flex flex-col items-center px-4 py-6">
-      <div className="max-w-2xl w-full space-y-4">
+    <div className="flex-1 flex flex-col items-center px-4 sm:px-6 py-8 sm:py-10">
+      <div className="max-w-2xl w-full space-y-5">
         {/* Top bar: progress + timer + quit */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -190,14 +190,28 @@ function QuizPlayPage() {
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.2 }}
           >
-            <Card className="mb-4">
-              <h2 className="font-body text-lg sm:text-xl font-medium text-text-primary leading-relaxed">
+            <Card className="mb-5">
+              <h2 className="font-body text-lg sm:text-xl font-medium text-text-primary leading-relaxed py-1">
                 {currentQuestion.question}
               </h2>
+              {/* Image display for "image" type questions */}
+              {getQuestionType(currentQuestion) === 'image' && currentQuestion.image && (
+                <div className="mt-4 rounded-xl overflow-hidden border border-white/10">
+                  <img
+                    src={currentQuestion.image}
+                    alt="Identify this species"
+                    className="w-full h-auto max-h-80 object-contain bg-ocean-900"
+                  />
+                </div>
+              )}
             </Card>
 
-            {/* Answer Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {/* Answer Grid — supports text answers and image_choice answers */}
+            <div className={`grid gap-4 ${
+              getQuestionType(currentQuestion) === 'image_choice'
+                ? 'grid-cols-2'
+                : 'grid-cols-1 sm:grid-cols-2'
+            }`}>
               {currentQuestion.answers.map((answer) => {
                 const isSelected =
                   showFeedback &&
@@ -228,6 +242,16 @@ function QuizPlayPage() {
                     whileTap={!showFeedback ? { scale: 0.98 } : {}}
                     className={btnClass}
                   >
+                    {/* Image choice answers */}
+                    {answer.image && (
+                      <div className="rounded-lg overflow-hidden mb-2 border border-white/5">
+                        <img
+                          src={answer.image}
+                          alt={answer.text}
+                          className="w-full h-32 sm:h-40 object-cover bg-ocean-900"
+                        />
+                      </div>
+                    )}
                     <span className="font-mono text-xs text-text-tertiary mr-2 uppercase">
                       {answer.id}.
                     </span>

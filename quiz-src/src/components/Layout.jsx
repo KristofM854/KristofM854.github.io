@@ -50,7 +50,7 @@ function Layout() {
         <Outlet />
       </main>
 
-      <footer className="relative z-10 border-t border-white/8 py-6">
+      <footer className="relative z-10 border-t border-white/8 py-8 mt-8">
         <div className="max-w-5xl mx-auto px-4 text-center text-text-tertiary text-sm">
           <p>
             Built by{' '}

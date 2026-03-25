@@ -47,12 +47,12 @@ function QuizSetupPage() {
   }
 
   return (
-    <div className="flex-1 flex flex-col items-center px-4 py-8">
-      <div className="max-w-2xl w-full space-y-6">
+    <div className="flex-1 flex flex-col items-center px-4 sm:px-6 py-10 sm:py-14">
+      <div className="max-w-2xl w-full space-y-8">
         <motion.h1
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="font-display font-bold text-3xl text-text-primary text-center"
+          className="font-display font-bold text-3xl sm:text-4xl text-text-primary text-center"
         >
           Quiz Setup
         </motion.h1>
@@ -177,7 +177,7 @@ function QuizSetupPage() {
         </Card>
 
         {/* Start */}
-        <div className="flex justify-center pt-2 pb-8">
+        <div className="flex justify-center pt-4 pb-8">
           <Button
             size="lg"
             onClick={handleStart}
