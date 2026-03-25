@@ -1,0 +1,228 @@
+[
+  {
+    "id": "org-b-001",
+    "category": "organisms",
+    "subcategory": "dinoflagellates",
+    "difficulty": "beginner",
+    "question": "Which genus of dinoflagellates is the most widespread producer of PSP toxins globally?",
+    "answers": [
+      { "id": "a", "text": "Pseudo-nitzschia" },
+      { "id": "b", "text": "Dinophysis" },
+      { "id": "c", "text": "Alexandrium" },
+      { "id": "d", "text": "Karenia" }
+    ],
+    "correctAnswer": "c",
+    "explanation": "Alexandrium is the most widespread genus responsible for PSP toxin production. There are over 30 recognized morphological species of Alexandrium, and approximately half are known to produce saxitoxins. Key toxic species include A. fundyense, A. minutum, A. catenella, and A. tamarense.",
+    "tags": ["alexandrium", "dinoflagellate", "psp", "taxonomy"]
+  },
+  {
+    "id": "org-b-002",
+    "category": "organisms",
+    "subcategory": "diatoms",
+    "difficulty": "beginner",
+    "question": "Which group of phytoplankton — not dinoflagellates — is responsible for producing domoic acid, the toxin causing ASP?",
+    "answers": [
+      { "id": "a", "text": "Coccolithophores" },
+      { "id": "b", "text": "Diatoms (genus Pseudo-nitzschia)" },
+      { "id": "c", "text": "Cyanobacteria (blue-green algae)" },
+      { "id": "d", "text": "Raphidophytes" }
+    ],
+    "correctAnswer": "b",
+    "explanation": "Domoic acid is produced by pennate diatoms of the genus Pseudo-nitzschia. Unlike the other major shellfish toxins which are produced by dinoflagellates, ASP toxins come from diatoms. Key toxic species include P. multiseries, P. australis, and P. seriata. Diatoms have silica cell walls (frustules) and are typically chain-forming.",
+    "tags": ["pseudo-nitzschia", "diatom", "domoic_acid", "asp"]
+  },
+  {
+    "id": "org-b-003",
+    "category": "organisms",
+    "subcategory": "cyanobacteria",
+    "difficulty": "beginner",
+    "question": "Cyanobacteria are commonly known by which informal name?",
+    "answers": [
+      { "id": "a", "text": "Red algae" },
+      { "id": "b", "text": "Brown algae" },
+      { "id": "c", "text": "Blue-green algae" },
+      { "id": "d", "text": "Golden algae" }
+    ],
+    "correctAnswer": "c",
+    "explanation": "Cyanobacteria are informally called 'blue-green algae' due to their blue-green (cyan) pigmentation from phycocyanin. Despite the name, they are actually prokaryotic bacteria, not true algae. They are photosynthetic organisms primarily found in freshwater systems, where they can form harmful blooms producing hepatotoxins (microcystins), neurotoxins (anatoxins), and other bioactive compounds.",
+    "tags": ["cyanobacteria", "blue-green_algae", "prokaryote", "freshwater"]
+  },
+  {
+    "id": "org-b-004",
+    "category": "organisms",
+    "subcategory": "dinoflagellates",
+    "difficulty": "beginner",
+    "question": "What is the common name for a visible HAB event caused by high concentrations of pigmented dinoflagellates that discolor the water?",
+    "answers": [
+      { "id": "a", "text": "Blue tide" },
+      { "id": "b", "text": "Red tide" },
+      { "id": "c", "text": "Black tide" },
+      { "id": "d", "text": "White tide" }
+    ],
+    "correctAnswer": "b",
+    "explanation": "'Red tide' is a colloquial term for visible algal blooms that discolor the water, typically reddish-brown, due to high concentrations of pigmented dinoflagellates. However, scientists generally avoid this term because not all red tides are toxic, not all toxic blooms discolor the water red, and blooms can also appear brown, green, or other colors. The preferred scientific term is 'Harmful Algal Bloom' (HAB).",
+    "tags": ["red_tide", "dinoflagellate", "terminology", "discoloration"]
+  },
+  {
+    "id": "org-b-005",
+    "category": "organisms",
+    "subcategory": "dinoflagellates",
+    "difficulty": "beginner",
+    "question": "Which genus of dinoflagellates produces the toxins responsible for DSP (Diarrhetic Shellfish Poisoning)?",
+    "answers": [
+      { "id": "a", "text": "Alexandrium" },
+      { "id": "b", "text": "Karenia" },
+      { "id": "c", "text": "Dinophysis" },
+      { "id": "d", "text": "Gymnodinium" }
+    ],
+    "correctAnswer": "c",
+    "explanation": "Dinophysis is the primary genus responsible for DSP. Key species include D. acuminata, D. acuta, and D. fortii. They produce okadaic acid (OA) and dinophysistoxins (DTXs). Prorocentrum lima, a benthic dinoflagellate, also produces OA but is less commonly associated with shellfish contamination events. Dinophysis species are mixotrophic and notoriously difficult to culture in the laboratory.",
+    "tags": ["dinophysis", "dsp", "okadaic_acid", "dinophysistoxin"]
+  },
+  {
+    "id": "org-i-001",
+    "category": "organisms",
+    "subcategory": "dinoflagellates",
+    "difficulty": "intermediate",
+    "question": "Many HAB-forming dinoflagellates produce resting cysts. What is the ecological significance of these cysts?",
+    "answers": [
+      { "id": "a", "text": "They photosynthesize more efficiently than vegetative cells" },
+      { "id": "b", "text": "They allow the species to survive unfavorable conditions in sediments and seed future blooms" },
+      { "id": "c", "text": "They are the primary form responsible for toxin production" },
+      { "id": "d", "text": "They are dispersed by wind over long distances" }
+    ],
+    "correctAnswer": "b",
+    "explanation": "Resting cysts (hypnozygotes) are dormant life stages that settle into bottom sediments. They allow dinoflagellate species to survive unfavorable conditions (winter, low nutrients) and germinate when conditions improve, seeding new blooms. This means that once a toxic species has bloomed in an area, it can recur even years later from the cyst 'seed bank' in the sediment, making bloom prediction and management more challenging.",
+    "tags": ["cysts", "life_cycle", "sediment", "seed_bank", "bloom_initiation"]
+  },
+  {
+    "id": "org-i-002",
+    "category": "organisms",
+    "subcategory": "diatoms",
+    "difficulty": "intermediate",
+    "question": "Which of the following is TRUE about Pseudo-nitzschia, the domoic acid-producing diatom?",
+    "answers": [
+      { "id": "a", "text": "All Pseudo-nitzschia species are toxic" },
+      { "id": "b", "text": "It is a centric (radially symmetric) diatom" },
+      { "id": "c", "text": "It is a pennate (bilaterally symmetric) diatom that forms stepped chains" },
+      { "id": "d", "text": "It lacks a silica frustule, unlike other diatoms" }
+    ],
+    "correctAnswer": "c",
+    "explanation": "Pseudo-nitzschia is a pennate (elongated, bilaterally symmetric) diatom genus. Cells overlap at their ends to form characteristic stepped chains. Not all species are toxigenic — of the approximately 60 described species, around 25-30 have been confirmed to produce domoic acid. Toxin production varies with strain, environmental conditions (nutrient stress, especially phosphorus or silicate limitation), and bacterial associations.",
+    "tags": ["pseudo-nitzschia", "pennate", "diatom", "morphology", "chain_forming"]
+  },
+  {
+    "id": "org-i-003",
+    "category": "organisms",
+    "subcategory": "cyanobacteria",
+    "difficulty": "intermediate",
+    "question": "Which cyanobacterial toxin group primarily targets the liver and is the most commonly reported cyanotoxin in freshwater HABs worldwide?",
+    "answers": [
+      { "id": "a", "text": "Anatoxin-a" },
+      { "id": "b", "text": "Cylindrospermopsin" },
+      { "id": "c", "text": "Microcystins" },
+      { "id": "d", "text": "Saxitoxin" }
+    ],
+    "correctAnswer": "c",
+    "explanation": "Microcystins are cyclic heptapeptide hepatotoxins and are the most commonly reported cyanotoxins in freshwater systems globally. They inhibit protein phosphatases PP1 and PP2A (similar mechanism to okadaic acid), causing liver damage. Over 300 structural variants of microcystin have been described, with microcystin-LR being the most studied. Key producers include Microcystis, Planktothrix, and Dolichospermum (formerly Anabaena).",
+    "tags": ["microcystin", "hepatotoxin", "cyanobacteria", "pp2a", "freshwater"]
+  },
+  {
+    "id": "org-i-004",
+    "category": "organisms",
+    "subcategory": "dinoflagellates",
+    "difficulty": "intermediate",
+    "question": "What is the primary trophic mode of Dinophysis species, the DSP toxin producers?",
+    "answers": [
+      { "id": "a", "text": "Strictly autotrophic (photosynthesis only)" },
+      { "id": "b", "text": "Strictly heterotrophic (feeding only)" },
+      { "id": "c", "text": "Mixotrophic (combining photosynthesis and feeding on other organisms)" },
+      { "id": "d", "text": "Chemolithotrophic (energy from inorganic compounds)" }
+    ],
+    "correctAnswer": "c",
+    "explanation": "Dinophysis species are obligate mixotrophs. They possess chloroplasts (obtained from cryptophyte prey via kleptoplastidy through a complex food chain involving the ciliate Mesodinium rubrum) but also require prey to sustain growth. This complex nutritional requirement is why Dinophysis has been notoriously difficult to establish in laboratory cultures, which hindered toxin research for decades.",
+    "tags": ["dinophysis", "mixotrophy", "kleptoplastidy", "mesodinium", "culture"]
+  },
+  {
+    "id": "org-i-005",
+    "category": "organisms",
+    "subcategory": "dinoflagellates",
+    "difficulty": "intermediate",
+    "question": "Karenia brevis, the organism responsible for Florida red tides, produces which group of toxins?",
+    "answers": [
+      { "id": "a", "text": "Saxitoxins" },
+      { "id": "b", "text": "Brevetoxins" },
+      { "id": "c", "text": "Domoic acid" },
+      { "id": "d", "text": "Palytoxin" }
+    ],
+    "correctAnswer": "b",
+    "explanation": "Karenia brevis produces brevetoxins (PbTx), a group of polyether ladder toxins that cause NSP (Neurotoxic Shellfish Poisoning). K. brevis blooms are a recurring phenomenon in the Gulf of Mexico, particularly along Florida's west coast. The species was formerly classified as Gymnodinium breve and then Ptychodiscus brevis before being placed in the genus Karenia.",
+    "tags": ["karenia_brevis", "brevetoxin", "nsp", "gulf_of_mexico", "florida"]
+  },
+  {
+    "id": "org-e-001",
+    "category": "organisms",
+    "subcategory": "dinoflagellates",
+    "difficulty": "expert",
+    "question": "The Alexandrium tamarense species complex was recently revised. Which species within this complex are now recognized based on molecular phylogenetics?",
+    "answers": [
+      { "id": "a", "text": "A. tamarense, A. fundyense, and A. catenella (three separate species maintained)" },
+      { "id": "b", "text": "All merged into a single species: A. tamarense" },
+      { "id": "c", "text": "Five species based on ribotype clades, designated Groups I–V" },
+      { "id": "d", "text": "Two species: A. tamarense (toxic) and A. catenella (non-toxic)" }
+    ],
+    "correctAnswer": "c",
+    "explanation": "The A. tamarense species complex was resolved by John et al. (2014) into five species based on ribotype clades (Groups I–V) using molecular phylogenetics. The former morphospecies names (A. tamarense, A. fundyense, A. catenella) were shown to be unreliable as they did not correspond to genetic groups. Group I includes the toxic North American strains, and not all groups are equally toxigenic. This revision was a landmark in HAB taxonomy.",
+    "tags": ["alexandrium", "taxonomy", "species_complex", "ribotype", "molecular_phylogenetics"],
+    "reviewFlag": true
+  },
+  {
+    "id": "org-e-002",
+    "category": "organisms",
+    "subcategory": "dinoflagellates",
+    "difficulty": "expert",
+    "question": "Azadinium spinosum, the primary producer of azaspiracids (AZP toxins), belongs to which order of dinoflagellates?",
+    "answers": [
+      { "id": "a", "text": "Peridiniales" },
+      { "id": "b", "text": "Gonyaulacales" },
+      { "id": "c", "text": "Amphidiniales" },
+      { "id": "d", "text": "It was originally uncertain but is now placed in Amphidiniales" }
+    ],
+    "correctAnswer": "a",
+    "explanation": "Azadinium spinosum, described by Tillmann et al. in 2009, is a small (~15 µm) peridinoid dinoflagellate placed in the order Peridiniales. Its small size meant it was overlooked for years as the source of AZP toxins, which were first detected in shellfish in 1995. The genus now contains multiple species, several of which produce azaspiracids, though A. spinosum remains the primary toxin producer identified in natural blooms.",
+    "tags": ["azadinium", "azaspiracid", "peridiniales", "taxonomy", "small_dinoflagellate"],
+    "reviewFlag": true
+  },
+  {
+    "id": "org-e-003",
+    "category": "organisms",
+    "subcategory": "cyanobacteria",
+    "difficulty": "expert",
+    "question": "Some cyanobacteria, particularly from the genus Dolichospermum (formerly Anabaena), can produce saxitoxin — the same PSP toxin associated with marine dinoflagellates. What key structural difference separates cyanobacteria from dinoflagellates?",
+    "answers": [
+      { "id": "a", "text": "Cyanobacteria are prokaryotes; dinoflagellates are eukaryotes" },
+      { "id": "b", "text": "Cyanobacteria are eukaryotes; dinoflagellates are prokaryotes" },
+      { "id": "c", "text": "Both are prokaryotes but from different phyla" },
+      { "id": "d", "text": "Both are eukaryotes but from different kingdoms" }
+    ],
+    "correctAnswer": "a",
+    "explanation": "Cyanobacteria are prokaryotes (bacteria) — they lack a membrane-bound nucleus and organelles. Dinoflagellates are eukaryotic protists with a unique nucleus (dinokaryon) containing permanently condensed chromosomes. The fact that both groups independently produce saxitoxin is a remarkable example of convergent evolution (or possible horizontal gene transfer). The saxitoxin biosynthesis gene cluster (sxt genes) has been well characterized in cyanobacteria but remains poorly understood in dinoflagellates.",
+    "tags": ["cyanobacteria", "dinoflagellate", "prokaryote", "eukaryote", "saxitoxin", "convergent_evolution"]
+  },
+  {
+    "id": "org-e-004",
+    "category": "organisms",
+    "subcategory": "diatoms",
+    "difficulty": "expert",
+    "question": "Under which environmental stress conditions has domoic acid production been shown to increase in Pseudo-nitzschia?",
+    "answers": [
+      { "id": "a", "text": "Nitrogen limitation only" },
+      { "id": "b", "text": "High temperature (>25°C) and high salinity" },
+      { "id": "c", "text": "Phosphorus and/or silicate limitation, trace metal stress, and certain bacterial interactions" },
+      { "id": "d", "text": "Exclusively during sexual reproduction" }
+    ],
+    "correctAnswer": "c",
+    "explanation": "Domoic acid production in Pseudo-nitzschia increases under multiple stress conditions: phosphorus limitation, silicate limitation (which also limits frustule formation), iron limitation, and copper stress. Bacterial associations also play a crucial role — certain bacteria can significantly enhance DA production. The physiological function of DA may relate to trace metal chelation (particularly iron and copper acquisition), though this remains an active area of research.",
+    "tags": ["pseudo-nitzschia", "domoic_acid", "nutrient_limitation", "silicate", "phosphorus", "bacteria", "iron"]
+  }
+]

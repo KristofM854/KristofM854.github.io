@@ -1,0 +1,210 @@
+[
+  {
+    "id": "tc-b-001",
+    "category": "toxin_chemistry",
+    "subcategory": "psp_toxins",
+    "difficulty": "beginner",
+    "question": "Which toxin is the primary compound responsible for Paralytic Shellfish Poisoning?",
+    "answers": [
+      { "id": "a", "text": "Okadaic acid" },
+      { "id": "b", "text": "Saxitoxin" },
+      { "id": "c", "text": "Domoic acid" },
+      { "id": "d", "text": "Brevetoxin" }
+    ],
+    "correctAnswer": "b",
+    "explanation": "Saxitoxin (STX) is the parent compound and most potent toxin in the PSP toxin family. It is a tetrahydropurine compound that blocks voltage-gated sodium channels. The PSP toxin group includes over 50 structural analogues, including neosaxitoxin, gonyautoxins (GTX), and C-toxins, which vary in potency.",
+    "tags": ["saxitoxin", "psp", "tetrahydropurine"]
+  },
+  {
+    "id": "tc-b-002",
+    "category": "toxin_chemistry",
+    "subcategory": "dsp_toxins",
+    "difficulty": "beginner",
+    "question": "Okadaic acid, the primary DSP toxin, was originally isolated from which organism?",
+    "answers": [
+      { "id": "a", "text": "A dinoflagellate (Dinophysis acuminata)" },
+      { "id": "b", "text": "A marine sponge (Halichondria okadai)" },
+      { "id": "c", "text": "A diatom (Pseudo-nitzschia multiseries)" },
+      { "id": "d", "text": "A cyanobacterium (Microcystis aeruginosa)" }
+    ],
+    "correctAnswer": "b",
+    "explanation": "Okadaic acid was first isolated from the marine sponge Halichondria okadai by Tachibana et al. in 1981, which is how it got its name. It was only later recognized as a product of Dinophysis dinoflagellates. The sponges had accumulated the toxin from their environment through filter feeding. This illustrates how toxin discovery sometimes precedes identification of the true producing organism.",
+    "tags": ["okadaic_acid", "halichondria", "sponge", "discovery", "history"]
+  },
+  {
+    "id": "tc-b-003",
+    "category": "toxin_chemistry",
+    "subcategory": "asp_toxins",
+    "difficulty": "beginner",
+    "question": "Domoic acid, the ASP toxin, is structurally similar to which naturally occurring amino acid?",
+    "answers": [
+      { "id": "a", "text": "Glycine" },
+      { "id": "b", "text": "Glutamic acid (glutamate)" },
+      { "id": "c", "text": "Histidine" },
+      { "id": "d", "text": "Tryptophan" }
+    ],
+    "correctAnswer": "b",
+    "explanation": "Domoic acid is a tricarboxylic amino acid structurally analogous to glutamic acid (glutamate), the brain's primary excitatory neurotransmitter. Because of this structural similarity, domoic acid binds to glutamate receptors (particularly kainate and AMPA subtypes) in the brain, causing excitotoxicity — excessive neuronal stimulation leading to cell death, especially in the hippocampus.",
+    "tags": ["domoic_acid", "glutamate", "structural_analogue", "excitotoxicity"]
+  },
+  {
+    "id": "tc-b-004",
+    "category": "toxin_chemistry",
+    "subcategory": "general",
+    "difficulty": "beginner",
+    "question": "Match the toxin to the correct shellfish poisoning syndrome: Brevetoxin → ?",
+    "answers": [
+      { "id": "a", "text": "PSP (Paralytic Shellfish Poisoning)" },
+      { "id": "b", "text": "DSP (Diarrhetic Shellfish Poisoning)" },
+      { "id": "c", "text": "ASP (Amnesic Shellfish Poisoning)" },
+      { "id": "d", "text": "NSP (Neurotoxic Shellfish Poisoning)" }
+    ],
+    "correctAnswer": "d",
+    "explanation": "Brevetoxins (PbTx) cause Neurotoxic Shellfish Poisoning (NSP). They are polyether ladder compounds produced by Karenia brevis. The key toxin–syndrome pairs to remember: Saxitoxin → PSP, Okadaic acid → DSP, Domoic acid → ASP, Brevetoxin → NSP, Azaspiracid → AZP, Ciguatoxin → CFP.",
+    "tags": ["brevetoxin", "nsp", "toxin_syndrome_pairs"]
+  },
+  {
+    "id": "tc-i-001",
+    "category": "toxin_chemistry",
+    "subcategory": "mechanism",
+    "difficulty": "intermediate",
+    "question": "What is the primary molecular mechanism of action of saxitoxin?",
+    "answers": [
+      { "id": "a", "text": "Inhibition of protein phosphatases PP1 and PP2A" },
+      { "id": "b", "text": "Blocking voltage-gated sodium channels at site 1" },
+      { "id": "c", "text": "Activation of glutamate (kainate) receptors" },
+      { "id": "d", "text": "Inhibition of acetylcholinesterase" }
+    ],
+    "correctAnswer": "b",
+    "explanation": "Saxitoxin blocks voltage-gated sodium channels by binding to receptor site 1 at the channel pore. This prevents sodium ion influx, blocking nerve impulse generation and transmission. For comparison: option A describes okadaic acid (DSP), option C describes domoic acid (ASP), and option D describes organophosphate poisoning — not a marine biotoxin mechanism.",
+    "tags": ["saxitoxin", "sodium_channel", "site_1", "mechanism"]
+  },
+  {
+    "id": "tc-i-002",
+    "category": "toxin_chemistry",
+    "subcategory": "mechanism",
+    "difficulty": "intermediate",
+    "question": "Okadaic acid causes diarrhea through which primary mechanism?",
+    "answers": [
+      { "id": "a", "text": "Direct irritation of the intestinal mucosa" },
+      { "id": "b", "text": "Inhibition of protein phosphatases PP1 and PP2A, leading to hyperphosphorylation of proteins controlling ion secretion" },
+      { "id": "c", "text": "Activation of chloride channels, similar to cholera toxin" },
+      { "id": "d", "text": "Destruction of intestinal epithelial tight junctions" }
+    ],
+    "correctAnswer": "b",
+    "explanation": "Okadaic acid is a potent and specific inhibitor of serine/threonine protein phosphatases PP1 and PP2A. This leads to hyperphosphorylation of proteins that control ion transport and tight junction integrity in intestinal epithelial cells, resulting in increased fluid secretion and diarrhea. This phosphatase inhibition is also the basis for OA's tumor-promoting activity and its widespread use as a research tool in cell biology.",
+    "tags": ["okadaic_acid", "pp1", "pp2a", "phosphatase_inhibition", "diarrhea_mechanism"]
+  },
+  {
+    "id": "tc-i-003",
+    "category": "toxin_chemistry",
+    "subcategory": "psp_toxins",
+    "difficulty": "intermediate",
+    "question": "How many structural analogues are recognized in the PSP toxin family?",
+    "answers": [
+      { "id": "a", "text": "3 (saxitoxin, neosaxitoxin, gonyautoxin)" },
+      { "id": "b", "text": "Around 10" },
+      { "id": "c", "text": "Over 50" },
+      { "id": "d", "text": "Over 300" }
+    ],
+    "correctAnswer": "c",
+    "explanation": "The PSP toxin family comprises over 50 known structural analogues, including saxitoxin (STX), neosaxitoxin (neoSTX), gonyautoxins (GTX1-6), C-toxins (C1-4), decarbamoyl variants, and others. These analogues differ in their R-group substitutions and vary considerably in toxicity, with STX being the most potent. The relative proportions of different analogues (the 'toxin profile') vary between species and even strains, which has important implications for toxicity assessment.",
+    "tags": ["psp", "analogues", "gonyautoxin", "neosaxitoxin", "toxin_profile"]
+  },
+  {
+    "id": "tc-i-004",
+    "category": "toxin_chemistry",
+    "subcategory": "general",
+    "difficulty": "intermediate",
+    "question": "Which marine biotoxin acts as an agonist at glutamate receptors, causing excitotoxic neuronal death?",
+    "answers": [
+      { "id": "a", "text": "Saxitoxin" },
+      { "id": "b", "text": "Brevetoxin" },
+      { "id": "c", "text": "Domoic acid" },
+      { "id": "d", "text": "Okadaic acid" }
+    ],
+    "correctAnswer": "c",
+    "explanation": "Domoic acid is a potent agonist at kainate-type and AMPA-type glutamate receptors. By overstimulating these excitatory receptors, it causes massive calcium influx into neurons, leading to excitotoxic cell death. The hippocampus is particularly vulnerable, which explains the characteristic memory loss in ASP. Domoic acid's binding affinity for kainate receptors is approximately three times higher than that of kainic acid itself.",
+    "tags": ["domoic_acid", "glutamate_receptor", "kainate", "excitotoxicity", "calcium"]
+  },
+  {
+    "id": "tc-i-005",
+    "category": "toxin_chemistry",
+    "subcategory": "general",
+    "difficulty": "intermediate",
+    "question": "Tetrodotoxin (TTX), found in pufferfish, shares which mechanistic property with saxitoxin?",
+    "answers": [
+      { "id": "a", "text": "Both inhibit protein phosphatases" },
+      { "id": "b", "text": "Both block voltage-gated sodium channels at the same receptor site (site 1)" },
+      { "id": "c", "text": "Both activate glutamate receptors" },
+      { "id": "d", "text": "Both are produced by dinoflagellates" }
+    ],
+    "correctAnswer": "b",
+    "explanation": "Both saxitoxin and tetrodotoxin bind to receptor site 1 on voltage-gated sodium channels, blocking ion flow. Despite having completely different chemical structures — saxitoxin is a tetrahydropurine while TTX has a unique cage-like structure — they share this critical binding site. TTX is found in pufferfish, some newts, and certain octopuses, and is produced by symbiotic bacteria rather than dinoflagellates.",
+    "tags": ["tetrodotoxin", "saxitoxin", "sodium_channel", "site_1", "convergent_mechanism"]
+  },
+  {
+    "id": "tc-e-001",
+    "category": "toxin_chemistry",
+    "subcategory": "psp_toxins",
+    "difficulty": "expert",
+    "question": "In the PSP toxin family, the conversion of N-sulfocarbamoyl toxins (C-toxins) to more potent carbamate toxins (such as STX and GTX) can occur during which process?",
+    "answers": [
+      { "id": "a", "text": "Heating during cooking (hydrolysis)" },
+      { "id": "b", "text": "UV exposure during water treatment" },
+      { "id": "c", "text": "Acid hydrolysis during extraction or gastric digestion" },
+      { "id": "d", "text": "Bacterial degradation in the environment" }
+    ],
+    "correctAnswer": "c",
+    "explanation": "N-sulfocarbamoyl toxins (C1-C4) are relatively low-potency PSP analogues, but they can be converted to the much more potent carbamate forms (STX, neoSTX, GTX1-4) through acid hydrolysis. This conversion can occur during chemical extraction procedures and potentially during gastric digestion. This phenomenon is toxicologically important because shellfish with a toxin profile dominated by C-toxins may actually pose a greater risk than predicted from the initial toxicity of the C-toxin analogues alone.",
+    "tags": ["c-toxins", "hydrolysis", "conversion", "n-sulfocarbamoyl", "toxicity_assessment"]
+  },
+  {
+    "id": "tc-e-002",
+    "category": "toxin_chemistry",
+    "subcategory": "nsp_toxins",
+    "difficulty": "expert",
+    "question": "Brevetoxins are classified as polyether ladder toxins. Which other major marine biotoxin group shares this structural class?",
+    "answers": [
+      { "id": "a", "text": "Saxitoxins" },
+      { "id": "b", "text": "Ciguatoxins" },
+      { "id": "c", "text": "Microcystins" },
+      { "id": "d", "text": "Domoic acid" }
+    ],
+    "correctAnswer": "b",
+    "explanation": "Both brevetoxins and ciguatoxins are polyether ladder compounds (trans-fused polycyclic ethers). They share a similar backbone structure of fused oxygen-containing rings forming a 'ladder' shape, and both target voltage-gated sodium channels (though at different sites: brevetoxin at site 5, ciguatoxin at site 5 as well but with different binding characteristics). Maitotoxin, also from Gambierdiscus, is another polyether but with a different mechanism targeting calcium channels.",
+    "tags": ["brevetoxin", "ciguatoxin", "polyether_ladder", "structural_class"]
+  },
+  {
+    "id": "tc-e-003",
+    "category": "toxin_chemistry",
+    "subcategory": "dsp_toxins",
+    "difficulty": "expert",
+    "question": "Which of the following toxin groups, while regulated under the 'lipophilic marine biotoxins' umbrella alongside DSP toxins, does NOT share the protein phosphatase inhibition mechanism of okadaic acid?",
+    "answers": [
+      { "id": "a", "text": "Dinophysistoxins (DTX-1, DTX-2)" },
+      { "id": "b", "text": "Yessotoxins (YTX)" },
+      { "id": "c", "text": "All lipophilic toxins share the same mechanism" },
+      { "id": "d", "text": "Pectenotoxins (PTX) only" }
+    ],
+    "correctAnswer": "b",
+    "explanation": "Yessotoxins (YTX) are co-regulated with DSP toxins as 'lipophilic marine biotoxins' due to their co-extraction in analytical procedures, but they have a fundamentally different mechanism of action. YTX does NOT inhibit protein phosphatases. Instead, YTX modulates phosphodiesterase activity and affects cellular adhesion molecules (E-cadherin). Dinophysistoxins are true OA analogues and do inhibit phosphatases. Pectenotoxins, while also co-extracted, have distinct actin-disrupting activity. The grouping of these diverse toxins under one regulatory framework has been a source of ongoing scientific debate.",
+    "tags": ["yessotoxin", "lipophilic", "regulation", "phosphodiesterase", "mechanism_diversity"]
+  },
+  {
+    "id": "tc-e-004",
+    "category": "toxin_chemistry",
+    "subcategory": "asp_toxins",
+    "difficulty": "expert",
+    "question": "Domoic acid exists as multiple geometric isomers. Which isomer is the most toxic?",
+    "answers": [
+      { "id": "a", "text": "Isodomoic acid A" },
+      { "id": "b", "text": "Isodomoic acid D" },
+      { "id": "c", "text": "Domoic acid (the parent compound, trans-trans configuration)" },
+      { "id": "d", "text": "Epi-domoic acid" }
+    ],
+    "correctAnswer": "c",
+    "explanation": "The parent compound domoic acid (with trans-trans configuration at the C1'–C2' and C4'–C5' double bonds) is the most potent isomer. The various isodomoic acids (A, B, C, D, E, F, G, H) differ in the geometry of these double bonds and are generally less toxic, some by orders of magnitude. Epi-domoic acid (C5' epimer) is also less potent. Photo-isomerization can convert DA to less toxic isomers, which is relevant for analytical chemistry and environmental fate studies.",
+    "tags": ["domoic_acid", "isomers", "isodomoic_acid", "stereochemistry", "potency"]
+  }
+]

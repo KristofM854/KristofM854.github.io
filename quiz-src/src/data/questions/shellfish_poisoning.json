@@ -1,0 +1,242 @@
+[
+  {
+    "id": "sp-b-001",
+    "category": "shellfish_poisoning",
+    "subcategory": "psp",
+    "difficulty": "beginner",
+    "question": "What does PSP stand for in the context of marine biotoxins?",
+    "answers": [
+      { "id": "a", "text": "Primary Shellfish Pathogen" },
+      { "id": "b", "text": "Paralytic Shellfish Poisoning" },
+      { "id": "c", "text": "Periodic Shellfish Problem" },
+      { "id": "d", "text": "Planktonic Shellfish Pollution" }
+    ],
+    "correctAnswer": "b",
+    "explanation": "PSP stands for Paralytic Shellfish Poisoning. It is caused by saxitoxin and related analogues that block sodium channels in nerve cells, leading to paralysis. PSP is the most dangerous of the shellfish poisoning syndromes and can be fatal.",
+    "tags": ["psp", "saxitoxin", "definition"]
+  },
+  {
+    "id": "sp-b-002",
+    "category": "shellfish_poisoning",
+    "subcategory": "dsp",
+    "difficulty": "beginner",
+    "question": "Which shellfish poisoning syndrome is primarily characterized by gastrointestinal symptoms such as diarrhea, nausea, and vomiting, WITHOUT neurological effects?",
+    "answers": [
+      { "id": "a", "text": "PSP (Paralytic Shellfish Poisoning)" },
+      { "id": "b", "text": "ASP (Amnesic Shellfish Poisoning)" },
+      { "id": "c", "text": "DSP (Diarrhetic Shellfish Poisoning)" },
+      { "id": "d", "text": "NSP (Neurotoxic Shellfish Poisoning)" }
+    ],
+    "correctAnswer": "c",
+    "explanation": "Diarrhetic Shellfish Poisoning (DSP) is the only major shellfish poisoning syndrome that presents exclusively with gastrointestinal symptoms and has no neurological component. It is caused by okadaic acid and dinophysistoxins produced by Dinophysis and Prorocentrum species.",
+    "tags": ["dsp", "okadaic_acid", "gastrointestinal", "symptoms"]
+  },
+  {
+    "id": "sp-b-003",
+    "category": "shellfish_poisoning",
+    "subcategory": "asp",
+    "difficulty": "beginner",
+    "question": "What distinctive neurological symptom gives Amnesic Shellfish Poisoning (ASP) its name?",
+    "answers": [
+      { "id": "a", "text": "Paralysis" },
+      { "id": "b", "text": "Hallucinations" },
+      { "id": "c", "text": "Short-term memory loss" },
+      { "id": "d", "text": "Blindness" }
+    ],
+    "correctAnswer": "c",
+    "explanation": "ASP is named for the short-term memory loss (amnesia) it can cause. The toxin responsible, domoic acid, acts as a glutamate receptor agonist that can cause excitotoxic damage to the hippocampus, the brain region critical for memory formation. In severe cases, the memory loss can be permanent.",
+    "tags": ["asp", "domoic_acid", "memory_loss", "hippocampus"]
+  },
+  {
+    "id": "sp-b-004",
+    "category": "shellfish_poisoning",
+    "subcategory": "general",
+    "difficulty": "beginner",
+    "question": "Can cooking or freezing contaminated shellfish eliminate marine biotoxins such as saxitoxin or okadaic acid?",
+    "answers": [
+      { "id": "a", "text": "Yes, boiling for 10 minutes destroys all shellfish toxins" },
+      { "id": "b", "text": "Yes, but only if shellfish are frozen for at least 48 hours" },
+      { "id": "c", "text": "No, most shellfish toxins are heat-stable and acid-stable" },
+      { "id": "d", "text": "Only PSP toxins survive cooking; DSP toxins are heat-labile" }
+    ],
+    "correctAnswer": "c",
+    "explanation": "Most marine biotoxins (saxitoxin, okadaic acid, domoic acid, brevetoxins) are remarkably heat-stable, acid-stable, and water-soluble. Normal cooking, steaming, freezing, or other household food preparation methods do NOT eliminate these toxins. This is why monitoring programs that test shellfish tissue before harvest are essential for food safety.",
+    "tags": ["heat_stable", "food_safety", "cooking", "general"]
+  },
+  {
+    "id": "sp-b-005",
+    "category": "shellfish_poisoning",
+    "subcategory": "nsp",
+    "difficulty": "beginner",
+    "question": "Which shellfish poisoning syndrome can also be caused by inhaling aerosolized toxins from sea spray, in addition to ingestion?",
+    "answers": [
+      { "id": "a", "text": "PSP" },
+      { "id": "b", "text": "DSP" },
+      { "id": "c", "text": "ASP" },
+      { "id": "d", "text": "NSP" }
+    ],
+    "correctAnswer": "d",
+    "explanation": "Neurotoxic Shellfish Poisoning (NSP) is unique in that brevetoxins produced by Karenia brevis can become aerosolized in sea spray during red tide events. Inhalation of these airborne toxins can cause respiratory irritation, coughing, wheezing, and asthma exacerbations, even without consuming contaminated shellfish.",
+    "tags": ["nsp", "brevetoxin", "karenia_brevis", "aerosol", "respiratory"]
+  },
+  {
+    "id": "sp-i-001",
+    "category": "shellfish_poisoning",
+    "subcategory": "psp",
+    "difficulty": "intermediate",
+    "question": "What is the typical onset time of symptoms following ingestion of PSP-contaminated shellfish?",
+    "answers": [
+      { "id": "a", "text": "10 minutes to 2 hours" },
+      { "id": "b", "text": "6 to 12 hours" },
+      { "id": "c", "text": "24 to 48 hours" },
+      { "id": "d", "text": "3 to 7 days" }
+    ],
+    "correctAnswer": "a",
+    "explanation": "PSP symptoms typically appear very rapidly, within 10 minutes to 2 hours after ingestion. Initial symptoms include tingling and numbness of the lips and tongue, which can spread to the face and extremities. In severe cases, respiratory paralysis can occur within hours. The rapid onset distinguishes PSP from other shellfish poisoning syndromes.",
+    "tags": ["psp", "onset", "symptoms", "timeline"]
+  },
+  {
+    "id": "sp-i-002",
+    "category": "shellfish_poisoning",
+    "subcategory": "cfp",
+    "difficulty": "intermediate",
+    "question": "Which symptom is characteristic of Ciguatera Fish Poisoning (CFP) and distinguishes it from other marine biotoxin syndromes?",
+    "answers": [
+      { "id": "a", "text": "Memory loss" },
+      { "id": "b", "text": "Temperature sensation reversal (cold feels hot, hot feels cold)" },
+      { "id": "c", "text": "Permanent blindness" },
+      { "id": "d", "text": "Uncontrolled muscle spasms" }
+    ],
+    "correctAnswer": "b",
+    "explanation": "Temperature dysesthesia — the reversal of hot and cold sensation — is a hallmark symptom of ciguatera fish poisoning. Patients may perceive cold objects as painfully hot and vice versa. This distinctive symptom is caused by ciguatoxins affecting sodium channel function in sensory neurons. CFP is contracted by eating large predatory reef fish that have bioaccumulated ciguatoxins through the food chain.",
+    "tags": ["cfp", "ciguatoxin", "temperature_reversal", "symptoms"]
+  },
+  {
+    "id": "sp-i-003",
+    "category": "shellfish_poisoning",
+    "subcategory": "general",
+    "difficulty": "intermediate",
+    "question": "Which shellfish poisoning syndrome has caused the most human fatalities worldwide?",
+    "answers": [
+      { "id": "a", "text": "DSP (Diarrhetic Shellfish Poisoning)" },
+      { "id": "b", "text": "ASP (Amnesic Shellfish Poisoning)" },
+      { "id": "c", "text": "PSP (Paralytic Shellfish Poisoning)" },
+      { "id": "d", "text": "NSP (Neurotoxic Shellfish Poisoning)" }
+    ],
+    "correctAnswer": "c",
+    "explanation": "PSP has historically caused the most fatalities among shellfish poisoning syndromes. Death results from respiratory paralysis, typically occurring 1–12 hours after ingestion in severe cases. Children are particularly susceptible. DSP, while common, is not life-threatening. ASP has caused a small number of deaths (notably in the 1987 PEI outbreak), and no fatalities have been recorded from NSP.",
+    "tags": ["psp", "mortality", "comparison", "respiratory_failure"]
+  },
+  {
+    "id": "sp-i-004",
+    "category": "shellfish_poisoning",
+    "subcategory": "azp",
+    "difficulty": "intermediate",
+    "question": "Azaspiracid Shellfish Poisoning (AZP) was first identified in 1995 following an outbreak linked to shellfish from which region?",
+    "answers": [
+      { "id": "a", "text": "Gulf of Mexico, USA" },
+      { "id": "b", "text": "Killary Harbour, Ireland" },
+      { "id": "c", "text": "Osaka Bay, Japan" },
+      { "id": "d", "text": "Marlborough Sounds, New Zealand" }
+    ],
+    "correctAnswer": "b",
+    "explanation": "AZP was first identified in 1995 after consumers in the Netherlands became ill from eating mussels harvested from Killary Harbour, Ireland. The causative toxins, azaspiracids, are produced by the dinoflagellate Azadinium spinosum. AZP symptoms resemble DSP (nausea, vomiting, diarrhea) but the toxins have a different chemical structure and mechanism of action.",
+    "tags": ["azp", "azaspiracid", "ireland", "azadinium", "history"]
+  },
+  {
+    "id": "sp-i-005",
+    "category": "shellfish_poisoning",
+    "subcategory": "general",
+    "difficulty": "intermediate",
+    "question": "Which type of seafood organism is most commonly associated with shellfish poisoning syndromes (PSP, DSP, ASP)?",
+    "answers": [
+      { "id": "a", "text": "Crustaceans (shrimp, crabs, lobsters)" },
+      { "id": "b", "text": "Cephalopods (squid, octopus)" },
+      { "id": "c", "text": "Filter-feeding bivalves (mussels, clams, oysters, scallops)" },
+      { "id": "d", "text": "Pelagic fish (tuna, mackerel)" }
+    ],
+    "correctAnswer": "c",
+    "explanation": "Filter-feeding bivalve molluscs (mussels, clams, oysters, scallops) are the primary vectors for shellfish poisoning because they concentrate algal toxins as they filter large volumes of water to feed. They can accumulate toxins to dangerous levels while being unaffected themselves. Mussels are often used as sentinel organisms in monitoring programs because they are efficient bioaccumulators.",
+    "tags": ["bivalves", "filter_feeding", "bioaccumulation", "monitoring"]
+  },
+  {
+    "id": "sp-e-001",
+    "category": "shellfish_poisoning",
+    "subcategory": "asp",
+    "difficulty": "expert",
+    "question": "The 1987 ASP outbreak on Prince Edward Island, Canada — the first recognized ASP event — was traced to which specific shellfish species?",
+    "answers": [
+      { "id": "a", "text": "Blue mussels (Mytilus edulis)" },
+      { "id": "b", "text": "Eastern oysters (Crassostrea virginica)" },
+      { "id": "c", "text": "Soft-shell clams (Mya arenaria)" },
+      { "id": "d", "text": "Sea scallops (Placopecten magellanicus)" }
+    ],
+    "correctAnswer": "a",
+    "explanation": "The 1987 Prince Edward Island outbreak was caused by cultured blue mussels (Mytilus edulis) contaminated with domoic acid produced by the diatom Pseudo-nitzschia multiseries (then classified as Nitzschia pungens f. multiseries). The event resulted in 3 deaths and over 100 illnesses, and led to the global establishment of domoic acid monitoring programs with a regulatory limit of 20 mg/kg.",
+    "tags": ["asp", "domoic_acid", "PEI", "1987", "mytilus_edulis", "pseudo-nitzschia", "historical"]
+  },
+  {
+    "id": "sp-e-002",
+    "category": "shellfish_poisoning",
+    "subcategory": "psp",
+    "difficulty": "expert",
+    "question": "The butter clam (Saxidomus gigantea) is particularly significant in PSP risk management. Why?",
+    "answers": [
+      { "id": "a", "text": "It is immune to saxitoxin and never accumulates the toxin" },
+      { "id": "b", "text": "It can retain PSP toxins in its siphon tissue for up to two years after a bloom" },
+      { "id": "c", "text": "It produces saxitoxin endogenously without exposure to toxic algae" },
+      { "id": "d", "text": "It amplifies saxitoxin, producing more toxin than it consumes" }
+    ],
+    "correctAnswer": "b",
+    "explanation": "The butter clam (Saxidomus gigantea) is notable because it can sequester saxitoxin in its siphon tissue for extremely long periods — up to two years after a toxic bloom has ended. Most other bivalves depurate PSP toxins within weeks. This prolonged retention means butter clams can pose a PSP risk long after monitoring programs have given the 'all clear' for other species in the same area.",
+    "tags": ["psp", "saxidomus", "butter_clam", "depuration", "retention"]
+  },
+  {
+    "id": "sp-e-003",
+    "category": "shellfish_poisoning",
+    "subcategory": "dsp",
+    "difficulty": "expert",
+    "question": "Beyond its acute gastrointestinal effects, okadaic acid (the primary DSP toxin) has been shown in animal studies to act as a:",
+    "answers": [
+      { "id": "a", "text": "Tumor promoter" },
+      { "id": "b", "text": "Neurotransmitter agonist" },
+      { "id": "c", "text": "Hemolytic agent" },
+      { "id": "d", "text": "Immunosuppressant only" }
+    ],
+    "correctAnswer": "a",
+    "explanation": "Okadaic acid has been demonstrated to be a potent tumor promoter in animal studies. Through its inhibition of protein phosphatases PP1 and PP2A, it disrupts cellular signaling cascades that control cell growth and apoptosis. This tumor-promoting activity is a concern for populations chronically exposed to sub-acute levels of DSP toxins, though direct evidence of carcinogenicity in humans remains limited.",
+    "tags": ["dsp", "okadaic_acid", "tumor_promoter", "pp2a", "chronic_effects"]
+  },
+  {
+    "id": "sp-e-004",
+    "category": "shellfish_poisoning",
+    "subcategory": "cfp",
+    "difficulty": "expert",
+    "question": "Ciguatera fish poisoning is caused by ciguatoxins that originate from which benthic organism?",
+    "answers": [
+      { "id": "a", "text": "Alexandrium catenella" },
+      { "id": "b", "text": "Gambierdiscus toxicus and related species" },
+      { "id": "c", "text": "Pseudo-nitzschia australis" },
+      { "id": "d", "text": "Ostreopsis siamensis" }
+    ],
+    "correctAnswer": "b",
+    "explanation": "Ciguatoxins are produced by benthic dinoflagellates of the genus Gambierdiscus (originally described as G. toxicus, now recognized as a species complex). These epiphytic organisms live attached to macroalgae and dead coral surfaces in tropical and subtropical reef environments. Herbivorous fish graze on these surfaces and accumulate ciguatoxin precursors, which are biotransformed to more potent forms as they move up the food chain to large predatory fish.",
+    "tags": ["cfp", "ciguatoxin", "gambierdiscus", "benthic", "food_chain", "biotransformation"]
+  },
+  {
+    "id": "sp-e-005",
+    "category": "shellfish_poisoning",
+    "subcategory": "nsp",
+    "difficulty": "expert",
+    "question": "Brevetoxins (the cause of NSP) bind to which specific site on the voltage-gated sodium channel?",
+    "answers": [
+      { "id": "a", "text": "Site 1 (the same binding site as saxitoxin and tetrodotoxin)" },
+      { "id": "b", "text": "Site 5 (causing persistent channel activation)" },
+      { "id": "c", "text": "The inactivation gate (preventing channel closure)" },
+      { "id": "d", "text": "The selectivity filter (altering ion selectivity)" }
+    ],
+    "correctAnswer": "b",
+    "explanation": "Brevetoxins bind to site 5 of the voltage-gated sodium channel, which is distinct from the site 1 binding of saxitoxin/tetrodotoxin. While saxitoxin blocks the channel (preventing Na+ influx), brevetoxins shift the activation voltage to more negative potentials and inhibit channel inactivation, causing persistent depolarization. This mechanistic difference explains why NSP symptoms differ from PSP: NSP causes both neurological and GI symptoms but is generally less severe than PSP.",
+    "tags": ["nsp", "brevetoxin", "sodium_channel", "site_5", "mechanism", "pharmacology"]
+  }
+]

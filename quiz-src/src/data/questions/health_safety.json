@@ -1,0 +1,226 @@
+[
+  {
+    "id": "hs-b-001",
+    "category": "health_safety",
+    "subcategory": "treatment",
+    "difficulty": "beginner",
+    "question": "Is there a specific antidote for paralytic shellfish poisoning (PSP)?",
+    "answers": [
+      { "id": "a", "text": "Yes, atropine is the standard antidote" },
+      { "id": "b", "text": "Yes, activated charcoal neutralizes saxitoxin completely" },
+      { "id": "c", "text": "No, treatment is supportive (especially respiratory support)" },
+      { "id": "d", "text": "Yes, a commercially available anti-saxitoxin antibody exists" }
+    ],
+    "correctAnswer": "c",
+    "explanation": "There is no specific antidote for PSP. Treatment is entirely supportive, with the most critical intervention being respiratory support — mechanical ventilation if respiratory paralysis occurs. If a patient survives the first 12–18 hours, the prognosis is generally good as the toxin is gradually eliminated from the body. GI decontamination (activated charcoal) may be considered if the patient presents early, but it does not neutralize the toxin.",
+    "tags": ["psp", "treatment", "supportive_care", "respiratory_support", "no_antidote"]
+  },
+  {
+    "id": "hs-b-002",
+    "category": "health_safety",
+    "subcategory": "food_safety",
+    "difficulty": "beginner",
+    "question": "Can you tell if shellfish are contaminated with biotoxins by their appearance, smell, or taste?",
+    "answers": [
+      { "id": "a", "text": "Yes, contaminated shellfish have a distinctive bitter taste" },
+      { "id": "b", "text": "Yes, they turn green or blue when contaminated" },
+      { "id": "c", "text": "No, contaminated shellfish look, smell, and taste completely normal" },
+      { "id": "d", "text": "Yes, they smell like ammonia when toxin levels are high" }
+    ],
+    "correctAnswer": "c",
+    "explanation": "Shellfish contaminated with marine biotoxins are indistinguishable from safe shellfish by appearance, smell, or taste. The toxins are odorless, tasteless, and do not change the appearance of the shellfish. This is precisely why laboratory-based monitoring programs are essential — consumers cannot protect themselves through sensory evaluation. Only laboratory testing can determine whether shellfish are safe to eat.",
+    "tags": ["food_safety", "sensory", "appearance", "monitoring_necessity"]
+  },
+  {
+    "id": "hs-b-003",
+    "category": "health_safety",
+    "subcategory": "public_health",
+    "difficulty": "beginner",
+    "question": "What should a member of the public do if they suspect they are experiencing shellfish poisoning symptoms after eating shellfish?",
+    "answers": [
+      { "id": "a", "text": "Wait 24 hours to see if symptoms improve" },
+      { "id": "b", "text": "Induce vomiting and take antibiotics" },
+      { "id": "c", "text": "Seek medical attention immediately, especially if neurological symptoms develop" },
+      { "id": "d", "text": "Drink milk to neutralize the toxin" }
+    ],
+    "correctAnswer": "c",
+    "explanation": "Anyone experiencing symptoms (especially neurological symptoms such as tingling, numbness, or difficulty breathing) after eating shellfish should seek medical attention immediately. PSP in particular can progress rapidly to life-threatening respiratory paralysis. Patients should not self-treat. If possible, save leftover shellfish for testing. Time is critical — PSP fatalities typically occur within 2–12 hours of ingestion.",
+    "tags": ["public_health", "emergency", "symptoms", "medical_advice"]
+  },
+  {
+    "id": "hs-b-004",
+    "category": "health_safety",
+    "subcategory": "food_safety",
+    "difficulty": "beginner",
+    "question": "Which international body establishes global food safety standards, including regulatory limits for marine biotoxins in shellfish?",
+    "answers": [
+      { "id": "a", "text": "World Health Organization (WHO) alone" },
+      { "id": "b", "text": "Codex Alimentarius Commission (joint FAO/WHO)" },
+      { "id": "c", "text": "International Maritime Organization (IMO)" },
+      { "id": "d", "text": "United Nations Environment Programme (UNEP)" }
+    ],
+    "correctAnswer": "b",
+    "explanation": "The Codex Alimentarius Commission, established jointly by FAO (Food and Agriculture Organization) and WHO (World Health Organization), develops international food safety standards including maximum levels for marine biotoxins in shellfish. These Codex standards serve as reference points for national regulations and are recognized by the WTO (World Trade Organization) as the benchmark for international food trade.",
+    "tags": ["codex_alimentarius", "fao", "who", "international_standards", "regulation"]
+  },
+  {
+    "id": "hs-i-001",
+    "category": "health_safety",
+    "subcategory": "regulation",
+    "difficulty": "intermediate",
+    "question": "The EU regulatory limit for the sum of okadaic acid, dinophysistoxins, and pectenotoxins in shellfish is:",
+    "answers": [
+      { "id": "a", "text": "160 µg OA equivalents/kg" },
+      { "id": "b", "text": "800 µg OA equivalents/kg" },
+      { "id": "c", "text": "45 µg OA equivalents/kg" },
+      { "id": "d", "text": "20 mg OA equivalents/kg" }
+    ],
+    "correctAnswer": "a",
+    "explanation": "The EU regulatory limit for the combined OA-group toxins (okadaic acid + dinophysistoxins + pectenotoxins) is 160 µg OA equivalents/kg shellfish meat (EU Regulation 853/2004 and subsequent amendments). Separate limits apply for yessotoxins (3.75 mg YTX eq./kg) and azaspiracids (160 µg AZA eq./kg). These limits were established based on risk assessments considering the acute reference dose and typical shellfish consumption patterns.",
+    "tags": ["eu_regulation", "okadaic_acid", "160", "dsp_limit", "853/2004"]
+  },
+  {
+    "id": "hs-i-002",
+    "category": "health_safety",
+    "subcategory": "public_health",
+    "difficulty": "intermediate",
+    "question": "Why are recreational harvesters (people collecting shellfish on beaches for personal consumption) at higher risk for shellfish poisoning than commercial consumers?",
+    "answers": [
+      { "id": "a", "text": "Beach shellfish are inherently more toxic than farmed shellfish" },
+      { "id": "b", "text": "Their harvested shellfish bypass the commercial monitoring and testing programs" },
+      { "id": "c", "text": "They eat more shellfish per serving than average" },
+      { "id": "d", "text": "Beach shellfish contain different toxin analogues" }
+    ],
+    "correctAnswer": "b",
+    "explanation": "Recreational harvesters are at significantly higher risk because their shellfish do not go through commercial monitoring programs. While commercially sold shellfish are tested and harvest areas are closed when toxin levels exceed limits, recreationally harvested shellfish may come from unmonitored areas or areas already closed to commercial harvest. Education campaigns, signage at beaches, and accessible public advisories are crucial for protecting this vulnerable group.",
+    "tags": ["recreational_harvest", "public_health", "monitoring_gap", "risk_group"]
+  },
+  {
+    "id": "hs-i-003",
+    "category": "health_safety",
+    "subcategory": "regulation",
+    "difficulty": "intermediate",
+    "question": "What is the concept of an 'Acute Reference Dose' (ARfD) in marine biotoxin regulation?",
+    "answers": [
+      { "id": "a", "text": "The minimum dose needed to cause symptoms in all exposed individuals" },
+      { "id": "b", "text": "An estimate of the amount of a toxin that can be ingested in a single meal without appreciable health risk" },
+      { "id": "c", "text": "The lethal dose for 50% of test animals (LD50)" },
+      { "id": "d", "text": "The maximum amount of toxin a shellfish can accumulate" }
+    ],
+    "correctAnswer": "b",
+    "explanation": "The Acute Reference Dose (ARfD) is a toxicological benchmark representing the estimated maximum amount of a substance that can be consumed in a single meal or during one day without appreciable health risk. For marine biotoxins, ARfD values are derived from human poisoning data and animal studies, with safety factors applied. Regulatory limits for toxins in shellfish are then calculated by combining the ARfD with assumed portion sizes (e.g., 400g of shellfish meat in the EU assessment).",
+    "tags": ["arfd", "risk_assessment", "regulation", "portion_size", "safety_factor"]
+  },
+  {
+    "id": "hs-i-004",
+    "category": "health_safety",
+    "subcategory": "treatment",
+    "difficulty": "intermediate",
+    "question": "In ASP, permanent neurological damage is primarily localized to which brain region?",
+    "answers": [
+      { "id": "a", "text": "Cerebellum (motor coordination)" },
+      { "id": "b", "text": "Hippocampus (memory formation)" },
+      { "id": "c", "text": "Brainstem (autonomic functions)" },
+      { "id": "d", "text": "Frontal cortex (executive function)" }
+    ],
+    "correctAnswer": "b",
+    "explanation": "Domoic acid causes excitotoxic damage primarily to the hippocampus, the brain region essential for forming new memories. The hippocampus is particularly rich in glutamate receptors (especially kainate receptors), making it highly vulnerable to domoic acid's excitotoxic mechanism. In the 1987 PEI outbreak, patients who survived severe exposure showed hippocampal atrophy on brain imaging and permanent anterograde amnesia (inability to form new memories).",
+    "tags": ["asp", "hippocampus", "memory", "excitotoxicity", "domoic_acid", "brain"]
+  },
+  {
+    "id": "hs-i-005",
+    "category": "health_safety",
+    "subcategory": "public_health",
+    "difficulty": "intermediate",
+    "question": "The WHO guidelines for safe levels of microcystin-LR in drinking water recommend a provisional guideline value of:",
+    "answers": [
+      { "id": "a", "text": "1 µg/L" },
+      { "id": "b", "text": "10 µg/L" },
+      { "id": "c", "text": "100 µg/L" },
+      { "id": "d", "text": "0.1 µg/L" }
+    ],
+    "correctAnswer": "a",
+    "explanation": "The WHO provisional guideline value for microcystin-LR in drinking water is 1 µg/L. This was derived from animal studies using a tolerable daily intake approach with safety factors. The guideline applies to total microcystin-LR (free plus cell-bound). Some countries have adopted stricter limits. Monitoring for cyanotoxins in drinking water sources has become increasingly important as cyanobacterial blooms intensify globally.",
+    "tags": ["microcystin", "who", "drinking_water", "guideline", "1_microgram"]
+  },
+  {
+    "id": "hs-e-001",
+    "category": "health_safety",
+    "subcategory": "regulation",
+    "difficulty": "expert",
+    "question": "The EFSA (European Food Safety Authority) scientific opinion on marine biotoxins recommended revising DSP regulatory limits. What was a key concern?",
+    "answers": [
+      { "id": "a", "text": "The existing limit of 160 µg OA eq./kg was considered too stringent and economically damaging" },
+      { "id": "b", "text": "The existing limit may not adequately protect consumers, as GI effects were observed at estimated exposures below the current regulatory limit" },
+      { "id": "c", "text": "Yessotoxins should be removed from the lipophilic toxin group" },
+      { "id": "d", "text": "Both B and C" }
+    ],
+    "correctAnswer": "d",
+    "explanation": "EFSA's 2008 opinion raised two key concerns: (1) The ARfD for the OA-group (0.3 µg OA eq./kg body weight) combined with a high shellfish portion (400g) suggested that GI effects could occur at toxin levels below the existing 160 µg/kg limit, meaning the limit might not be sufficiently protective. (2) EFSA also concluded that yessotoxins were unlikely to cause diarrhetic effects at realistic exposure levels and recommended separate risk assessment. Both issues have driven ongoing regulatory discussions.",
+    "tags": ["efsa", "risk_assessment", "160_limit", "arfd", "yessotoxin", "regulatory_debate"]
+  },
+  {
+    "id": "hs-e-002",
+    "category": "health_safety",
+    "subcategory": "public_health",
+    "difficulty": "expert",
+    "question": "Chronic low-level exposure to domoic acid is a concern for certain marine mammal populations. Which species has shown evidence of domoic acid-related epilepsy and reproductive failure?",
+    "answers": [
+      { "id": "a", "text": "Bottlenose dolphins (Tursiops truncatus)" },
+      { "id": "b", "text": "California sea lions (Zalophus californianus)" },
+      { "id": "c", "text": "Grey whales (Eschrichtius robustus)" },
+      { "id": "d", "text": "Sea otters (Enhydra lutris)" }
+    ],
+    "correctAnswer": "b",
+    "explanation": "California sea lions (Zalophus californianus) are the most well-documented marine mammal affected by domoic acid toxicosis. Stranded sea lions along the US west coast regularly present with seizures, disorientation, and hippocampal damage. Research has demonstrated that chronic sub-lethal exposure leads to epilepsy, cardiomyopathy, and reproductive failure including premature births. This wildlife health impact has become a sentinel indicator for domoic acid exposure levels in the marine environment.",
+    "tags": ["sea_lions", "domoic_acid", "chronic_exposure", "epilepsy", "marine_mammals", "sentinel"]
+  },
+  {
+    "id": "hs-e-003",
+    "category": "health_safety",
+    "subcategory": "food_safety",
+    "difficulty": "expert",
+    "question": "The concept of 'depuration' in shellfish safety refers to:",
+    "answers": [
+      { "id": "a", "text": "Adding chemicals to shellfish to neutralize toxins before sale" },
+      { "id": "b", "text": "The natural process by which shellfish eliminate accumulated toxins over time when moved to clean water" },
+      { "id": "c", "text": "Removing the digestive gland (hepatopancreas) before sale to consumers" },
+      { "id": "d", "text": "UV irradiation of shellfish to destroy biotoxins" }
+    ],
+    "correctAnswer": "b",
+    "explanation": "Depuration is the natural biological process by which filter-feeding shellfish eliminate accumulated contaminants (including biotoxins) over time when placed in clean, toxin-free water. Depuration rates vary significantly between toxin types, shellfish species, and environmental conditions. While DSP toxins and PSP toxins typically depurate within days to weeks in most bivalves, some species (e.g., butter clams retaining PSP toxins, scallops retaining domoic acid) depurate very slowly, complicating management decisions.",
+    "tags": ["depuration", "elimination", "shellfish", "management", "species_variation"]
+  },
+  {
+    "id": "hs-e-004",
+    "category": "health_safety",
+    "subcategory": "regulation",
+    "difficulty": "expert",
+    "question": "Which international programme, coordinated by IOC-UNESCO, supports capacity building in harmful algal bloom monitoring and management in developing countries?",
+    "answers": [
+      { "id": "a", "text": "GEOHAB (Global Ecology and Oceanography of Harmful Algal Blooms)" },
+      { "id": "b", "text": "ICES Working Group on Harmful Algal Bloom Dynamics (WGHABD)" },
+      { "id": "c", "text": "IOC-HAB Programme, including the Harmful Algal Bloom Programme Regional Components" },
+      { "id": "d", "text": "The Montreal Protocol" }
+    ],
+    "correctAnswer": "c",
+    "explanation": "The IOC-UNESCO Harmful Algal Bloom Programme (IOC-HAB) and its regional components (e.g., ANCA for the Caribbean, FANSA for South America, WESTPAC-HAB for the Western Pacific) coordinate international scientific cooperation on HABs. The programme supports capacity building through training courses (including the IOC Science and Communication of HABs course), species identification workshops, provision of reference materials, and development of monitoring capabilities in countries that lack established programmes.",
+    "tags": ["ioc-unesco", "ioc-hab", "capacity_building", "international", "training", "developing_countries"]
+  },
+  {
+    "id": "hs-e-005",
+    "category": "health_safety",
+    "subcategory": "public_health",
+    "difficulty": "expert",
+    "question": "The 2014 Toledo, Ohio drinking water crisis — which left ~500,000 people without safe tap water — was caused by contamination with which cyanobacterial toxin from Lake Erie blooms?",
+    "answers": [
+      { "id": "a", "text": "Saxitoxin" },
+      { "id": "b", "text": "Cylindrospermopsin" },
+      { "id": "c", "text": "Microcystin" },
+      { "id": "d", "text": "Anatoxin-a" }
+    ],
+    "correctAnswer": "c",
+    "explanation": "The August 2014 Toledo water crisis was caused by microcystin contamination exceeding the 1 µg/L advisory level in the finished drinking water supply, originating from massive Microcystis aeruginosa blooms in the western basin of Lake Erie. The event triggered a 'do not drink/do not boil' advisory for approximately 500,000 people for over two days. The crisis became a watershed moment in US cyanotoxin policy, accelerating EPA guideline development and investment in water treatment infrastructure.",
+    "tags": ["toledo", "microcystin", "drinking_water", "lake_erie", "microcystis", "public_health_crisis"]
+  }
+]
