@@ -96,7 +96,7 @@ function WelcomePage() {
             {allQuestions.length} Questions &middot; 6 Categories &middot; 3 Difficulty Levels
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {categories.categories.map((cat, i) => {
+            {categories.map((cat, i) => {
               const count = allQuestions.filter((q) => q.category === cat.id).length
               return (
                 <motion.div

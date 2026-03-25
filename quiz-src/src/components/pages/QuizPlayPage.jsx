@@ -114,7 +114,7 @@ function QuizPlayPage() {
     )
   }
 
-  const categoryMeta = categories.categories.find(
+  const categoryMeta = categories.find(
     (c) => c.id === currentQuestion.category
   )
 

@@ -21,7 +21,7 @@ function QuizSetupPage() {
   const navigate = useNavigate()
 
   const [selectedCategories, setSelectedCategories] = useState(
-    categories.categories.map((c) => c.id)
+    categories.map((c) => c.id)
   )
   const [difficulty, setDifficulty] = useState('mixed')
   const [timedMode, setTimedMode] = useState(false)
@@ -63,7 +63,7 @@ function QuizSetupPage() {
             Categories
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {categories.categories.map((cat) => {
+            {categories.map((cat) => {
               const isSelected = selectedCategories.includes(cat.id)
               return (
                 <button

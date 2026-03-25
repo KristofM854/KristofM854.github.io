@@ -91,7 +91,7 @@ function ResultsPage() {
           </h2>
           <div className="space-y-3">
             {Object.entries(categoryBreakdown).map(([catId, data]) => {
-              const cat = categories.categories.find((c) => c.id === catId)
+              const cat = categories.find((c) => c.id === catId)
               const catPercent = Math.round((data.correct / data.total) * 100)
               return (
                 <div key={catId}>
