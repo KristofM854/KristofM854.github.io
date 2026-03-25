@@ -1,44 +1,46 @@
-[
-  {
-    "id": "shellfish_poisoning",
-    "name": "Shellfish Poisoning Syndromes",
-    "icon": "🐚",
-    "description": "PSP, DSP, ASP, NSP, AZP & Ciguatera — symptoms, mechanisms, vectors, prognosis",
-    "color": "#ef4444"
-  },
-  {
-    "id": "organisms",
-    "name": "Causative Organisms",
-    "icon": "🔬",
-    "description": "Dinoflagellates, diatoms, cyanobacteria — taxonomy, ecology, life cycles, bloom dynamics",
-    "color": "#10b981"
-  },
-  {
-    "id": "toxin_chemistry",
-    "name": "Biotoxin Chemistry",
-    "icon": "⚗️",
-    "description": "Chemical structures, mechanisms of action, stability, analogues, structure-activity relationships",
-    "color": "#8b5cf6"
-  },
-  {
-    "id": "monitoring",
-    "name": "Monitoring & Detection",
-    "icon": "📡",
-    "description": "Analytical methods, bioassays, ELISA, HPLC, LC-MS/MS, receptor binding assays, remote sensing",
-    "color": "#0891b2"
-  },
-  {
-    "id": "environment",
-    "name": "Environmental Drivers",
-    "icon": "🌊",
-    "description": "Eutrophication, climate change, ocean warming, upwelling, nutrient cycling, bloom ecology",
-    "color": "#f59e0b"
-  },
-  {
-    "id": "health_safety",
-    "name": "Human Health & Food Safety",
-    "icon": "🏥",
-    "description": "Regulatory limits, seafood safety, public health response, treatment, risk assessment",
-    "color": "#ec4899"
-  }
-]
+{
+  "categories": [
+    {
+      "id": "shellfish_poisoning",
+      "name": "Shellfish Poisoning Syndromes",
+      "icon": "🐚",
+      "description": "PSP, DSP, ASP, NSP, AZP & Ciguatera — symptoms, mechanisms, causative toxins",
+      "color": "#ef4444"
+    },
+    {
+      "id": "organisms",
+      "name": "Causative Organisms",
+      "icon": "🔬",
+      "description": "Dinoflagellates, diatoms, cyanobacteria — taxonomy, ecology, bloom dynamics",
+      "color": "#10b981"
+    },
+    {
+      "id": "toxin_chemistry",
+      "name": "Biotoxin Chemistry",
+      "icon": "⚗️",
+      "description": "Chemical structures, mechanisms of action, stability, metabolism of marine toxins",
+      "color": "#8b5cf6"
+    },
+    {
+      "id": "monitoring",
+      "name": "Monitoring & Detection",
+      "icon": "📡",
+      "description": "Analytical methods, bioassays, ELISA, HPLC, receptor binding assays, remote sensing",
+      "color": "#0891b2"
+    },
+    {
+      "id": "environment",
+      "name": "Environmental Drivers",
+      "icon": "🌊",
+      "description": "Eutrophication, climate change, ocean warming, upwelling, nutrient cycling",
+      "color": "#f59e0b"
+    },
+    {
+      "id": "health_safety",
+      "name": "Human Health & Food Safety",
+      "icon": "🏥",
+      "description": "Regulatory limits, seafood safety, public health response, treatment protocols",
+      "color": "#ec4899"
+    }
+  ]
+}
