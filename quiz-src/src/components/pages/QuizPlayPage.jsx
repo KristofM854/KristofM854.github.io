@@ -224,7 +224,7 @@ function QuizPlayPage() {
                 const isWrong = isSelected && !isCorrect
 
                 let btnClass =
-                  'w-full text-left p-4 rounded-xl border transition-all cursor-pointer min-h-[48px]'
+                  'w-full text-left p-4 rounded-xl border transition-all cursor-pointer min-h-[48px] flex items-center'
                 if (showFeedback) {
                   if (isCorrect)
                     btnClass += ' bg-accent-success/15 border-accent-success/40 text-accent-success'
@@ -255,10 +255,18 @@ function QuizPlayPage() {
                         />
                       </div>
                     )}
-                    <span className="font-mono text-xs text-text-tertiary mr-2">
-                      {POSITION_LABELS[answerIndex]}.
+                    <span className={`inline-flex items-center justify-center w-7 h-7 rounded-full font-mono text-sm font-semibold mr-3 flex-shrink-0 ${
+                      showFeedback && isCorrect
+                        ? 'bg-accent-success/20 text-accent-success'
+                        : showFeedback && isWrong
+                        ? 'bg-accent-danger/20 text-accent-danger'
+                        : showFeedback
+                        ? 'bg-white/5 text-text-tertiary'
+                        : 'bg-accent-teal/15 text-accent-teal'
+                    }`}>
+                      {POSITION_LABELS[answerIndex]}
                     </span>
-                    {italicizeSpecies(answer.text)}
+                    <span className="flex-1">{italicizeSpecies(answer.text)}</span>
                   </motion.button>
                 )
               })}
