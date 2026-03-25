@@ -8,6 +8,7 @@ import Button from '../shared/Button.jsx'
 import Card from '../shared/Card.jsx'
 import Badge from '../shared/Badge.jsx'
 import ScoreSubmitModal from '../shared/ScoreSubmitModal.jsx'
+import { isConfigured } from '../../firebase.js'
 
 function getGrade(percent) {
   if (percent >= 90) return { label: 'Expert', emoji: '🏆', color: 'text-accent-amber' }
@@ -212,6 +213,12 @@ function ResultsPage() {
 
         {/* Actions */}
         <div className="flex flex-wrap justify-center gap-4 py-4">
+          {isConfigured && (
+            <Button onClick={() => setShowScoreModal(true)} variant="secondary" size="sm">
+              <Trophy className="w-4 h-4" />
+              Submit to Leaderboard
+            </Button>
+          )}
           <Button onClick={handleShare} variant="secondary" size="sm">
             {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
             {copied ? 'Copied!' : 'Share Result'}
