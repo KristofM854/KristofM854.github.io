@@ -11,6 +11,9 @@ import Card from '../shared/Card.jsx'
 import ProgressRing from '../shared/ProgressRing.jsx'
 import Modal from '../shared/Modal.jsx'
 import { categories, getQuestionType } from '../../data/index.js'
+import { italicizeSpecies } from '../../utils/italicizeSpecies.jsx'
+
+const POSITION_LABELS = ['A', 'B', 'C', 'D']
 
 function QuizPlayPage() {
   const location = useLocation()
@@ -192,7 +195,7 @@ function QuizPlayPage() {
           >
             <Card className="mb-5">
               <h2 className="font-body text-lg sm:text-xl font-medium text-text-primary leading-relaxed py-1">
-                {currentQuestion.question}
+                {italicizeSpecies(currentQuestion.question)}
               </h2>
               {/* Image display for "image" type questions */}
               {getQuestionType(currentQuestion) === 'image' && currentQuestion.image && (
@@ -212,7 +215,7 @@ function QuizPlayPage() {
                 ? 'grid-cols-2'
                 : 'grid-cols-1 sm:grid-cols-2'
             }`}>
-              {currentQuestion.answers.map((answer) => {
+              {currentQuestion.answers.map((answer, answerIndex) => {
                 const isSelected =
                   showFeedback &&
                   answers[answers.length - 1]?.selectedAnswer === answer.id
@@ -252,10 +255,10 @@ function QuizPlayPage() {
                         />
                       </div>
                     )}
-                    <span className="font-mono text-xs text-text-tertiary mr-2 uppercase">
-                      {answer.id}.
+                    <span className="font-mono text-xs text-text-tertiary mr-2">
+                      {POSITION_LABELS[answerIndex]}.
                     </span>
-                    {answer.text}
+                    {italicizeSpecies(answer.text)}
                   </motion.button>
                 )
               })}
@@ -295,7 +298,7 @@ function QuizPlayPage() {
                       {lastResult.isCorrect ? 'Correct!' : 'Incorrect'}
                     </p>
                     <p className="text-text-secondary text-sm mt-2 leading-relaxed">
-                      {currentQuestion.explanation}
+                      {italicizeSpecies(currentQuestion.explanation)}
                     </p>
                   </div>
                 </div>

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { Trophy, RotateCcw, Home, ChevronDown, ChevronUp, Copy, Check, ExternalLink } from 'lucide-react'
 import { useState } from 'react'
 import { categories } from '../../data/index.js'
+import { italicizeSpecies } from '../../utils/italicizeSpecies.jsx'
 import Button from '../shared/Button.jsx'
 import Card from '../shared/Card.jsx'
 import Badge from '../shared/Badge.jsx'
@@ -160,7 +161,7 @@ function ResultsPage() {
                       <span className="w-5 h-5 text-accent-danger flex-shrink-0 mt-0.5 text-center font-bold">✗</span>
                     )}
                     <span className="text-sm text-text-primary flex-1">
-                      {q.question}
+                      {italicizeSpecies(q.question)}
                     </span>
                     {isExpanded ? (
                       <ChevronUp className="w-4 h-4 text-text-tertiary flex-shrink-0" />
@@ -181,15 +182,15 @@ function ResultsPage() {
                       {!isCorrect && a?.selectedAnswer && (
                         <p className="text-sm text-accent-danger">
                           Your answer:{' '}
-                          {q.answers.find((ans) => ans.id === a.selectedAnswer)?.text || 'No answer'}
+                          {italicizeSpecies(q.answers.find((ans) => ans.id === a.selectedAnswer)?.text || 'No answer')}
                         </p>
                       )}
                       <p className="text-sm text-accent-success">
                         Correct answer:{' '}
-                        {q.answers.find((ans) => ans.id === q.correctAnswer)?.text}
+                        {italicizeSpecies(q.answers.find((ans) => ans.id === q.correctAnswer)?.text)}
                       </p>
                       <p className="text-sm text-text-secondary leading-relaxed">
-                        {q.explanation}
+                        {italicizeSpecies(q.explanation)}
                       </p>
                     </motion.div>
                   )}
