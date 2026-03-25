@@ -84,7 +84,7 @@ export function QuizSessionProvider({ children }) {
     return questions.length
   }, [reviewQueue, setSession, setPreferences])
 
-  const submitAnswer = useCallback((selectedAnswerId, timeSpent) => {
+  const submitAnswer = useCallback((selectedAnswerId, timeSpent, explicitOutcome) => {
     let result = null
     setSession((prev) => {
       if (!prev?.session || prev.session.status !== 'active') return prev
@@ -95,9 +95,8 @@ export function QuizSessionProvider({ children }) {
       if (s.answers.length > s.currentIndex) return prev
 
       const isCorrect = selectedAnswerId === currentQ.correctAnswer
-      const outcome = selectedAnswerId === null
-        ? (selectedAnswerId === undefined ? 'timeout' : 'unknown')
-        : isCorrect ? 'correct' : 'incorrect'
+      const outcome = explicitOutcome
+        || (selectedAnswerId === null ? 'unknown' : isCorrect ? 'correct' : 'incorrect')
 
       const answer = {
         questionId: currentQ.id,
@@ -144,7 +143,11 @@ export function QuizSessionProvider({ children }) {
   }, [setSession, setStats])
 
   const markUnknown = useCallback((timeSpent) => {
-    return submitAnswer(null, timeSpent)
+    return submitAnswer(null, timeSpent, 'unknown')
+  }, [submitAnswer])
+
+  const timeoutAnswer = useCallback((timeSpent) => {
+    return submitAnswer(null, timeSpent, 'timeout')
   }, [submitAnswer])
 
   const nextQuestion = useCallback(() => {
@@ -308,6 +311,7 @@ export function QuizSessionProvider({ children }) {
     startQuiz,
     submitAnswer,
     markUnknown,
+    timeoutAnswer,
     nextQuestion,
     flagQuestion,
     markForReview,
