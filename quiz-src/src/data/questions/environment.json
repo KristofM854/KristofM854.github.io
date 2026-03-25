@@ -6,14 +6,37 @@
     "difficulty": "beginner",
     "question": "What is eutrophication?",
     "answers": [
-      { "id": "a", "text": "The process of water becoming more acidic due to CO₂ absorption" },
-      { "id": "b", "text": "The excessive enrichment of a water body with nutrients, leading to increased algal growth" },
-      { "id": "c", "text": "The natural aging process of a lake over thousands of years without human influence" },
-      { "id": "d", "text": "The invasion of non-native algal species into new waters" }
+      {
+        "id": "a",
+        "text": "The process of water becoming more acidic due to CO₂ absorption"
+      },
+      {
+        "id": "b",
+        "text": "The excessive enrichment of a water body with nutrients, leading to increased algal growth"
+      },
+      {
+        "id": "c",
+        "text": "The natural aging process of a lake over thousands of years without human influence"
+      },
+      {
+        "id": "d",
+        "text": "The invasion of non-native algal species into new waters"
+      }
     ],
     "correctAnswer": "b",
     "explanation": "Eutrophication is the process by which excessive nutrient inputs (primarily nitrogen and phosphorus) stimulate excessive algal and plant growth in aquatic systems. This can lead to algal blooms, oxygen depletion (hypoxia), fish kills, and ecosystem degradation. While some natural nutrient enrichment occurs (natural eutrophication), the term typically refers to anthropogenic (human-caused) nutrient loading from agriculture, sewage, and urban runoff.",
-    "tags": ["eutrophication", "nutrients", "nitrogen", "phosphorus", "definition"]
+    "tags": [
+      "eutrophication",
+      "nutrients",
+      "nitrogen",
+      "phosphorus",
+      "definition"
+    ],
+    "references": "",
+    "sourceShort": "",
+    "learningObjective": "",
+    "lastReviewed": "",
+    "jurisdiction": ""
   },
   {
     "id": "env-b-002",
@@ -22,14 +45,37 @@
     "difficulty": "beginner",
     "question": "Which two nutrients are most responsible for fueling harmful algal blooms?",
     "answers": [
-      { "id": "a", "text": "Iron and manganese" },
-      { "id": "b", "text": "Calcium and magnesium" },
-      { "id": "c", "text": "Nitrogen and phosphorus" },
-      { "id": "d", "text": "Silicon and zinc" }
+      {
+        "id": "a",
+        "text": "Iron and manganese"
+      },
+      {
+        "id": "b",
+        "text": "Calcium and magnesium"
+      },
+      {
+        "id": "c",
+        "text": "Nitrogen and phosphorus"
+      },
+      {
+        "id": "d",
+        "text": "Silicon and zinc"
+      }
     ],
     "correctAnswer": "c",
     "explanation": "Nitrogen (N) and phosphorus (P) are the primary macronutrients driving HAB formation. Phosphorus is generally considered the limiting nutrient in freshwater systems, while nitrogen is more often limiting in marine environments — though both are important in coastal waters. Major anthropogenic sources include agricultural fertilizer runoff, animal waste, municipal wastewater, and atmospheric deposition.",
-    "tags": ["nitrogen", "phosphorus", "nutrients", "limiting_nutrient", "anthropogenic"]
+    "tags": [
+      "nitrogen",
+      "phosphorus",
+      "nutrients",
+      "limiting_nutrient",
+      "anthropogenic"
+    ],
+    "references": "",
+    "sourceShort": "",
+    "learningObjective": "",
+    "lastReviewed": "",
+    "jurisdiction": ""
   },
   {
     "id": "env-b-003",
@@ -38,14 +84,37 @@
     "difficulty": "beginner",
     "question": "How is climate change generally expected to affect harmful algal blooms?",
     "answers": [
-      { "id": "a", "text": "Decrease bloom frequency due to increased ocean mixing" },
-      { "id": "b", "text": "No significant effect — HABs are not climate-sensitive" },
-      { "id": "c", "text": "Increase bloom frequency, duration, geographic range, and potentially toxicity" },
-      { "id": "d", "text": "Shift all blooms from coastal to open ocean environments" }
+      {
+        "id": "a",
+        "text": "Decrease bloom frequency due to increased ocean mixing"
+      },
+      {
+        "id": "b",
+        "text": "No significant effect — HABs are not climate-sensitive"
+      },
+      {
+        "id": "c",
+        "text": "Increase bloom frequency, duration, geographic range, and potentially toxicity"
+      },
+      {
+        "id": "d",
+        "text": "Shift all blooms from coastal to open ocean environments"
+      }
     ],
     "correctAnswer": "c",
     "explanation": "Climate change is generally expected to favor HAB expansion through multiple mechanisms: warmer water temperatures promote growth of many HAB species, stronger stratification reduces mixing and favors buoyant cyanobacteria, changes in precipitation patterns alter nutrient runoff, sea level rise and altered currents can introduce HAB species to new areas, and ocean acidification may affect species competition. However, the relationship is complex and varies by species and region.",
-    "tags": ["climate_change", "warming", "stratification", "expansion", "prediction"]
+    "tags": [
+      "climate_change",
+      "warming",
+      "stratification",
+      "expansion",
+      "prediction"
+    ],
+    "references": "",
+    "sourceShort": "",
+    "learningObjective": "",
+    "lastReviewed": "",
+    "jurisdiction": ""
   },
   {
     "id": "env-b-004",
@@ -54,14 +123,37 @@
     "difficulty": "beginner",
     "question": "Which of the following environmental conditions generally favors cyanobacterial bloom formation in freshwater lakes?",
     "answers": [
-      { "id": "a", "text": "Cold temperatures, low nutrients, strong winds" },
-      { "id": "b", "text": "Warm temperatures, high nutrient concentrations, calm/stagnant water" },
-      { "id": "c", "text": "High salinity, low light, fast-flowing water" },
-      { "id": "d", "text": "Low temperatures, acidic pH, deep water" }
+      {
+        "id": "a",
+        "text": "Cold temperatures, low nutrients, strong winds"
+      },
+      {
+        "id": "b",
+        "text": "Warm temperatures, high nutrient concentrations, calm/stagnant water"
+      },
+      {
+        "id": "c",
+        "text": "High salinity, low light, fast-flowing water"
+      },
+      {
+        "id": "d",
+        "text": "Low temperatures, acidic pH, deep water"
+      }
     ],
     "correctAnswer": "b",
     "explanation": "Cyanobacterial blooms are favored by warm temperatures (>20°C), high nutrient concentrations (especially phosphorus), calm or stagnant water conditions (which allow buoyant cyanobacteria to float to the surface), and abundant sunlight. These conditions are typically met in eutrophic lakes, reservoirs, and slow-flowing rivers during summer and early autumn.",
-    "tags": ["cyanobacteria", "freshwater", "temperature", "stagnation", "bloom_conditions"]
+    "tags": [
+      "cyanobacteria",
+      "freshwater",
+      "temperature",
+      "stagnation",
+      "bloom_conditions"
+    ],
+    "references": "",
+    "sourceShort": "",
+    "learningObjective": "",
+    "lastReviewed": "",
+    "jurisdiction": ""
   },
   {
     "id": "env-i-001",
@@ -70,14 +162,37 @@
     "difficulty": "intermediate",
     "question": "In freshwater systems, which nutrient is generally considered the primary limiting factor for cyanobacterial bloom formation?",
     "answers": [
-      { "id": "a", "text": "Nitrogen" },
-      { "id": "b", "text": "Phosphorus" },
-      { "id": "c", "text": "Silicon" },
-      { "id": "d", "text": "Iron" }
+      {
+        "id": "a",
+        "text": "Nitrogen"
+      },
+      {
+        "id": "b",
+        "text": "Phosphorus"
+      },
+      {
+        "id": "c",
+        "text": "Silicon"
+      },
+      {
+        "id": "d",
+        "text": "Iron"
+      }
     ],
     "correctAnswer": "b",
     "explanation": "Phosphorus is generally the primary limiting nutrient for phytoplankton growth in freshwater systems. Reducing phosphorus loading is therefore the main management strategy for controlling freshwater cyanobacterial blooms. Some cyanobacteria (e.g., Dolichospermum/Anabaena, Aphanizomenon) can fix atmospheric nitrogen, giving them a competitive advantage in low-N conditions — which further emphasizes the importance of P control. In marine/coastal systems, nitrogen is more commonly limiting.",
-    "tags": ["phosphorus", "limiting_nutrient", "freshwater", "nitrogen_fixation", "management"]
+    "tags": [
+      "phosphorus",
+      "limiting_nutrient",
+      "freshwater",
+      "nitrogen_fixation",
+      "management"
+    ],
+    "references": "",
+    "sourceShort": "",
+    "learningObjective": "",
+    "lastReviewed": "",
+    "jurisdiction": ""
   },
   {
     "id": "env-i-002",
@@ -86,14 +201,37 @@
     "difficulty": "intermediate",
     "question": "What is 'upwelling' and how does it relate to HAB formation in marine environments?",
     "answers": [
-      { "id": "a", "text": "Warm surface water rising — it inhibits HABs by increasing temperature too rapidly" },
-      { "id": "b", "text": "Cold, nutrient-rich deep water rising to the surface — it can fuel phytoplankton blooms including HABs" },
-      { "id": "c", "text": "The mixing of fresh and salt water in estuaries — it kills HAB species" },
-      { "id": "d", "text": "Tidal movement of water onto shore — it concentrates HAB cells on beaches" }
+      {
+        "id": "a",
+        "text": "Warm surface water rising — it inhibits HABs by increasing temperature too rapidly"
+      },
+      {
+        "id": "b",
+        "text": "Cold, nutrient-rich deep water rising to the surface — it can fuel phytoplankton blooms including HABs"
+      },
+      {
+        "id": "c",
+        "text": "The mixing of fresh and salt water in estuaries — it kills HAB species"
+      },
+      {
+        "id": "d",
+        "text": "Tidal movement of water onto shore — it concentrates HAB cells on beaches"
+      }
     ],
     "correctAnswer": "b",
     "explanation": "Upwelling is the process by which cold, nutrient-rich deep water is brought to the surface, typically driven by wind patterns along coastlines. This nutrient injection fuels primary productivity and can trigger or sustain phytoplankton blooms, including HABs. Major upwelling regions (e.g., California Current, Benguela Current, Peru Current) are often associated with significant HAB activity, including Pseudo-nitzschia blooms producing domoic acid.",
-    "tags": ["upwelling", "nutrients", "deep_water", "coastal", "pseudo-nitzschia"]
+    "tags": [
+      "upwelling",
+      "nutrients",
+      "deep_water",
+      "coastal",
+      "pseudo-nitzschia"
+    ],
+    "references": "",
+    "sourceShort": "",
+    "learningObjective": "",
+    "lastReviewed": "",
+    "jurisdiction": ""
   },
   {
     "id": "env-i-003",
@@ -102,14 +240,38 @@
     "difficulty": "intermediate",
     "question": "Increased water column stratification due to ocean warming is expected to favor which type of organisms?",
     "answers": [
-      { "id": "a", "text": "Large diatoms that require turbulent mixing" },
-      { "id": "b", "text": "Motile dinoflagellates and buoyancy-regulating cyanobacteria" },
-      { "id": "c", "text": "Benthic (bottom-dwelling) organisms only" },
-      { "id": "d", "text": "Deep-water species adapted to cold temperatures" }
+      {
+        "id": "a",
+        "text": "Large diatoms that require turbulent mixing"
+      },
+      {
+        "id": "b",
+        "text": "Motile dinoflagellates and buoyancy-regulating cyanobacteria"
+      },
+      {
+        "id": "c",
+        "text": "Benthic (bottom-dwelling) organisms only"
+      },
+      {
+        "id": "d",
+        "text": "Deep-water species adapted to cold temperatures"
+      }
     ],
     "correctAnswer": "b",
     "explanation": "Warmer surface waters increase thermal stratification, reducing vertical mixing. This favors organisms that can regulate their position in the water column: motile dinoflagellates (which swim) and gas-vacuolate cyanobacteria (which control buoyancy). In contrast, heavy-celled diatoms that depend on turbulent mixing to stay in the photic zone are disadvantaged. This stratification-driven shift in phytoplankton community structure is a key mechanism by which climate change may increase HAB occurrence.",
-    "tags": ["stratification", "motility", "buoyancy", "dinoflagellate", "cyanobacteria", "climate"]
+    "tags": [
+      "stratification",
+      "motility",
+      "buoyancy",
+      "dinoflagellate",
+      "cyanobacteria",
+      "climate"
+    ],
+    "references": "",
+    "sourceShort": "",
+    "learningObjective": "",
+    "lastReviewed": "",
+    "jurisdiction": ""
   },
   {
     "id": "env-i-004",
@@ -118,14 +280,37 @@
     "difficulty": "intermediate",
     "question": "What is ballast water and why is it relevant to the global spread of HAB species?",
     "answers": [
-      { "id": "a", "text": "Water used in aquaculture — it can contain parasites but not HAB species" },
-      { "id": "b", "text": "Water taken aboard ships for stability — it can transport HAB species and their cysts to new regions globally" },
-      { "id": "c", "text": "Heavy water (D₂O) used in nuclear reactors — no connection to HABs" },
-      { "id": "d", "text": "Treated wastewater discharged by cruise ships — it adds nutrients but not organisms" }
+      {
+        "id": "a",
+        "text": "Water used in aquaculture — it can contain parasites but not HAB species"
+      },
+      {
+        "id": "b",
+        "text": "Water taken aboard ships for stability — it can transport HAB species and their cysts to new regions globally"
+      },
+      {
+        "id": "c",
+        "text": "Heavy water (D₂O) used in nuclear reactors — no connection to HABs"
+      },
+      {
+        "id": "d",
+        "text": "Treated wastewater discharged by cruise ships — it adds nutrients but not organisms"
+      }
     ],
     "correctAnswer": "b",
     "explanation": "Ships take on ballast water in one port and discharge it in another, potentially transporting living organisms — including HAB species and their resting cysts — across ocean basins. This has been identified as a major vector for the introduction of non-native HAB species to new regions. The International Maritime Organization (IMO) Ballast Water Management Convention (entered into force 2017) requires ships to treat ballast water to reduce the transfer of aquatic organisms.",
-    "tags": ["ballast_water", "species_introduction", "global_spread", "imo", "cysts"]
+    "tags": [
+      "ballast_water",
+      "species_introduction",
+      "global_spread",
+      "imo",
+      "cysts"
+    ],
+    "references": "",
+    "sourceShort": "",
+    "learningObjective": "",
+    "lastReviewed": "",
+    "jurisdiction": ""
   },
   {
     "id": "env-e-001",
@@ -134,14 +319,37 @@
     "difficulty": "expert",
     "question": "The 'GEOHAB' framework (now IOC-HAB) identified several 'HAB types in relation to their physical-biological interactions.' Which of these represents the Alexandrium bloom type in many temperate regions?",
     "answers": [
-      { "id": "a", "text": "Upwelling systems" },
-      { "id": "b", "text": "Stratified systems with cyst-mediated bloom initiation" },
-      { "id": "c", "text": "Eutrophic coastal systems" },
-      { "id": "d", "text": "Fjord systems with restricted circulation" }
+      {
+        "id": "a",
+        "text": "Upwelling systems"
+      },
+      {
+        "id": "b",
+        "text": "Stratified systems with cyst-mediated bloom initiation"
+      },
+      {
+        "id": "c",
+        "text": "Eutrophic coastal systems"
+      },
+      {
+        "id": "d",
+        "text": "Fjord systems with restricted circulation"
+      }
     ],
     "correctAnswer": "b",
     "explanation": "The GEOHAB programme classified HAB ecosystems by their physical-biological dynamics. Alexandrium blooms in many temperate regions exemplify 'stratified systems' where blooms are initiated by cyst germination from sediment seed banks during spring warming and stratification. The transition from mixed to stratified water column conditions triggers cyst germination, and the resulting vegetative cells exploit the stratified water column. Understanding these physical-biological interactions is key to bloom prediction.",
-    "tags": ["geohab", "stratification", "cyst_germination", "bloom_initiation", "alexandrium"]
+    "tags": [
+      "geohab",
+      "stratification",
+      "cyst_germination",
+      "bloom_initiation",
+      "alexandrium"
+    ],
+    "references": "",
+    "sourceShort": "",
+    "learningObjective": "",
+    "lastReviewed": "",
+    "jurisdiction": ""
   },
   {
     "id": "env-e-002",
@@ -150,14 +358,37 @@
     "difficulty": "expert",
     "question": "The Redfield ratio (C:N:P = 106:16:1) describes typical phytoplankton stoichiometry. Deviations from this ratio in ambient nutrients can indicate which condition relevant to HABs?",
     "answers": [
-      { "id": "a", "text": "Whether the water is fresh or saline" },
-      { "id": "b", "text": "Which nutrient is limiting, which can favor different phytoplankton groups and influence toxin production" },
-      { "id": "c", "text": "The total biomass of the bloom only" },
-      { "id": "d", "text": "The temperature of the water" }
+      {
+        "id": "a",
+        "text": "Whether the water is fresh or saline"
+      },
+      {
+        "id": "b",
+        "text": "Which nutrient is limiting, which can favor different phytoplankton groups and influence toxin production"
+      },
+      {
+        "id": "c",
+        "text": "The total biomass of the bloom only"
+      },
+      {
+        "id": "d",
+        "text": "The temperature of the water"
+      }
     ],
     "correctAnswer": "b",
     "explanation": "Deviations from the Redfield ratio indicate nutrient limitation or excess. Low N:P ratios may favor nitrogen-fixing cyanobacteria, while high N:P ratios can favor non-N-fixing species. Nutrient stress (particularly P or Si limitation) has been linked to increased toxin production in several HAB species, including domoic acid in Pseudo-nitzschia. Understanding nutrient stoichiometry is essential for predicting bloom composition and potential toxicity.",
-    "tags": ["redfield_ratio", "stoichiometry", "nutrient_limitation", "n:p_ratio", "toxin_production"]
+    "tags": [
+      "redfield_ratio",
+      "stoichiometry",
+      "nutrient_limitation",
+      "n:p_ratio",
+      "toxin_production"
+    ],
+    "references": "",
+    "sourceShort": "",
+    "learningObjective": "",
+    "lastReviewed": "",
+    "jurisdiction": ""
   },
   {
     "id": "env-e-003",
@@ -166,14 +397,38 @@
     "difficulty": "expert",
     "question": "Ocean acidification (decreasing seawater pH due to CO₂ absorption) has been shown to potentially affect HABs in which way?",
     "answers": [
-      { "id": "a", "text": "Universally reduces all algal growth due to acid stress" },
-      { "id": "b", "text": "May enhance growth and/or toxin production in some HAB species while inhibiting others" },
-      { "id": "c", "text": "Only affects calcifying organisms like coccolithophores, not HAB species" },
-      { "id": "d", "text": "Eliminates all cyanobacterial toxins through chemical degradation" }
+      {
+        "id": "a",
+        "text": "Universally reduces all algal growth due to acid stress"
+      },
+      {
+        "id": "b",
+        "text": "May enhance growth and/or toxin production in some HAB species while inhibiting others"
+      },
+      {
+        "id": "c",
+        "text": "Only affects calcifying organisms like coccolithophores, not HAB species"
+      },
+      {
+        "id": "d",
+        "text": "Eliminates all cyanobacterial toxins through chemical degradation"
+      }
     ],
     "correctAnswer": "b",
     "explanation": "The effects of ocean acidification on HABs are species-specific and complex. Some studies have shown increased growth rates and/or increased toxin production in certain HAB species (e.g., enhanced saxitoxin production in some Alexandrium strains under elevated CO₂). Other species may be negatively affected or show no response. The interaction between acidification, warming, and nutrient changes creates a complex and difficult-to-predict future HAB landscape. This remains an active and important area of research.",
-    "tags": ["ocean_acidification", "co2", "ph", "toxin_production", "species_specific", "research"]
+    "tags": [
+      "ocean_acidification",
+      "co2",
+      "ph",
+      "toxin_production",
+      "species_specific",
+      "research"
+    ],
+    "references": "",
+    "sourceShort": "",
+    "learningObjective": "",
+    "lastReviewed": "",
+    "jurisdiction": ""
   },
   {
     "id": "env-e-004",
@@ -182,13 +437,36 @@
     "difficulty": "expert",
     "question": "Allelopathy in the context of HABs refers to:",
     "answers": [
-      { "id": "a", "text": "The process by which HAB species fix atmospheric nitrogen" },
-      { "id": "b", "text": "The chemical inhibition or killing of competing phytoplankton species by HAB organisms" },
-      { "id": "c", "text": "The symbiotic relationship between HAB species and bacteria" },
-      { "id": "d", "text": "The genetic exchange between different dinoflagellate species" }
+      {
+        "id": "a",
+        "text": "The process by which HAB species fix atmospheric nitrogen"
+      },
+      {
+        "id": "b",
+        "text": "The chemical inhibition or killing of competing phytoplankton species by HAB organisms"
+      },
+      {
+        "id": "c",
+        "text": "The symbiotic relationship between HAB species and bacteria"
+      },
+      {
+        "id": "d",
+        "text": "The genetic exchange between different dinoflagellate species"
+      }
     ],
     "correctAnswer": "b",
     "explanation": "Allelopathy is the production and release of chemical compounds that inhibit or kill competing organisms. Several HAB species (e.g., Alexandrium, Karenia, Prymnesium) produce allelopathic compounds that can suppress or lyse competing phytoplankton, helping the HAB species achieve dominance. This is an important mechanism in bloom formation and maintenance that operates alongside nutrient competition and grazing effects. Allelopathic interactions may also affect co-occurring grazers.",
-    "tags": ["allelopathy", "chemical_ecology", "competition", "bloom_maintenance", "lysis"]
+    "tags": [
+      "allelopathy",
+      "chemical_ecology",
+      "competition",
+      "bloom_maintenance",
+      "lysis"
+    ],
+    "references": "",
+    "sourceShort": "",
+    "learningObjective": "",
+    "lastReviewed": "",
+    "jurisdiction": ""
   }
 ]

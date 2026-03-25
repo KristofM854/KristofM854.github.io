@@ -1,27 +1,47 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
-import { Play, FlaskConical, Award, Target, Zap, Shuffle } from 'lucide-react'
+import { Play, FlaskConical, Award, Target, Zap, Shuffle, BookOpen, GraduationCap, RotateCcw, AlertCircle, Trash2 } from 'lucide-react'
 import { categories, allQuestions } from '../../data/index.js'
-import useStats from '../../hooks/useStats.js'
+import { useQuizSession } from '../../context/QuizSessionContext.jsx'
 import Button from '../shared/Button.jsx'
 import Card from '../shared/Card.jsx'
 import Leaderboard from '../shared/Leaderboard.jsx'
 
 function WelcomePage() {
-  const { stats } = useStats()
+  const {
+    stats,
+    hasUnfinishedSession,
+    reviewQueue,
+    startQuiz,
+    resumeSession,
+    discardSession,
+  } = useQuizSession()
   const hasHistory = stats.totalSessions > 0
   const navigate = useNavigate()
   const reducedMotion = useReducedMotion()
 
   const handleQuickStart = () => {
-    const config = {
+    const count = startQuiz({
       categories: categories.filter((c) => allQuestions.some((q) => q.category === c.id)).map((c) => c.id),
       difficulty: 'mixed',
       timedMode: false,
       timePerQuestion: 30,
       questionCount: 10,
-    }
-    navigate('/play', { state: { config } })
+    }, 'exam')
+    if (count > 0) navigate('/play')
+  }
+
+  const handleResume = () => {
+    resumeSession()
+    navigate('/play')
+  }
+
+  const handleDiscard = () => {
+    discardSession()
+  }
+
+  const handleModeSelect = (mode) => {
+    navigate('/setup', { state: { mode } })
   }
 
   return (
@@ -32,6 +52,40 @@ function WelcomePage() {
 
           {/* Main content column */}
           <div className="flex-1 min-w-0 space-y-12">
+
+            {/* Unfinished session card */}
+            {hasUnfinishedSession && (
+              <motion.div
+                initial={reducedMotion ? false : { opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+              >
+                <Card className="border border-accent-amber/30 bg-accent-amber/5">
+                  <div className="flex items-start gap-3">
+                    <AlertCircle className="w-5 h-5 text-accent-amber flex-shrink-0 mt-0.5" />
+                    <div className="flex-1">
+                      <h2 className="font-display font-semibold text-lg text-text-primary mb-1">
+                        Resume Previous Quiz
+                      </h2>
+                      <p className="text-sm text-text-secondary mb-4">
+                        You have an unfinished quiz session. Would you like to continue where you left off?
+                      </p>
+                      <div className="flex items-center gap-3">
+                        <Button size="sm" onClick={handleResume}>
+                          <Play className="w-4 h-4" />
+                          Resume
+                        </Button>
+                        <Button size="sm" variant="danger" onClick={handleDiscard}>
+                          <Trash2 className="w-4 h-4" />
+                          Discard
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+              </motion.div>
+            )}
+
             {/* Hero */}
             <motion.div
               initial={reducedMotion ? false : { opacity: 0, y: 20 }}
@@ -58,15 +112,43 @@ function WelcomePage() {
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4">
-                <Link to="/setup">
-                  <Button size="lg">
-                    <Play className="w-5 h-5" />
-                    Start Quiz
-                  </Button>
-                </Link>
                 <Button size="lg" variant="secondary" onClick={handleQuickStart}>
                   <Shuffle className="w-5 h-5" />
                   Quick Start
+                </Button>
+              </div>
+
+              {/* Mode buttons */}
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+                <Button
+                  size="md"
+                  variant="secondary"
+                  onClick={() => handleModeSelect('exam')}
+                >
+                  <GraduationCap className="w-5 h-5" />
+                  Exam
+                </Button>
+                <Button
+                  size="md"
+                  variant="secondary"
+                  onClick={() => handleModeSelect('study')}
+                >
+                  <BookOpen className="w-5 h-5" />
+                  Study
+                </Button>
+                <Button
+                  size="md"
+                  variant="secondary"
+                  onClick={() => handleModeSelect('review')}
+                  disabled={reviewQueue.length === 0}
+                >
+                  <RotateCcw className="w-5 h-5" />
+                  Review
+                  {reviewQueue.length > 0 && (
+                    <span className="ml-1 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-mono font-semibold rounded-full bg-accent-amber text-ocean-950">
+                      {reviewQueue.length}
+                    </span>
+                  )}
                 </Button>
               </div>
             </motion.div>

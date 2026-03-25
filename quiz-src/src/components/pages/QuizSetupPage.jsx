@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState, useMemo } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Play, Timer, Hash } from 'lucide-react'
+import { Play, Timer, Hash, AlertTriangle } from 'lucide-react'
 import { categories, allQuestions } from '../../data/index.js'
-import useLocalStorage from '../../hooks/useLocalStorage.js'
+import { useQuizSession } from '../../context/QuizSessionContext.jsx'
+import { getAvailableQuestionCount } from '../../utils/selectors.js'
+import { MODE_CONFIG, DEFAULT_MODE } from '../../utils/modes.js'
 import Button from '../shared/Button.jsx'
 import Card from '../shared/Card.jsx'
 
@@ -17,29 +19,37 @@ const difficulties = [
 const questionCounts = [10, 20, 30]
 const timerOptions = [15, 30, 45, 60]
 
-// Only categories with questions
 const activeCategories = categories.filter((c) =>
   allQuestions.some((q) => q.category === c.id)
 )
 
 function QuizSetupPage() {
   const navigate = useNavigate()
+  const location = useLocation()
+  const { startQuiz, preferences } = useQuizSession()
 
-  // Persist settings
-  const [savedSettings, setSavedSettings] = useLocalStorage('hab-quiz-settings', null)
+  // Mode from navigation state or default
+  const mode = location.state?.mode || DEFAULT_MODE
+  const modeConfig = MODE_CONFIG[mode] || MODE_CONFIG[DEFAULT_MODE]
 
   const [selectedCategories, setSelectedCategories] = useState(
-    savedSettings?.categories || activeCategories.map((c) => c.id)
+    preferences?.categories || activeCategories.map((c) => c.id)
   )
-  const [difficulty, setDifficulty] = useState(savedSettings?.difficulty || 'mixed')
-  const [timedMode, setTimedMode] = useState(savedSettings?.timedMode || false)
-  const [timePerQuestion, setTimePerQuestion] = useState(savedSettings?.timePerQuestion || 30)
-  const [questionCount, setQuestionCount] = useState(savedSettings?.questionCount || 10)
+  const [difficulty, setDifficulty] = useState(preferences?.difficulty || 'mixed')
+  const [timedMode, setTimedMode] = useState(
+    preferences?.timedMode ?? modeConfig.defaultTimed
+  )
+  const [timePerQuestion, setTimePerQuestion] = useState(preferences?.timePerQuestion || 30)
+  const [questionCount, setQuestionCount] = useState(preferences?.questionCount || 10)
 
-  // Save settings whenever they change
-  useEffect(() => {
-    setSavedSettings({ categories: selectedCategories, difficulty, timedMode, timePerQuestion, questionCount })
-  }, [selectedCategories, difficulty, timedMode, timePerQuestion, questionCount])
+  // Live availability count
+  const availableCount = useMemo(
+    () => getAvailableQuestionCount({ categories: selectedCategories, difficulty }, allQuestions),
+    [selectedCategories, difficulty]
+  )
+  const cappedCount = Math.min(questionCount, availableCount)
+  const isInsufficient = availableCount === 0
+  const isPartial = availableCount > 0 && availableCount < questionCount
 
   const toggleCategory = (id) => {
     setSelectedCategories((prev) =>
@@ -53,27 +63,31 @@ function QuizSetupPage() {
   }
 
   const handleStart = () => {
-    if (selectedCategories.length === 0) return
+    if (isInsufficient) return
     const config = {
       categories: selectedCategories,
       difficulty,
       timedMode,
       timePerQuestion,
-      questionCount,
+      questionCount: cappedCount,
     }
-    navigate('/play', { state: { config } })
+    const count = startQuiz(config, mode)
+    if (count > 0) navigate('/play')
   }
 
   return (
     <div className="flex-1 flex flex-col items-center px-4 sm:px-6 py-10 sm:py-14">
       <div className="max-w-2xl w-full space-y-8">
-        <motion.h1
+        <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="font-display font-bold text-3xl sm:text-4xl text-text-primary text-center"
+          className="text-center"
         >
-          Quiz Setup
-        </motion.h1>
+          <h1 className="font-display font-bold text-3xl sm:text-4xl text-text-primary">
+            {modeConfig.label} Mode Setup
+          </h1>
+          <p className="text-text-secondary text-sm mt-2">{modeConfig.description}</p>
+        </motion.div>
 
         {/* Categories */}
         <Card>
@@ -99,6 +113,7 @@ function QuizSetupPage() {
                 <button
                   key={cat.id}
                   onClick={() => toggleCategory(cat.id)}
+                  aria-pressed={isSelected}
                   className={`flex items-start gap-3 p-4 rounded-xl border text-left transition-all cursor-pointer ${
                     isSelected
                       ? 'bg-ocean-700/80 border-accent-teal/30'
@@ -135,6 +150,7 @@ function QuizSetupPage() {
               <button
                 key={d.id}
                 onClick={() => setDifficulty(d.id)}
+                aria-pressed={difficulty === d.id}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all cursor-pointer ${
                   difficulty === d.id
                     ? 'bg-accent-teal text-ocean-950'
@@ -155,6 +171,8 @@ function QuizSetupPage() {
               Timed Mode
             </h2>
             <button
+              role="switch"
+              aria-checked={timedMode}
               onClick={() => setTimedMode(!timedMode)}
               className={`relative w-12 h-6 rounded-full transition-colors cursor-pointer ${
                 timedMode ? 'bg-accent-teal' : 'bg-ocean-600'
@@ -177,6 +195,7 @@ function QuizSetupPage() {
                 <button
                   key={t}
                   onClick={() => setTimePerQuestion(t)}
+                  aria-pressed={timePerQuestion === t}
                   className={`px-4 py-2 rounded-lg text-sm font-mono font-medium transition-all cursor-pointer ${
                     timePerQuestion === t
                       ? 'bg-accent-amber text-ocean-950'
@@ -201,6 +220,7 @@ function QuizSetupPage() {
               <button
                 key={n}
                 onClick={() => setQuestionCount(n)}
+                aria-pressed={questionCount === n}
                 className={`px-4 py-2 rounded-lg text-sm font-mono font-medium transition-all cursor-pointer ${
                   questionCount === n
                     ? 'bg-accent-teal text-ocean-950'
@@ -213,15 +233,31 @@ function QuizSetupPage() {
           </div>
         </Card>
 
+        {/* Availability indicator */}
+        <div className="text-center space-y-2">
+          <p className={`text-sm font-mono ${isInsufficient ? 'text-accent-danger' : isPartial ? 'text-accent-amber' : 'text-text-secondary'}`}>
+            {isInsufficient ? (
+              <span className="flex items-center justify-center gap-1.5">
+                <AlertTriangle className="w-4 h-4" />
+                No questions match this selection. Adjust categories or difficulty.
+              </span>
+            ) : isPartial ? (
+              `${availableCount} questions available (you requested ${questionCount})`
+            ) : (
+              `${availableCount} questions available`
+            )}
+          </p>
+        </div>
+
         {/* Start */}
         <div className="flex justify-center pt-4 pb-8">
           <Button
             size="lg"
             onClick={handleStart}
-            disabled={selectedCategories.length === 0}
+            disabled={isInsufficient}
           >
             <Play className="w-5 h-5" />
-            Start Quiz
+            Start {modeConfig.label}
           </Button>
         </div>
       </div>

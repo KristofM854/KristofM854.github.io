@@ -1,9 +1,12 @@
-import { useLocation, Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Trophy, RotateCcw, Home, ChevronDown, ChevronUp, Copy, Check, ExternalLink } from 'lucide-react'
-import { useState, useEffect, useRef } from 'react'
+import { Trophy, RotateCcw, Home, ChevronDown, ChevronUp, Copy, Check, ExternalLink, BookOpen, AlertTriangle } from 'lucide-react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import { categories } from '../../data/index.js'
 import { italicizeSpecies } from '../../utils/italicizeSpecies.jsx'
+import { useQuizSession } from '../../context/QuizSessionContext.jsx'
+import { getCategoryBreakdown, getWeakestCategory } from '../../utils/selectors.js'
+import { MODE_CONFIG } from '../../utils/modes.js'
 import Button from '../shared/Button.jsx'
 import Card from '../shared/Card.jsx'
 import Badge from '../shared/Badge.jsx'
@@ -19,26 +22,34 @@ function getGrade(percent) {
 }
 
 function ResultsPage() {
-  const location = useLocation()
   const navigate = useNavigate()
-  const { score, total, answers, questions, config } = location.state || {}
+  const { lastResults, startQuiz } = useQuizSession()
   const [expandedQuestion, setExpandedQuestion] = useState(null)
   const [copied, setCopied] = useState(false)
   const [showScoreModal, setShowScoreModal] = useState(false)
   const [displayPercent, setDisplayPercent] = useState(0)
   const animFrameRef = useRef(null)
 
+  // Hydrate from persisted lastResults (refresh-safe)
+  const results = lastResults
+  const score = results?.score
+  const total = results?.total
+  const percent = results?.percent || 0
+  const answers = results?.answers || []
+  const questions = results?.questions || []
+  const config = results?.config
+  const sessionMode = results?.mode || 'exam'
+
   // Animated score count-up
   useEffect(() => {
     if (score === undefined) return
-    const target = Math.round((score / total) * 100)
-    const duration = 1500 // ms
+    const target = percent
+    const duration = 1500
     const startTime = performance.now()
 
     const animate = (now) => {
       const elapsed = now - startTime
       const progress = Math.min(elapsed / duration, 1)
-      // Ease out cubic
       const eased = 1 - Math.pow(1 - progress, 3)
       setDisplayPercent(Math.round(eased * target))
       if (progress < 1) {
@@ -47,9 +58,9 @@ function ResultsPage() {
     }
     animFrameRef.current = requestAnimationFrame(animate)
     return () => { if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current) }
-  }, [score, total])
+  }, [score, percent])
 
-  // Show leaderboard prompt after score animation completes
+  // Show leaderboard prompt after animation
   useEffect(() => {
     if (score !== undefined) {
       const timer = setTimeout(() => setShowScoreModal(true), 2000)
@@ -57,7 +68,19 @@ function ResultsPage() {
     }
   }, [score])
 
-  if (!score && score !== 0) {
+  // Category breakdown
+  const categoryBreakdown = useMemo(
+    () => getCategoryBreakdown(answers, questions),
+    [answers, questions]
+  )
+
+  // Weakest category
+  const weakest = useMemo(
+    () => getWeakestCategory(answers, questions, categories),
+    [answers, questions]
+  )
+
+  if (!results || (score === undefined && score !== 0)) {
     return (
       <div className="flex-1 flex flex-col items-center justify-center px-4 py-12">
         <Card>
@@ -72,28 +95,15 @@ function ResultsPage() {
     )
   }
 
-  const percent = Math.round((score / total) * 100)
   const grade = getGrade(percent)
-
-  // Category breakdown
-  const categoryBreakdown = {}
-  answers.forEach((a, i) => {
-    const q = questions[i]
-    if (!categoryBreakdown[q.category]) {
-      categoryBreakdown[q.category] = { correct: 0, total: 0 }
-    }
-    categoryBreakdown[q.category].total++
-    if (a.correct) categoryBreakdown[q.category].correct++
-  })
+  const modeLabel = MODE_CONFIG[sessionMode]?.label || 'Quiz'
 
   const handleShare = async () => {
-    const text = `HAB Quiz Result: ${score}/${total} (${percent}%) — ${grade.emoji} ${grade.label}\nTest your knowledge at kristofmoeller.com/quiz`
+    const text = `HAB Quiz Result (${modeLabel}): ${score}/${total} (${percent}%) — ${grade.emoji} ${grade.label}\nTest your knowledge at kristofmoeller.com/quiz`
     try {
-      // Try clipboard API first
       if (navigator.clipboard && window.isSecureContext) {
         await navigator.clipboard.writeText(text)
       } else {
-        // Fallback for non-HTTPS or older browsers
         const textarea = document.createElement('textarea')
         textarea.value = text
         textarea.style.position = 'fixed'
@@ -106,11 +116,22 @@ function ResultsPage() {
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     } catch {
-      // Last resort: open share dialog if available
       if (navigator.share) {
         navigator.share({ title: 'HAB Quiz Result', text }).catch(() => {})
       }
     }
+  }
+
+  const handlePracticeWeakest = () => {
+    if (!weakest) return
+    const count = startQuiz({
+      categories: [weakest.categoryId],
+      difficulty: 'mixed',
+      timedMode: false,
+      timePerQuestion: 30,
+      questionCount: 10,
+    }, 'study')
+    if (count > 0) navigate('/play')
   }
 
   return (
@@ -123,6 +144,7 @@ function ResultsPage() {
           transition={{ type: 'spring', duration: 0.6 }}
           className="text-center space-y-4 py-4"
         >
+          <Badge color="teal" className="mb-2">{modeLabel} Mode</Badge>
           <div className="text-6xl mb-2">{grade.emoji}</div>
           <h1 className={`font-display font-extrabold text-5xl sm:text-6xl ${grade.color}`}>
             {displayPercent}%
@@ -135,6 +157,30 @@ function ResultsPage() {
           </p>
         </motion.div>
 
+        {/* Weakest Category Coaching */}
+        {weakest && weakest.percent < 100 && (
+          <Card className="border border-accent-amber/20">
+            <div className="flex items-start gap-3">
+              <AlertTriangle className="w-5 h-5 text-accent-amber flex-shrink-0 mt-0.5" />
+              <div>
+                <h2 className="font-display font-semibold text-base text-text-primary">
+                  Weakest Category: {weakest.categoryIcon} {weakest.categoryName}
+                </h2>
+                <p className="text-text-secondary text-sm mt-1">
+                  You scored {weakest.correct}/{weakest.total} ({weakest.percent}%) in this category.
+                  {weakest.percent < 50
+                    ? ' Consider reviewing the fundamentals in this area.'
+                    : ' A few more practice rounds should help solidify your knowledge.'}
+                </p>
+                <Button size="sm" variant="secondary" className="mt-3" onClick={handlePracticeWeakest}>
+                  <BookOpen className="w-4 h-4" />
+                  Practice {weakest.categoryName}
+                </Button>
+              </div>
+            </div>
+          </Card>
+        )}
+
         {/* Category Breakdown */}
         <Card>
           <h2 className="font-display font-semibold text-lg text-text-primary mb-4">
@@ -143,7 +189,7 @@ function ResultsPage() {
           <div className="space-y-4">
             {Object.entries(categoryBreakdown).map(([catId, data]) => {
               const cat = categories.find((c) => c.id === catId)
-              const catPercent = Math.round((data.correct / data.total) * 100)
+              const catPercent = data.total > 0 ? Math.round((data.correct / data.total) * 100) : 0
               return (
                 <div key={catId}>
                   <div className="flex items-center justify-between text-sm mb-1">
@@ -152,6 +198,9 @@ function ResultsPage() {
                     </span>
                     <span className="font-mono text-text-primary">
                       {data.correct}/{data.total}
+                      {data.unknown > 0 && (
+                        <span className="text-text-tertiary ml-1">({data.unknown} unknown)</span>
+                      )}
                     </span>
                   </div>
                   <div className="w-full h-2 bg-ocean-700 rounded-full overflow-hidden">
@@ -178,7 +227,7 @@ function ResultsPage() {
             {questions.map((q, i) => {
               const a = answers[i]
               const isExpanded = expandedQuestion === i
-              const isCorrect = a?.correct
+              const isCorrect = a?.outcome === 'correct'
 
               return (
                 <div
@@ -188,9 +237,12 @@ function ResultsPage() {
                   <button
                     onClick={() => setExpandedQuestion(isExpanded ? null : i)}
                     className="w-full flex items-start gap-3 p-4 text-left hover:bg-ocean-700/30 transition-colors cursor-pointer"
+                    aria-expanded={isExpanded}
                   >
                     {isCorrect ? (
                       <Check className="w-5 h-5 text-accent-success flex-shrink-0 mt-0.5" />
+                    ) : a?.outcome === 'unknown' ? (
+                      <span className="w-5 h-5 text-accent-amber flex-shrink-0 mt-0.5 text-center font-bold">?</span>
                     ) : (
                       <span className="w-5 h-5 text-accent-danger flex-shrink-0 mt-0.5 text-center font-bold">✗</span>
                     )}
@@ -212,6 +264,8 @@ function ResultsPage() {
                     >
                       <div className="flex gap-2">
                         <Badge difficulty={q.difficulty} />
+                        {a?.outcome === 'unknown' && <Badge color="amber">Unknown</Badge>}
+                        {a?.outcome === 'timeout' && <Badge color="amber">Timeout</Badge>}
                       </div>
                       {!isCorrect && a?.selectedAnswer && (
                         <p className="text-sm text-accent-danger">
