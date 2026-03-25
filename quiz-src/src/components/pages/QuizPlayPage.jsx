@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
-import { CheckCircle, XCircle, ArrowRight, LogOut, Flag } from 'lucide-react'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
+import { CheckCircle, XCircle, ArrowRight, LogOut, Flag, Flame } from 'lucide-react'
 import useQuiz from '../../hooks/useQuiz.js'
 import useTimer from '../../hooks/useTimer.js'
 import useStats from '../../hooks/useStats.js'
@@ -20,6 +20,7 @@ function QuizPlayPage() {
   const location = useLocation()
   const navigate = useNavigate()
   const config = location.state?.config
+  const reducedMotion = useReducedMotion()
 
   const {
     questions,
@@ -41,6 +42,7 @@ function QuizPlayPage() {
   const [showQuitModal, setShowQuitModal] = useState(false)
   const [showFlagModal, setShowFlagModal] = useState(false)
   const [questionStartTime, setQuestionStartTime] = useState(Date.now())
+  const [streak, setStreak] = useState(0)
 
   const handleTimeExpire = useCallback(() => {
     if (!showFeedback && currentQuestion) {
@@ -48,6 +50,7 @@ function QuizPlayPage() {
       const result = submitAnswer(null, timeSpent)
       if (result) {
         setLastResult(result)
+        setStreak(0)
         recordAnswer(currentQuestion.category, false)
       }
     }
@@ -90,6 +93,28 @@ function QuizPlayPage() {
     }
   }, [status]) // eslint-disable-line react-hooks/exhaustive-deps
 
+  // Keyboard shortcuts: A/B/C/D to answer, Enter/Space to advance
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      // Don't intercept if user is typing in an input/textarea or modal is open
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || showQuitModal || showFlagModal) return
+
+      if (!showFeedback && currentQuestion) {
+        const keyMap = { a: 0, b: 1, c: 2, d: 3, '1': 0, '2': 1, '3': 2, '4': 3 }
+        const idx = keyMap[e.key.toLowerCase()]
+        if (idx !== undefined && currentQuestion.answers[idx]) {
+          e.preventDefault()
+          handleAnswer(currentQuestion.answers[idx].id)
+        }
+      } else if (showFeedback && (e.key === 'Enter' || e.key === ' ')) {
+        e.preventDefault()
+        handleNext()
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [showFeedback, currentQuestion, showQuitModal, showFlagModal]) // eslint-disable-line react-hooks/exhaustive-deps
+
   const handleAnswer = (answerId) => {
     if (showFeedback) return
     if (config?.timedMode) timer.stop()
@@ -97,6 +122,7 @@ function QuizPlayPage() {
     const result = submitAnswer(answerId, timeSpent)
     if (result) {
       setLastResult(result)
+      setStreak(result.isCorrect ? streak + 1 : 0)
       recordAnswer(currentQuestion.category, result.isCorrect)
     }
   }
@@ -142,6 +168,21 @@ function QuizPlayPage() {
           </div>
 
           <div className="flex items-center gap-3">
+            {/* Streak counter */}
+            <AnimatePresence>
+              {streak >= 2 && (
+                <motion.div
+                  initial={reducedMotion ? false : { scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0, opacity: 0 }}
+                  className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-accent-amber/15 border border-accent-amber/25"
+                >
+                  <Flame className="w-3.5 h-3.5 text-accent-amber" />
+                  <span className="font-mono text-xs font-semibold text-accent-amber">{streak}</span>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
             {config.timedMode && (
               <div className="relative flex items-center justify-center">
                 <ProgressRing
@@ -190,9 +231,9 @@ function QuizPlayPage() {
         <AnimatePresence mode="wait">
           <motion.div
             key={currentQuestion.id}
-            initial={{ opacity: 0, x: 20 }}
+            initial={reducedMotion ? false : { opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
+            exit={reducedMotion ? {} : { opacity: 0, x: -20 }}
             transition={{ duration: 0.2 }}
           >
             <Card className="mb-5">
@@ -211,7 +252,7 @@ function QuizPlayPage() {
               )}
             </Card>
 
-            {/* Answer Grid — supports text answers and image_choice answers */}
+            {/* Answer Grid */}
             <div className={`grid gap-4 ${
               getQuestionType(currentQuestion) === 'image_choice'
                 ? 'grid-cols-2'
@@ -226,7 +267,7 @@ function QuizPlayPage() {
                 const isWrong = isSelected && !isCorrect
 
                 let btnClass =
-                  'w-full text-left p-4 rounded-xl border transition-all cursor-pointer min-h-[48px] flex items-center'
+                  'w-full text-left p-5 rounded-xl border transition-all cursor-pointer min-h-[48px] flex items-center'
                 if (showFeedback) {
                   if (isCorrect)
                     btnClass += ' bg-accent-success/15 border-accent-success/40 text-accent-success'
@@ -244,7 +285,14 @@ function QuizPlayPage() {
                     key={answer.id}
                     onClick={() => handleAnswer(answer.id)}
                     disabled={showFeedback}
-                    whileTap={!showFeedback ? { scale: 0.98 } : {}}
+                    whileTap={!showFeedback && !reducedMotion ? { scale: 0.98 } : {}}
+                    // Correct-answer pulse animation
+                    animate={
+                      showFeedback && isCorrect && !reducedMotion
+                        ? { scale: [1, 1.03, 1], boxShadow: ['0 0 0 rgba(16,185,129,0)', '0 0 20px rgba(16,185,129,0.3)', '0 0 0 rgba(16,185,129,0)'] }
+                        : {}
+                    }
+                    transition={showFeedback && isCorrect ? { duration: 0.4 } : {}}
                     className={btnClass}
                   >
                     {/* Image choice answers */}
@@ -280,7 +328,7 @@ function QuizPlayPage() {
         <AnimatePresence>
           {showFeedback && lastResult && (
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
+              initial={reducedMotion ? false : { opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
             >
@@ -310,6 +358,12 @@ function QuizPlayPage() {
                     <p className="text-text-secondary text-sm mt-2 leading-relaxed">
                       {italicizeSpecies(currentQuestion.explanation)}
                     </p>
+                    {/* References */}
+                    {currentQuestion.references && (
+                      <p className="text-text-tertiary text-xs mt-2 italic">
+                        Source: {currentQuestion.references}
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div className="flex items-center justify-between mt-4">
@@ -335,6 +389,13 @@ function QuizPlayPage() {
             </motion.div>
           )}
         </AnimatePresence>
+
+        {/* Keyboard hint */}
+        {!showFeedback && (
+          <p className="text-text-tertiary text-xs text-center hidden sm:block">
+            Press <kbd className="px-1.5 py-0.5 rounded bg-ocean-700 text-text-secondary font-mono text-xs">A</kbd>–<kbd className="px-1.5 py-0.5 rounded bg-ocean-700 text-text-secondary font-mono text-xs">D</kbd> to answer
+          </p>
+        )}
       </div>
 
       {/* Quit modal */}

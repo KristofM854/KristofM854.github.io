@@ -1,7 +1,7 @@
 import { useLocation, Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Trophy, RotateCcw, Home, ChevronDown, ChevronUp, Copy, Check, ExternalLink } from 'lucide-react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { categories } from '../../data/index.js'
 import { italicizeSpecies } from '../../utils/italicizeSpecies.jsx'
 import Button from '../shared/Button.jsx'
@@ -25,11 +25,34 @@ function ResultsPage() {
   const [expandedQuestion, setExpandedQuestion] = useState(null)
   const [copied, setCopied] = useState(false)
   const [showScoreModal, setShowScoreModal] = useState(false)
+  const [displayPercent, setDisplayPercent] = useState(0)
+  const animFrameRef = useRef(null)
 
-  // Show leaderboard prompt automatically after a short delay
+  // Animated score count-up
+  useEffect(() => {
+    if (score === undefined) return
+    const target = Math.round((score / total) * 100)
+    const duration = 1500 // ms
+    const startTime = performance.now()
+
+    const animate = (now) => {
+      const elapsed = now - startTime
+      const progress = Math.min(elapsed / duration, 1)
+      // Ease out cubic
+      const eased = 1 - Math.pow(1 - progress, 3)
+      setDisplayPercent(Math.round(eased * target))
+      if (progress < 1) {
+        animFrameRef.current = requestAnimationFrame(animate)
+      }
+    }
+    animFrameRef.current = requestAnimationFrame(animate)
+    return () => { if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current) }
+  }, [score, total])
+
+  // Show leaderboard prompt after score animation completes
   useEffect(() => {
     if (score !== undefined) {
-      const timer = setTimeout(() => setShowScoreModal(true), 800)
+      const timer = setTimeout(() => setShowScoreModal(true), 2000)
       return () => clearTimeout(timer)
     }
   }, [score])
@@ -102,7 +125,7 @@ function ResultsPage() {
         >
           <div className="text-6xl mb-2">{grade.emoji}</div>
           <h1 className={`font-display font-extrabold text-5xl sm:text-6xl ${grade.color}`}>
-            {percent}%
+            {displayPercent}%
           </h1>
           <p className="font-display font-semibold text-xl sm:text-2xl text-text-primary mt-1">
             {grade.label}
@@ -203,6 +226,11 @@ function ResultsPage() {
                       <p className="text-sm text-text-secondary leading-relaxed">
                         {italicizeSpecies(q.explanation)}
                       </p>
+                      {q.references && (
+                        <p className="text-text-tertiary text-xs italic">
+                          Source: {q.references}
+                        </p>
+                      )}
                     </motion.div>
                   )}
                 </div>

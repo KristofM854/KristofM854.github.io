@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Play, Timer, Hash } from 'lucide-react'
-import { categories } from '../../data/index.js'
+import { categories, allQuestions } from '../../data/index.js'
+import useLocalStorage from '../../hooks/useLocalStorage.js'
 import Button from '../shared/Button.jsx'
 import Card from '../shared/Card.jsx'
-import Badge from '../shared/Badge.jsx'
 
 const difficulties = [
   { id: 'beginner', label: 'Beginner' },
@@ -17,21 +17,39 @@ const difficulties = [
 const questionCounts = [10, 20, 30]
 const timerOptions = [15, 30, 45, 60]
 
+// Only categories with questions
+const activeCategories = categories.filter((c) =>
+  allQuestions.some((q) => q.category === c.id)
+)
+
 function QuizSetupPage() {
   const navigate = useNavigate()
 
+  // Persist settings
+  const [savedSettings, setSavedSettings] = useLocalStorage('hab-quiz-settings', null)
+
   const [selectedCategories, setSelectedCategories] = useState(
-    categories.map((c) => c.id)
+    savedSettings?.categories || activeCategories.map((c) => c.id)
   )
-  const [difficulty, setDifficulty] = useState('mixed')
-  const [timedMode, setTimedMode] = useState(false)
-  const [timePerQuestion, setTimePerQuestion] = useState(30)
-  const [questionCount, setQuestionCount] = useState(10)
+  const [difficulty, setDifficulty] = useState(savedSettings?.difficulty || 'mixed')
+  const [timedMode, setTimedMode] = useState(savedSettings?.timedMode || false)
+  const [timePerQuestion, setTimePerQuestion] = useState(savedSettings?.timePerQuestion || 30)
+  const [questionCount, setQuestionCount] = useState(savedSettings?.questionCount || 10)
+
+  // Save settings whenever they change
+  useEffect(() => {
+    setSavedSettings({ categories: selectedCategories, difficulty, timedMode, timePerQuestion, questionCount })
+  }, [selectedCategories, difficulty, timedMode, timePerQuestion, questionCount])
 
   const toggleCategory = (id) => {
     setSelectedCategories((prev) =>
       prev.includes(id) ? prev.filter((c) => c !== id) : [...prev, id]
     )
+  }
+
+  const allSelected = selectedCategories.length === activeCategories.length
+  const toggleAll = () => {
+    setSelectedCategories(allSelected ? [] : activeCategories.map((c) => c.id))
   }
 
   const handleStart = () => {
@@ -59,17 +77,29 @@ function QuizSetupPage() {
 
         {/* Categories */}
         <Card>
-          <h2 className="font-display font-semibold text-lg text-text-primary mb-4">
-            Categories
-          </h2>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="font-display font-semibold text-lg text-text-primary">
+              Categories
+            </h2>
+            <button
+              onClick={toggleAll}
+              className="text-xs text-accent-teal hover:text-accent-teal/80 transition-colors cursor-pointer font-medium"
+            >
+              {allSelected ? 'Deselect All' : 'Select All'}
+            </button>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {categories.map((cat) => {
+            {activeCategories.map((cat) => {
               const isSelected = selectedCategories.includes(cat.id)
+              const catQuestions = allQuestions.filter((q) => q.category === cat.id)
+              const bCount = catQuestions.filter((q) => q.difficulty === 'beginner').length
+              const iCount = catQuestions.filter((q) => q.difficulty === 'intermediate').length
+              const eCount = catQuestions.filter((q) => q.difficulty === 'expert').length
               return (
                 <button
                   key={cat.id}
                   onClick={() => toggleCategory(cat.id)}
-                  className={`flex items-start gap-3 p-3 rounded-xl border text-left transition-all cursor-pointer ${
+                  className={`flex items-start gap-3 p-4 rounded-xl border text-left transition-all cursor-pointer ${
                     isSelected
                       ? 'bg-ocean-700/80 border-accent-teal/30'
                       : 'bg-ocean-800/40 border-white/5 opacity-50 hover:opacity-75'
@@ -80,6 +110,13 @@ function QuizSetupPage() {
                     <p className="font-medium text-text-primary text-sm">{cat.name}</p>
                     <p className="text-text-tertiary text-xs mt-0.5 line-clamp-2">
                       {cat.description}
+                    </p>
+                    <p className="text-text-tertiary text-xs mt-1.5 font-mono">
+                      <span className="text-accent-success">{bCount}B</span>
+                      {' · '}
+                      <span className="text-accent-amber">{iCount}I</span>
+                      {' · '}
+                      <span className="text-accent-danger">{eCount}E</span>
                     </p>
                   </div>
                 </button>

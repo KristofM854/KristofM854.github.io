@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { Trophy, Medal, Award } from 'lucide-react'
 import { getTopScores, isConfigured } from '../../firebase.js'
 import Card from './Card.jsx'
@@ -7,9 +7,20 @@ import Card from './Card.jsx'
 const RANK_ICONS = [Trophy, Medal, Award]
 const RANK_COLORS = ['text-accent-amber', 'text-text-secondary', 'text-amber-700']
 
+function SkeletonRow() {
+  return (
+    <div className="flex items-center gap-3 py-2.5 px-4 rounded-xl bg-ocean-900/40 border border-white/5 animate-pulse">
+      <span className="w-7 h-5 bg-ocean-700 rounded" />
+      <span className="flex-1 h-4 bg-ocean-700 rounded" />
+      <span className="w-10 h-4 bg-ocean-700 rounded" />
+    </div>
+  )
+}
+
 function Leaderboard() {
   const [scores, setScores] = useState([])
   const [loading, setLoading] = useState(true)
+  const reducedMotion = useReducedMotion()
 
   useEffect(() => {
     if (!isConfigured) {
@@ -32,7 +43,12 @@ function Leaderboard() {
       </h2>
 
       {loading ? (
-        <p className="text-text-tertiary text-sm text-center py-4">Loading scores...</p>
+        <div className="space-y-2">
+          <SkeletonRow />
+          <SkeletonRow />
+          <SkeletonRow />
+          <SkeletonRow />
+        </div>
       ) : scores.length === 0 ? (
         <p className="text-text-tertiary text-sm text-center py-4">
           No scores yet. Be the first!
@@ -45,12 +61,11 @@ function Leaderboard() {
             return (
               <motion.div
                 key={entry.id}
-                initial={{ opacity: 0, x: -10 }}
+                initial={reducedMotion ? false : { opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.05 }}
-                className="flex items-center gap-3 py-2.5 px-3 rounded-xl bg-ocean-900/40 border border-white/5"
+                className="flex items-center gap-3 py-2.5 px-4 rounded-xl bg-ocean-900/40 border border-white/5"
               >
-                {/* Rank */}
                 <span className={`w-7 text-center font-mono text-sm font-semibold ${rankColor}`}>
                   {RankIcon ? (
                     <RankIcon className="w-5 h-5 mx-auto" />
@@ -58,13 +73,9 @@ function Leaderboard() {
                     i + 1
                   )}
                 </span>
-
-                {/* Name */}
                 <span className="flex-1 text-text-primary text-sm font-medium truncate">
                   {entry.name}
                 </span>
-
-                {/* Score */}
                 <span className="font-mono text-sm font-semibold text-accent-teal">
                   {entry.percent}%
                 </span>

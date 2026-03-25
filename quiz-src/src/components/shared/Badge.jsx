@@ -18,7 +18,7 @@ function Badge({ children, color = 'teal', difficulty, className = '' }) {
   const resolvedColor = difficulty ? difficultyColors[difficulty] || 'teal' : color
   return (
     <span
-      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${colorMap[resolvedColor]} ${className}`}
+      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium border ${colorMap[resolvedColor]} ${className}`}
     >
       {children || difficulty}
     </span>
