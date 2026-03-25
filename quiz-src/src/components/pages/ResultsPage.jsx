@@ -1,11 +1,13 @@
 import { useLocation, Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Trophy, RotateCcw, Home, ChevronDown, ChevronUp, Copy, Check, ExternalLink } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { categories } from '../../data/index.js'
+import { italicizeSpecies } from '../../utils/italicizeSpecies.jsx'
 import Button from '../shared/Button.jsx'
 import Card from '../shared/Card.jsx'
 import Badge from '../shared/Badge.jsx'
+import ScoreSubmitModal from '../shared/ScoreSubmitModal.jsx'
 
 function getGrade(percent) {
   if (percent >= 90) return { label: 'Expert', emoji: '🏆', color: 'text-accent-amber' }
@@ -21,6 +23,15 @@ function ResultsPage() {
   const { score, total, answers, questions, config } = location.state || {}
   const [expandedQuestion, setExpandedQuestion] = useState(null)
   const [copied, setCopied] = useState(false)
+  const [showScoreModal, setShowScoreModal] = useState(false)
+
+  // Show leaderboard prompt automatically after a short delay
+  useEffect(() => {
+    if (score !== undefined) {
+      const timer = setTimeout(() => setShowScoreModal(true), 800)
+      return () => clearTimeout(timer)
+    }
+  }, [score])
 
   if (!score && score !== 0) {
     return (
@@ -160,7 +171,7 @@ function ResultsPage() {
                       <span className="w-5 h-5 text-accent-danger flex-shrink-0 mt-0.5 text-center font-bold">✗</span>
                     )}
                     <span className="text-sm text-text-primary flex-1">
-                      {q.question}
+                      {italicizeSpecies(q.question)}
                     </span>
                     {isExpanded ? (
                       <ChevronUp className="w-4 h-4 text-text-tertiary flex-shrink-0" />
@@ -181,15 +192,15 @@ function ResultsPage() {
                       {!isCorrect && a?.selectedAnswer && (
                         <p className="text-sm text-accent-danger">
                           Your answer:{' '}
-                          {q.answers.find((ans) => ans.id === a.selectedAnswer)?.text || 'No answer'}
+                          {italicizeSpecies(q.answers.find((ans) => ans.id === a.selectedAnswer)?.text || 'No answer')}
                         </p>
                       )}
                       <p className="text-sm text-accent-success">
                         Correct answer:{' '}
-                        {q.answers.find((ans) => ans.id === q.correctAnswer)?.text}
+                        {italicizeSpecies(q.answers.find((ans) => ans.id === q.correctAnswer)?.text)}
                       </p>
                       <p className="text-sm text-text-secondary leading-relaxed">
-                        {q.explanation}
+                        {italicizeSpecies(q.explanation)}
                       </p>
                     </motion.div>
                   )}
@@ -233,6 +244,15 @@ function ResultsPage() {
           </a>
         </Card>
       </div>
+
+      <ScoreSubmitModal
+        isOpen={showScoreModal}
+        onClose={() => setShowScoreModal(false)}
+        score={score}
+        total={total}
+        percent={percent}
+        config={config}
+      />
     </div>
   )
 }

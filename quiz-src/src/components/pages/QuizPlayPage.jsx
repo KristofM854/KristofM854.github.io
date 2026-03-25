@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { CheckCircle, XCircle, ArrowRight, LogOut } from 'lucide-react'
+import { CheckCircle, XCircle, ArrowRight, LogOut, Flag } from 'lucide-react'
 import useQuiz from '../../hooks/useQuiz.js'
 import useTimer from '../../hooks/useTimer.js'
 import useStats from '../../hooks/useStats.js'
@@ -11,6 +11,10 @@ import Card from '../shared/Card.jsx'
 import ProgressRing from '../shared/ProgressRing.jsx'
 import Modal from '../shared/Modal.jsx'
 import { categories, getQuestionType } from '../../data/index.js'
+import { italicizeSpecies } from '../../utils/italicizeSpecies.jsx'
+import FlagQuestionModal from '../shared/FlagQuestionModal.jsx'
+
+const POSITION_LABELS = ['A', 'B', 'C', 'D']
 
 function QuizPlayPage() {
   const location = useLocation()
@@ -35,6 +39,7 @@ function QuizPlayPage() {
   const { stats, recordAnswer, recordSession } = useStats()
   const [lastResult, setLastResult] = useState(null)
   const [showQuitModal, setShowQuitModal] = useState(false)
+  const [showFlagModal, setShowFlagModal] = useState(false)
   const [questionStartTime, setQuestionStartTime] = useState(Date.now())
 
   const handleTimeExpire = useCallback(() => {
@@ -192,7 +197,7 @@ function QuizPlayPage() {
           >
             <Card className="mb-5">
               <h2 className="font-body text-lg sm:text-xl font-medium text-text-primary leading-relaxed py-1">
-                {currentQuestion.question}
+                {italicizeSpecies(currentQuestion.question)}
               </h2>
               {/* Image display for "image" type questions */}
               {getQuestionType(currentQuestion) === 'image' && currentQuestion.image && (
@@ -212,7 +217,7 @@ function QuizPlayPage() {
                 ? 'grid-cols-2'
                 : 'grid-cols-1 sm:grid-cols-2'
             }`}>
-              {currentQuestion.answers.map((answer) => {
+              {currentQuestion.answers.map((answer, answerIndex) => {
                 const isSelected =
                   showFeedback &&
                   answers[answers.length - 1]?.selectedAnswer === answer.id
@@ -221,7 +226,7 @@ function QuizPlayPage() {
                 const isWrong = isSelected && !isCorrect
 
                 let btnClass =
-                  'w-full text-left p-4 rounded-xl border transition-all cursor-pointer min-h-[48px]'
+                  'w-full text-left p-4 rounded-xl border transition-all cursor-pointer min-h-[48px] flex items-center'
                 if (showFeedback) {
                   if (isCorrect)
                     btnClass += ' bg-accent-success/15 border-accent-success/40 text-accent-success'
@@ -252,10 +257,18 @@ function QuizPlayPage() {
                         />
                       </div>
                     )}
-                    <span className="font-mono text-xs text-text-tertiary mr-2 uppercase">
-                      {answer.id}.
+                    <span className={`inline-flex items-center justify-center w-7 h-7 rounded-full font-mono text-sm font-semibold mr-3 flex-shrink-0 ${
+                      showFeedback && isCorrect
+                        ? 'bg-accent-success/20 text-accent-success'
+                        : showFeedback && isWrong
+                        ? 'bg-accent-danger/20 text-accent-danger'
+                        : showFeedback
+                        ? 'bg-white/5 text-text-tertiary'
+                        : 'bg-accent-teal/15 text-accent-teal'
+                    }`}>
+                      {POSITION_LABELS[answerIndex]}
                     </span>
-                    {answer.text}
+                    <span className="flex-1">{italicizeSpecies(answer.text)}</span>
                   </motion.button>
                 )
               })}
@@ -295,11 +308,19 @@ function QuizPlayPage() {
                       {lastResult.isCorrect ? 'Correct!' : 'Incorrect'}
                     </p>
                     <p className="text-text-secondary text-sm mt-2 leading-relaxed">
-                      {currentQuestion.explanation}
+                      {italicizeSpecies(currentQuestion.explanation)}
                     </p>
                   </div>
                 </div>
-                <div className="flex justify-end mt-4">
+                <div className="flex items-center justify-between mt-4">
+                  <button
+                    onClick={() => setShowFlagModal(true)}
+                    className="flex items-center gap-1.5 text-text-tertiary hover:text-accent-amber transition-colors text-xs cursor-pointer"
+                    title="Flag this question as inaccurate"
+                  >
+                    <Flag className="w-3.5 h-3.5" />
+                    Flag question
+                  </button>
                   <Button size="sm" onClick={handleNext}>
                     {currentIndex + 1 < questions.length ? (
                       <>
@@ -334,6 +355,12 @@ function QuizPlayPage() {
       >
         <p>Your progress will be lost. Are you sure you want to quit?</p>
       </Modal>
+
+      <FlagQuestionModal
+        isOpen={showFlagModal}
+        onClose={() => setShowFlagModal(false)}
+        question={currentQuestion}
+      />
     </div>
   )
 }
