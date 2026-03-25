@@ -11,14 +11,14 @@ function WelcomePage() {
   const hasHistory = stats.totalSessions > 0
 
   return (
-    <div className="flex-1 flex flex-col items-center px-4 py-10">
-      <div className="max-w-2xl w-full space-y-10">
+    <div className="flex-1 flex flex-col items-center px-4 sm:px-6 py-14 sm:py-20">
+      <div className="max-w-2xl w-full space-y-12">
         {/* Hero */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center space-y-5"
+          className="text-center space-y-6"
         >
           <motion.div
             animate={{ y: [0, -8, 0] }}
@@ -32,11 +32,11 @@ function WelcomePage() {
             <br />
             <span className="text-accent-teal">Biotoxins Quiz</span>
           </h1>
-          <p className="text-lg text-text-secondary max-w-lg mx-auto">
+          <p className="text-lg sm:text-xl text-text-secondary max-w-lg mx-auto leading-relaxed">
             Test your knowledge of Harmful Algal Blooms, marine biotoxins, and ocean health
           </p>
 
-          <div className="pt-2">
+          <div className="pt-4">
             <Link to="/setup">
               <Button size="lg">
                 <Play className="w-5 h-5" />
@@ -54,10 +54,10 @@ function WelcomePage() {
             transition={{ delay: 0.3 }}
           >
             <Card>
-              <h2 className="font-display font-semibold text-base text-text-primary mb-3">
+              <h2 className="font-display font-semibold text-lg text-text-primary mb-4">
                 Welcome back!
               </h2>
-              <div className="grid grid-cols-3 gap-4 text-center">
+              <div className="grid grid-cols-3 gap-6 text-center py-2">
                 <div>
                   <div className="flex justify-center mb-1">
                     <Target className="w-5 h-5 text-accent-teal" />
@@ -92,10 +92,10 @@ function WelcomePage() {
 
         {/* Category Grid */}
         <div>
-          <h2 className="font-display font-semibold text-xl text-text-primary text-center mb-4">
+          <h2 className="font-display font-semibold text-xl text-text-primary text-center mb-6">
             {allQuestions.length} Questions &middot; 6 Categories &middot; 3 Difficulty Levels
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {categories.map((cat, i) => {
               const count = allQuestions.filter((q) => q.category === cat.id).length
               return (

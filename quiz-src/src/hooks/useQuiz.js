@@ -27,8 +27,11 @@ export default function useQuiz() {
 
   const submitAnswer = useCallback(
     (selectedAnswerId, timeSpent) => {
+      // Guard against duplicate submissions for the same question
+      if (showFeedback) return null
+
       const currentQuestion = questions[currentIndex]
-      if (!currentQuestion) return
+      if (!currentQuestion) return null
 
       const isCorrect = selectedAnswerId === currentQuestion.correctAnswer
       const answer = {
@@ -42,7 +45,7 @@ export default function useQuiz() {
       setShowFeedback(true)
       return { isCorrect, correctAnswer: currentQuestion.correctAnswer }
     },
-    [questions, currentIndex]
+    [questions, currentIndex, showFeedback]
   )
 
   const nextQuestion = useCallback(() => {

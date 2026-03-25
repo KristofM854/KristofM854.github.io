@@ -4,6 +4,7 @@ import toxinChemistry from './questions/toxin_chemistry.json'
 import monitoring from './questions/monitoring.json'
 import environment from './questions/environment.json'
 import healthSafety from './questions/health_safety.json'
+import speciesId from './questions/species_id.json'
 import categories from './categories.json'
 
 const allQuestions = [
@@ -13,6 +14,7 @@ const allQuestions = [
   ...monitoring,
   ...environment,
   ...healthSafety,
+  ...speciesId,
 ]
 
 export { allQuestions, categories }
@@ -50,6 +52,23 @@ export const selectQuestions = ({ categories: cats, difficulty, count }) => {
   const selected = shuffled.slice(0, Math.min(count, shuffled.length))
   return selected.map((q) => ({
     ...q,
+    // For image questions, shuffle the image answer options; for text questions, shuffle text answers
     answers: shuffleArray(q.answers),
   }))
 }
+
+// Question types:
+// - "text" (default): standard multiple-choice with text answers
+// - "image": question presents an image, answers are text identifying the species
+// - "image_choice": question is text, answers are images to choose from
+//
+// Image question schema extension:
+// {
+//   ...baseQuestionFields,
+//   "type": "image" | "image_choice",
+//   "image": "/quiz/images/questions/filename.jpg",       // for type "image"
+//   "answers": [
+//     { "id": "a", "text": "Species name", "image": "/quiz/images/answers/a.jpg" }  // image optional per answer
+//   ]
+// }
+export const getQuestionType = (question) => question.type || 'text'
