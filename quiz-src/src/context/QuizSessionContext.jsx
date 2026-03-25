@@ -1,4 +1,4 @@
-import { createContext, useContext, useCallback, useEffect } from 'react'
+import { createContext, useContext, useCallback, Component } from 'react'
 import useLocalStorage from '../hooks/useLocalStorage.js'
 import { getModeAdjustedQuestionSet } from '../utils/selectors.js'
 import { allQuestions } from '../data/index.js'
@@ -12,7 +12,7 @@ const EMPTY_SESSION = {
   session: {
     id: null,
     startedAt: null,
-    status: 'idle', // idle | active | paused | completed | abandoned
+    status: 'idle',
     currentIndex: 0,
     questions: [],
     answers: [],
@@ -26,7 +26,48 @@ function generateId() {
   return Date.now().toString(36) + Math.random().toString(36).slice(2, 8)
 }
 
-export function QuizSessionProvider({ children }) {
+/** Validate that a stored session has the expected shape */
+function validateSession(data) {
+  if (!data || typeof data !== 'object') return EMPTY_SESSION
+  if (!data.session || typeof data.session !== 'object') return EMPTY_SESSION
+  if (!Array.isArray(data.session.questions)) return EMPTY_SESSION
+  if (!Array.isArray(data.session.answers)) return EMPTY_SESSION
+  // Ensure all answers have outcome field (migrate old format)
+  data.session.answers = data.session.answers.map((a) => {
+    if (a.outcome) return a
+    return { ...a, outcome: a.correct ? 'correct' : 'incorrect' }
+  })
+  return data
+}
+
+/** Error boundary to catch render crashes */
+class ErrorBoundary extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { hasError: false }
+  }
+  static getDerivedStateFromError() {
+    return { hasError: true }
+  }
+  componentDidCatch(error) {
+    console.error('QuizSessionProvider error — clearing stale data:', error)
+    // Clear potentially corrupted localStorage
+    try {
+      window.localStorage.removeItem('hab-quiz-active-session')
+      window.localStorage.removeItem('hab-quiz-last-results')
+    } catch {}
+  }
+  render() {
+    if (this.state.hasError) {
+      // Force reload after clearing data
+      window.location.reload()
+      return null
+    }
+    return this.props.children
+  }
+}
+
+function QuizSessionProviderInner({ children }) {
   const [session, setSession] = useLocalStorage('hab-quiz-active-session', EMPTY_SESSION)
   const [lastResults, setLastResults] = useLocalStorage('hab-quiz-last-results', null)
   const [reviewQueue, setReviewQueue] = useLocalStorage('hab-quiz-review-queue', [])
@@ -40,6 +81,9 @@ export function QuizSessionProvider({ children }) {
     streakBest: 0,
   })
   const [preferences, setPreferences] = useLocalStorage('hab-quiz-preferences', null)
+
+  // Validate loaded session data
+  const validSession = validateSession(session)
 
   // --- Actions ---
 
@@ -87,11 +131,11 @@ export function QuizSessionProvider({ children }) {
   const submitAnswer = useCallback((selectedAnswerId, timeSpent, explicitOutcome) => {
     let result = null
     setSession((prev) => {
-      if (!prev?.session || prev.session.status !== 'active') return prev
-      const { session: s } = prev
+      const validated = validateSession(prev)
+      if (validated.session.status !== 'active') return prev
+      const { session: s } = validated
       const currentQ = s.questions[s.currentIndex]
       if (!currentQ) return prev
-      // Guard duplicate
       if (s.answers.length > s.currentIndex) return prev
 
       const isCorrect = selectedAnswerId === currentQ.correctAnswer
@@ -107,15 +151,14 @@ export function QuizSessionProvider({ children }) {
 
       result = { isCorrect, correctAnswer: currentQ.correctAnswer, outcome }
 
-      // Auto-add to review queue in study/review mode
-      const modeConfig = MODE_CONFIG[prev.mode] || {}
+      const modeConfig = MODE_CONFIG[validated.mode] || {}
       const newReviewIds = [...s.reviewQueueIds]
       if (modeConfig.autoAddMissedToReview && outcome !== 'correct') {
         if (!newReviewIds.includes(currentQ.id)) newReviewIds.push(currentQ.id)
       }
 
       return {
-        ...prev,
+        ...validated,
         session: {
           ...s,
           answers: [...s.answers, answer],
@@ -124,17 +167,16 @@ export function QuizSessionProvider({ children }) {
       }
     })
 
-    // Update stats
     if (result) {
       setStats((prev) => {
         const isCorrect = result.outcome === 'correct'
-        const newStreak = isCorrect ? prev.streakCurrent + 1 : 0
+        const newStreak = isCorrect ? (prev?.streakCurrent || 0) + 1 : 0
         return {
           ...prev,
-          totalQuestionsAnswered: prev.totalQuestionsAnswered + 1,
-          totalCorrect: prev.totalCorrect + (isCorrect ? 1 : 0),
+          totalQuestionsAnswered: (prev?.totalQuestionsAnswered || 0) + 1,
+          totalCorrect: (prev?.totalCorrect || 0) + (isCorrect ? 1 : 0),
           streakCurrent: newStreak,
-          streakBest: Math.max(prev.streakBest, newStreak),
+          streakBest: Math.max(prev?.streakBest || 0, newStreak),
         }
       })
     }
@@ -152,19 +194,17 @@ export function QuizSessionProvider({ children }) {
 
   const nextQuestion = useCallback(() => {
     setSession((prev) => {
-      if (!prev?.session) return prev
-      const { session: s } = prev
+      const validated = validateSession(prev)
+      const { session: s } = validated
       if (s.currentIndex + 1 >= s.questions.length) {
-        // Quiz complete — compute results
         const score = s.answers.filter((a) => a.outcome === 'correct').length
         const total = s.questions.length
         const percent = total > 0 ? Math.round((score / total) * 100) : 0
 
-        // Save last results
         setLastResults({
           sessionId: s.id,
-          mode: prev.mode,
-          config: prev.config,
+          mode: validated.mode,
+          config: validated.config,
           score,
           total,
           percent,
@@ -173,19 +213,16 @@ export function QuizSessionProvider({ children }) {
           completedAt: new Date().toISOString(),
         })
 
-        // Update session stats
         setStats((st) => ({
           ...st,
-          totalSessions: st.totalSessions + 1,
-          bestScore: percent > st.bestScore.percent
-            ? { percent, date: new Date().toISOString(), config: prev.config }
-            : st.bestScore,
+          totalSessions: (st?.totalSessions || 0) + 1,
+          bestScore: percent > (st?.bestScore?.percent || 0)
+            ? { percent, date: new Date().toISOString(), config: validated.config }
+            : (st?.bestScore || { percent: 0, date: null, config: {} }),
         }))
 
-        // Merge review queue — add structured entries for each reviewed question
         if (s.reviewQueueIds.length > 0) {
           s.reviewQueueIds.forEach((qId) => {
-            // Determine reason from the answer
             const answer = s.answers.find((a) => a.questionId === qId)
             const reason = answer?.outcome === 'unknown' ? 'unknown'
               : answer?.outcome === 'incorrect' ? 'incorrect'
@@ -196,27 +233,27 @@ export function QuizSessionProvider({ children }) {
         }
 
         return {
-          ...prev,
+          ...validated,
           session: { ...s, status: 'completed' },
         }
       }
 
       return {
-        ...prev,
+        ...validated,
         session: { ...s, currentIndex: s.currentIndex + 1 },
       }
     })
-  }, [setSession, setLastResults, setStats, setReviewQueue])
+  }, [setSession, setLastResults, setStats])
 
   const flagQuestion = useCallback((questionId) => {
     setSession((prev) => {
-      if (!prev?.session) return prev
-      const flagged = prev.session.flaggedQuestionIds
+      const validated = validateSession(prev)
+      const flagged = validated.session.flaggedQuestionIds || []
       if (flagged.includes(questionId)) return prev
       return {
-        ...prev,
+        ...validated,
         session: {
-          ...prev.session,
+          ...validated.session,
           flaggedQuestionIds: [...flagged, questionId],
         },
       }
@@ -224,28 +261,29 @@ export function QuizSessionProvider({ children }) {
   }, [setSession])
 
   const markForReview = useCallback((questionId) => {
-    // Add to session's review queue IDs
     setSession((prev) => {
-      if (!prev?.session) return prev
-      const queue = prev.session.reviewQueueIds
+      const validated = validateSession(prev)
+      const queue = validated.session.reviewQueueIds || []
       if (queue.includes(questionId)) return prev
       return {
-        ...prev,
+        ...validated,
         session: {
-          ...prev.session,
+          ...validated.session,
           reviewQueueIds: [...queue, questionId],
         },
       }
     })
-    // Also immediately add to global review queue
-    addToReviewQueue(questionId, 'marked_for_review', session?.session?.id)
-  }, [setSession, addToReviewQueue, session])
+    addToReviewQueue(questionId, 'marked_for_review', validSession?.session?.id)
+  }, [setSession, validSession])
 
   const abandonQuiz = useCallback(() => {
-    setSession((prev) => ({
-      ...prev,
-      session: { ...prev.session, status: 'abandoned' },
-    }))
+    setSession((prev) => {
+      const validated = validateSession(prev)
+      return {
+        ...validated,
+        session: { ...validated.session, status: 'abandoned' },
+      }
+    })
   }, [setSession])
 
   const discardSession = useCallback(() => {
@@ -253,10 +291,10 @@ export function QuizSessionProvider({ children }) {
   }, [setSession])
 
   const resumeSession = useCallback(() => {
-    // Session is already in localStorage — just mark as active if paused
     setSession((prev) => {
-      if (prev?.session?.status === 'paused' || prev?.session?.status === 'active') {
-        return { ...prev, session: { ...prev.session, status: 'active' } }
+      const validated = validateSession(prev)
+      if (validated.session.status === 'paused' || validated.session.status === 'active') {
+        return { ...validated, session: { ...validated.session, status: 'active' } }
       }
       return prev
     })
@@ -264,75 +302,74 @@ export function QuizSessionProvider({ children }) {
 
   const addToReviewQueue = useCallback((questionId, reason, sourceSessionId) => {
     setReviewQueue((prev) => {
-      // Normalize: support both old ID-only format and new structured format
-      const existing = prev.find((entry) =>
+      const arr = Array.isArray(prev) ? prev : []
+      const existing = arr.find((entry) =>
         typeof entry === 'string' ? entry === questionId : entry.questionId === questionId
       )
       if (existing && typeof existing !== 'string') {
-        // Merge new reason into existing entry
         const reasons = new Set(existing.reasons || [])
         reasons.add(reason)
-        return prev.map((e) =>
+        return arr.map((e) =>
           (typeof e !== 'string' && e.questionId === questionId)
             ? { ...e, reasons: [...reasons] }
             : e
         )
       }
       if (existing) {
-        // Was an old-format string ID, upgrade it
         return [
-          ...prev.filter((e) => e !== questionId),
+          ...arr.filter((e) => e !== questionId),
           { questionId, reasons: [reason], addedAt: new Date().toISOString(), sourceSessionId: sourceSessionId || null },
         ]
       }
-      // New entry
       return [
-        ...prev,
+        ...arr,
         { questionId, reasons: [reason], addedAt: new Date().toISOString(), sourceSessionId: sourceSessionId || null },
       ]
     })
   }, [setReviewQueue])
 
   const removeFromReviewQueue = useCallback((questionId) => {
-    setReviewQueue((prev) => prev.filter((entry) =>
-      typeof entry === 'string' ? entry !== questionId : entry.questionId !== questionId
-    ))
+    setReviewQueue((prev) => {
+      const arr = Array.isArray(prev) ? prev : []
+      return arr.filter((entry) =>
+        typeof entry === 'string' ? entry !== questionId : entry.questionId !== questionId
+      )
+    })
   }, [setReviewQueue])
 
   const clearReviewQueue = useCallback(() => {
     setReviewQueue([])
   }, [setReviewQueue])
 
-  // --- Derived state ---
-  const currentQuestion = session?.session?.questions?.[session.session.currentIndex] || null
-  const isActive = session?.session?.status === 'active'
-  const isCompleted = session?.session?.status === 'completed'
-  const hasUnfinishedSession = session?.session?.status === 'active' && session?.session?.answers?.length > 0
-  const score = session?.session?.answers?.filter((a) => a.outcome === 'correct').length || 0
-  const totalAnswered = session?.session?.answers?.length || 0
-  const totalQuestions = session?.session?.questions?.length || 0
-  const showFeedback = totalAnswered > session?.session?.currentIndex
+  // --- Derived state (use validated session) ---
+  const s = validSession?.session || EMPTY_SESSION.session
+  const currentQuestion = s.questions?.[s.currentIndex] || null
+  const isActive = s.status === 'active'
+  const isCompleted = s.status === 'completed'
+  const hasUnfinishedSession = s.status === 'active' && (s.answers?.length || 0) > 0
+  const score = s.answers?.filter((a) => a.outcome === 'correct').length || 0
+  const totalAnswered = s.answers?.length || 0
+  const totalQuestions = s.questions?.length || 0
+  const showFeedback = totalAnswered > (s.currentIndex || 0)
   const progress = totalQuestions > 0
-    ? ((session.session.currentIndex + (showFeedback ? 1 : 0)) / totalQuestions) * 100
+    ? (((s.currentIndex || 0) + (showFeedback ? 1 : 0)) / totalQuestions) * 100
     : 0
   const streak = (() => {
-    const answers = session?.session?.answers || []
-    let s = 0
+    const answers = s.answers || []
+    let count = 0
     for (let i = answers.length - 1; i >= 0; i--) {
-      if (answers[i].outcome === 'correct') s++
+      if (answers[i]?.outcome === 'correct') count++
       else break
     }
-    return s
+    return count
   })()
 
   const value = {
-    // State
-    session,
+    session: validSession,
     lastResults,
-    reviewQueue,
-    stats,
+    reviewQueue: Array.isArray(reviewQueue) ? reviewQueue : [],
+    stats: stats || {},
     preferences,
-    // Derived
     currentQuestion,
     isActive,
     isCompleted,
@@ -343,12 +380,11 @@ export function QuizSessionProvider({ children }) {
     showFeedback,
     progress,
     streak,
-    mode: session?.mode || DEFAULT_MODE,
-    config: session?.config,
-    questions: session?.session?.questions || [],
-    answers: session?.session?.answers || [],
-    flaggedQuestionIds: session?.session?.flaggedQuestionIds || [],
-    // Actions
+    mode: validSession?.mode || DEFAULT_MODE,
+    config: validSession?.config,
+    questions: s.questions || [],
+    answers: s.answers || [],
+    flaggedQuestionIds: s.flaggedQuestionIds || [],
     startQuiz,
     submitAnswer,
     markUnknown,
@@ -370,6 +406,16 @@ export function QuizSessionProvider({ children }) {
     <QuizSessionContext.Provider value={value}>
       {children}
     </QuizSessionContext.Provider>
+  )
+}
+
+export function QuizSessionProvider({ children }) {
+  return (
+    <ErrorBoundary>
+      <QuizSessionProviderInner>
+        {children}
+      </QuizSessionProviderInner>
+    </ErrorBoundary>
   )
 }
 

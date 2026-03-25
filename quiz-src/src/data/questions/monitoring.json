@@ -31,7 +31,7 @@
       "harvest_closure",
       "regulatory"
     ],
-    "references": "",
+    "references": [],
     "sourceShort": "",
     "learningObjective": "",
     "lastReviewed": "",
@@ -70,7 +70,7 @@
       "traditional_method",
       "animal_testing"
     ],
-    "references": "",
+    "references": [],
     "sourceShort": "",
     "learningObjective": "",
     "lastReviewed": "",
@@ -109,7 +109,7 @@
       "chlorophyll",
       "sentinel"
     ],
-    "references": "",
+    "references": [],
     "sourceShort": "",
     "learningObjective": "",
     "lastReviewed": "",
@@ -148,7 +148,7 @@
       "bioaccumulation",
       "monitoring"
     ],
-    "references": "",
+    "references": [],
     "sourceShort": "",
     "learningObjective": "",
     "lastReviewed": "",
@@ -187,7 +187,7 @@
       "psp",
       "stx_equivalents"
     ],
-    "references": "",
+    "references": [],
     "sourceShort": "",
     "learningObjective": "",
     "lastReviewed": "",
@@ -226,7 +226,7 @@
       "asp",
       "eu"
     ],
-    "references": "",
+    "references": [],
     "sourceShort": "",
     "learningObjective": "",
     "lastReviewed": "",
@@ -265,7 +265,7 @@
       "antibody",
       "rapid_test"
     ],
-    "references": "",
+    "references": [],
     "sourceShort": "",
     "learningObjective": "",
     "lastReviewed": "",
@@ -304,7 +304,7 @@
       "rat_brain",
       "tritiated_saxitoxin"
     ],
-    "references": "",
+    "references": [],
     "sourceShort": "",
     "learningObjective": "",
     "lastReviewed": "",
@@ -343,7 +343,7 @@
       "lawrence_method",
       "pcox"
     ],
-    "references": "",
+    "references": [],
     "sourceShort": "",
     "learningObjective": "",
     "lastReviewed": "",
@@ -381,7 +381,7 @@
       "lipophilic",
       "reference_method"
     ],
-    "references": "",
+    "references": [],
     "sourceShort": "",
     "learningObjective": "",
     "lastReviewed": "",
@@ -420,7 +420,7 @@
       "validation",
       "microplate"
     ],
-    "references": "",
+    "references": [],
     "sourceShort": "",
     "learningObjective": "",
     "lastReviewed": "",
@@ -459,7 +459,7 @@
       "efsa",
       "quantification"
     ],
-    "references": "",
+    "references": [],
     "sourceShort": "",
     "learningObjective": "",
     "lastReviewed": "",
@@ -498,7 +498,7 @@
       "global",
       "trend_analysis"
     ],
-    "references": "",
+    "references": [],
     "sourceShort": "",
     "learningObjective": "",
     "lastReviewed": "",
@@ -536,7 +536,14 @@
       "workflow",
       "tiered_approach"
     ],
-    "references": "EFSA 2009. Marine biotoxins in shellfish – Summary on regulated marine biotoxins. doi:10.2903/j.efsa.2009.1306",
+    "references": [
+      {
+        "label": "EFSA 2009. Marine biotoxins in shellfish – Summary on regulated marine biotoxins.",
+        "url": "https://doi.org/10.2903/j.efsa.2009.1306",
+        "type": "risk_assessment",
+        "jurisdiction": "EU"
+      }
+    ],
     "sourceShort": "EFSA 2009 Summary",
     "learningObjective": "Distinguish screening from confirmatory methods in monitoring workflows.",
     "lastReviewed": "2026-03-25",
@@ -574,7 +581,20 @@
       "lc-ms",
       "complementary_methods"
     ],
-    "references": "AOAC 2011.27; EFSA 2009 Saxitoxin group doi:10.2903/j.efsa.2009.1019",
+    "references": [
+      {
+        "label": "AOAC 2011.27",
+        "url": null,
+        "type": "method_standard",
+        "jurisdiction": null
+      },
+      {
+        "label": "EFSA 2009 Saxitoxin group",
+        "url": "https://doi.org/10.2903/j.efsa.2009.1019",
+        "type": "risk_assessment",
+        "jurisdiction": "EU"
+      }
+    ],
     "sourceShort": "AOAC 2011.27 / EFSA 2009",
     "learningObjective": "Explain the complementary value of functional vs structural assays.",
     "lastReviewed": "2026-03-25",
@@ -612,7 +632,14 @@
       "limitation",
       "semi-quantitative"
     ],
-    "references": "EFSA 2009 Summary doi:10.2903/j.efsa.2009.1306",
+    "references": [
+      {
+        "label": "EFSA 2009 Summary",
+        "url": "https://doi.org/10.2903/j.efsa.2009.1306",
+        "type": "risk_assessment",
+        "jurisdiction": "EU"
+      }
+    ],
     "sourceShort": "EFSA 2009 Summary",
     "learningObjective": "Identify the main analytical limitation of immunoassay-based toxin screening.",
     "lastReviewed": "2026-03-25",
@@ -651,7 +678,20 @@
       "quantification",
       "calibration"
     ],
-    "references": "EU Regulation 15/2011; EFSA method reviews",
+    "references": [
+      {
+        "label": "EU Regulation 15/2011",
+        "url": null,
+        "type": "regulation",
+        "jurisdiction": "EU"
+      },
+      {
+        "label": "EFSA method reviews",
+        "url": null,
+        "type": "risk_assessment",
+        "jurisdiction": "EU"
+      }
+    ],
     "sourceShort": "EU Reg 15/2011",
     "learningObjective": "Explain why matrix effects matter in LC-MS/MS biotoxin analysis.",
     "lastReviewed": "2026-03-25",
@@ -690,7 +730,20 @@
       "quality_control",
       "nrc"
     ],
-    "references": "NRC Canada marine biotoxin CRM programme; ISO 17025 requirements",
+    "references": [
+      {
+        "label": "NRC Canada marine biotoxin CRM programme",
+        "url": null,
+        "type": "programme",
+        "jurisdiction": null
+      },
+      {
+        "label": "ISO 17025 requirements",
+        "url": null,
+        "type": "method_standard",
+        "jurisdiction": null
+      }
+    ],
     "sourceShort": "NRC CRM programme",
     "learningObjective": "Explain the role of certified reference materials in analytical quality assurance.",
     "lastReviewed": "2026-03-25",
@@ -728,7 +781,14 @@
       "early_warning",
       "bioaccumulation"
     ],
-    "references": "EFSA 2009 Summary doi:10.2903/j.efsa.2009.1306",
+    "references": [
+      {
+        "label": "EFSA 2009 Summary",
+        "url": "https://doi.org/10.2903/j.efsa.2009.1306",
+        "type": "risk_assessment",
+        "jurisdiction": "EU"
+      }
+    ],
     "sourceShort": "EFSA 2009 Summary",
     "learningObjective": "Explain why water-column monitoring complements but does not replace shellfish testing.",
     "lastReviewed": "2026-03-25",
@@ -766,7 +826,20 @@
       "quality_assurance",
       "quasimeme"
     ],
-    "references": "QUASIMEME proficiency testing programme; EU-RL for Marine Biotoxins",
+    "references": [
+      {
+        "label": "QUASIMEME proficiency testing programme",
+        "url": null,
+        "type": "programme",
+        "jurisdiction": null
+      },
+      {
+        "label": "EU-RL for Marine Biotoxins",
+        "url": null,
+        "type": null,
+        "jurisdiction": "EU"
+      }
+    ],
     "sourceShort": "QUASIMEME / EU-RL",
     "learningObjective": "Explain the purpose and value of interlaboratory comparison exercises.",
     "lastReviewed": "2026-03-25",
@@ -805,7 +878,14 @@
       "cost_effectiveness",
       "resource_limited"
     ],
-    "references": "EFSA 2009 Summary doi:10.2903/j.efsa.2009.1306",
+    "references": [
+      {
+        "label": "EFSA 2009 Summary",
+        "url": "https://doi.org/10.2903/j.efsa.2009.1306",
+        "type": "risk_assessment",
+        "jurisdiction": "EU"
+      }
+    ],
     "sourceShort": "EFSA 2009 Summary",
     "learningObjective": "Justify a tiered monitoring workflow based on resource and performance trade-offs.",
     "lastReviewed": "2026-03-25",
@@ -843,7 +923,20 @@
       "scallop",
       "regulatory_implications"
     ],
-    "references": "EFSA 2009 Domoic acid doi:10.2903/j.efsa.2009.1181; EU Reg 853/2004",
+    "references": [
+      {
+        "label": "EFSA 2009 Domoic acid",
+        "url": "https://doi.org/10.2903/j.efsa.2009.1181",
+        "type": "risk_assessment",
+        "jurisdiction": "EU"
+      },
+      {
+        "label": "EU Reg 853/2004",
+        "url": null,
+        "type": "regulation",
+        "jurisdiction": "EU"
+      }
+    ],
     "sourceShort": "EFSA 2009 DA / EU 853/2004",
     "learningObjective": "Explain why tissue selection affects toxin interpretation and regulatory decisions.",
     "lastReviewed": "2026-03-25",
@@ -881,7 +974,20 @@
       "monitoring_purpose",
       "prevention"
     ],
-    "references": "Codex Alimentarius; national shellfish sanitation programmes",
+    "references": [
+      {
+        "label": "Codex Alimentarius",
+        "url": null,
+        "type": null,
+        "jurisdiction": "International"
+      },
+      {
+        "label": "national shellfish sanitation programmes",
+        "url": null,
+        "type": "programme",
+        "jurisdiction": null
+      }
+    ],
     "sourceShort": "Codex Alimentarius",
     "learningObjective": "State the fundamental public-health purpose of biotoxin monitoring.",
     "lastReviewed": "2026-03-25",
