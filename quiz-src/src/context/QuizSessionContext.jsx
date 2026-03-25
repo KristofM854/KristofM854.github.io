@@ -182,11 +182,16 @@ export function QuizSessionProvider({ children }) {
             : st.bestScore,
         }))
 
-        // Merge review queue
+        // Merge review queue — add structured entries for each reviewed question
         if (s.reviewQueueIds.length > 0) {
-          setReviewQueue((rq) => {
-            const merged = new Set([...rq, ...s.reviewQueueIds])
-            return [...merged]
+          s.reviewQueueIds.forEach((qId) => {
+            // Determine reason from the answer
+            const answer = s.answers.find((a) => a.questionId === qId)
+            const reason = answer?.outcome === 'unknown' ? 'unknown'
+              : answer?.outcome === 'incorrect' ? 'incorrect'
+              : answer?.outcome === 'timeout' ? 'incorrect'
+              : 'marked_for_review'
+            addToReviewQueue(qId, reason, s.id)
           })
         }
 
@@ -219,6 +224,7 @@ export function QuizSessionProvider({ children }) {
   }, [setSession])
 
   const markForReview = useCallback((questionId) => {
+    // Add to session's review queue IDs
     setSession((prev) => {
       if (!prev?.session) return prev
       const queue = prev.session.reviewQueueIds
@@ -231,7 +237,9 @@ export function QuizSessionProvider({ children }) {
         },
       }
     })
-  }, [setSession])
+    // Also immediately add to global review queue
+    addToReviewQueue(questionId, 'marked_for_review', session?.session?.id)
+  }, [setSession, addToReviewQueue, session])
 
   const abandonQuiz = useCallback(() => {
     setSession((prev) => ({
@@ -254,8 +262,41 @@ export function QuizSessionProvider({ children }) {
     })
   }, [setSession])
 
+  const addToReviewQueue = useCallback((questionId, reason, sourceSessionId) => {
+    setReviewQueue((prev) => {
+      // Normalize: support both old ID-only format and new structured format
+      const existing = prev.find((entry) =>
+        typeof entry === 'string' ? entry === questionId : entry.questionId === questionId
+      )
+      if (existing && typeof existing !== 'string') {
+        // Merge new reason into existing entry
+        const reasons = new Set(existing.reasons || [])
+        reasons.add(reason)
+        return prev.map((e) =>
+          (typeof e !== 'string' && e.questionId === questionId)
+            ? { ...e, reasons: [...reasons] }
+            : e
+        )
+      }
+      if (existing) {
+        // Was an old-format string ID, upgrade it
+        return [
+          ...prev.filter((e) => e !== questionId),
+          { questionId, reasons: [reason], addedAt: new Date().toISOString(), sourceSessionId: sourceSessionId || null },
+        ]
+      }
+      // New entry
+      return [
+        ...prev,
+        { questionId, reasons: [reason], addedAt: new Date().toISOString(), sourceSessionId: sourceSessionId || null },
+      ]
+    })
+  }, [setReviewQueue])
+
   const removeFromReviewQueue = useCallback((questionId) => {
-    setReviewQueue((prev) => prev.filter((id) => id !== questionId))
+    setReviewQueue((prev) => prev.filter((entry) =>
+      typeof entry === 'string' ? entry !== questionId : entry.questionId !== questionId
+    ))
   }, [setReviewQueue])
 
   const clearReviewQueue = useCallback(() => {
@@ -318,6 +359,7 @@ export function QuizSessionProvider({ children }) {
     abandonQuiz,
     discardSession,
     resumeSession,
+    addToReviewQueue,
     removeFromReviewQueue,
     clearReviewQueue,
     setStats,

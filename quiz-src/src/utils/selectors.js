@@ -88,7 +88,11 @@ export function getReviewQueue({ answers, questions, flaggedQuestionIds = [], un
  */
 export function getModeAdjustedQuestionSet({ mode, config, allQuestions, reviewQueue = [] }) {
   if (mode === 'review' && reviewQueue.length > 0) {
-    const reviewQuestions = allQuestions.filter((q) => reviewQueue.includes(q.id))
+    // Support both old ID-only and new structured format
+    const reviewIds = reviewQueue.map((entry) =>
+      typeof entry === 'string' ? entry : entry.questionId
+    )
+    const reviewQuestions = allQuestions.filter((q) => reviewIds.includes(q.id))
     const shuffled = shuffleArray(reviewQuestions)
     const count = Math.min(config.questionCount, shuffled.length)
     return shuffled.slice(0, count).map((q) => ({

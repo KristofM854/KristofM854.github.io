@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
-import { CheckCircle, XCircle, ArrowRight, LogOut, Flag, Flame, HelpCircle, Bookmark } from 'lucide-react'
+import { CheckCircle, XCircle, ArrowRight, LogOut, Flag, Flame, HelpCircle, Bookmark, Lightbulb, AlertTriangle } from 'lucide-react'
 import { useQuizSession } from '../../context/QuizSessionContext.jsx'
 import useTimer from '../../hooks/useTimer.js'
 import Badge from '../shared/Badge.jsx'
@@ -13,6 +13,8 @@ import { categories, getQuestionType } from '../../data/index.js'
 import { italicizeSpecies } from '../../utils/italicizeSpecies.jsx'
 import { MODE_CONFIG } from '../../utils/modes.js'
 import FlagQuestionModal from '../shared/FlagQuestionModal.jsx'
+import SuggestImprovementModal from '../shared/SuggestImprovementModal.jsx'
+import QuestionReferences from '../shared/QuestionReferences.jsx'
 
 const POSITION_LABELS = ['A', 'B', 'C', 'D']
 
@@ -47,6 +49,7 @@ function QuizPlayPage() {
   const [lastResult, setLastResult] = useState(null)
   const [showQuitModal, setShowQuitModal] = useState(false)
   const [showFlagModal, setShowFlagModal] = useState(false)
+  const [showSuggestModal, setShowSuggestModal] = useState(false)
   const [questionStartTime, setQuestionStartTime] = useState(Date.now())
 
   // Screen reader feedback region
@@ -391,30 +394,40 @@ function QuizPlayPage() {
                     <p className="text-text-secondary text-sm mt-2 leading-relaxed">
                       {italicizeSpecies(currentQuestion.explanation)}
                     </p>
-                    {currentQuestion.references && (
-                      <p className="text-text-tertiary text-xs mt-2 italic">
-                        Source: {currentQuestion.references}
-                      </p>
-                    )}
+                    <QuestionReferences
+                      references={currentQuestion.references}
+                      sourceShort={currentQuestion.sourceShort}
+                      jurisdiction={currentQuestion.jurisdiction}
+                    />
                   </div>
                 </div>
                 <div className="flex items-center justify-between mt-4">
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2 flex-wrap">
                     <button
                       onClick={() => setShowFlagModal(true)}
-                      className="flex items-center gap-1.5 text-text-tertiary hover:text-accent-amber transition-colors text-xs cursor-pointer"
-                      title="Flag this question as inaccurate"
+                      className="flex items-center gap-1 text-text-tertiary hover:text-accent-danger transition-colors text-xs cursor-pointer"
+                      title="Report a factual error, broken reference, or wrong answer"
                     >
-                      <Flag className="w-3.5 h-3.5" />
-                      Flag
+                      <AlertTriangle className="w-3.5 h-3.5" />
+                      Report issue
                     </button>
+                    <span className="text-white/10">|</span>
                     <button
                       onClick={() => markForReview(currentQuestion.id)}
-                      className="flex items-center gap-1.5 text-text-tertiary hover:text-accent-cyan transition-colors text-xs cursor-pointer"
-                      title="Mark for review later"
+                      className="flex items-center gap-1 text-text-tertiary hover:text-accent-cyan transition-colors text-xs cursor-pointer"
+                      title="Add to your review queue for later practice"
                     >
                       <Bookmark className="w-3.5 h-3.5" />
                       Review later
+                    </button>
+                    <span className="text-white/10">|</span>
+                    <button
+                      onClick={() => setShowSuggestModal(true)}
+                      className="flex items-center gap-1 text-text-tertiary hover:text-accent-amber transition-colors text-xs cursor-pointer"
+                      title="Suggest better wording, distractors, or references"
+                    >
+                      <Lightbulb className="w-3.5 h-3.5" />
+                      Suggest
                     </button>
                   </div>
                   <Button size="sm" onClick={handleNext}>
@@ -464,6 +477,12 @@ function QuizPlayPage() {
       <FlagQuestionModal
         isOpen={showFlagModal}
         onClose={() => setShowFlagModal(false)}
+        question={currentQuestion}
+      />
+
+      <SuggestImprovementModal
+        isOpen={showSuggestModal}
+        onClose={() => setShowSuggestModal(false)}
         question={currentQuestion}
       />
     </div>
