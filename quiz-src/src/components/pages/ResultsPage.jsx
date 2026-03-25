@@ -1,12 +1,13 @@
 import { useLocation, Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Trophy, RotateCcw, Home, ChevronDown, ChevronUp, Copy, Check, ExternalLink } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { categories } from '../../data/index.js'
 import { italicizeSpecies } from '../../utils/italicizeSpecies.jsx'
 import Button from '../shared/Button.jsx'
 import Card from '../shared/Card.jsx'
 import Badge from '../shared/Badge.jsx'
+import ScoreSubmitModal from '../shared/ScoreSubmitModal.jsx'
 
 function getGrade(percent) {
   if (percent >= 90) return { label: 'Expert', emoji: '🏆', color: 'text-accent-amber' }
@@ -22,6 +23,15 @@ function ResultsPage() {
   const { score, total, answers, questions, config } = location.state || {}
   const [expandedQuestion, setExpandedQuestion] = useState(null)
   const [copied, setCopied] = useState(false)
+  const [showScoreModal, setShowScoreModal] = useState(false)
+
+  // Show leaderboard prompt automatically after a short delay
+  useEffect(() => {
+    if (score !== undefined) {
+      const timer = setTimeout(() => setShowScoreModal(true), 800)
+      return () => clearTimeout(timer)
+    }
+  }, [score])
 
   if (!score && score !== 0) {
     return (
@@ -234,6 +244,15 @@ function ResultsPage() {
           </a>
         </Card>
       </div>
+
+      <ScoreSubmitModal
+        isOpen={showScoreModal}
+        onClose={() => setShowScoreModal(false)}
+        score={score}
+        total={total}
+        percent={percent}
+        config={config}
+      />
     </div>
   )
 }

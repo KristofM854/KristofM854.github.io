@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { CheckCircle, XCircle, ArrowRight, LogOut } from 'lucide-react'
+import { CheckCircle, XCircle, ArrowRight, LogOut, Flag } from 'lucide-react'
 import useQuiz from '../../hooks/useQuiz.js'
 import useTimer from '../../hooks/useTimer.js'
 import useStats from '../../hooks/useStats.js'
@@ -12,6 +12,7 @@ import ProgressRing from '../shared/ProgressRing.jsx'
 import Modal from '../shared/Modal.jsx'
 import { categories, getQuestionType } from '../../data/index.js'
 import { italicizeSpecies } from '../../utils/italicizeSpecies.jsx'
+import FlagQuestionModal from '../shared/FlagQuestionModal.jsx'
 
 const POSITION_LABELS = ['A', 'B', 'C', 'D']
 
@@ -38,6 +39,7 @@ function QuizPlayPage() {
   const { stats, recordAnswer, recordSession } = useStats()
   const [lastResult, setLastResult] = useState(null)
   const [showQuitModal, setShowQuitModal] = useState(false)
+  const [showFlagModal, setShowFlagModal] = useState(false)
   const [questionStartTime, setQuestionStartTime] = useState(Date.now())
 
   const handleTimeExpire = useCallback(() => {
@@ -310,7 +312,15 @@ function QuizPlayPage() {
                     </p>
                   </div>
                 </div>
-                <div className="flex justify-end mt-4">
+                <div className="flex items-center justify-between mt-4">
+                  <button
+                    onClick={() => setShowFlagModal(true)}
+                    className="flex items-center gap-1.5 text-text-tertiary hover:text-accent-amber transition-colors text-xs cursor-pointer"
+                    title="Flag this question as inaccurate"
+                  >
+                    <Flag className="w-3.5 h-3.5" />
+                    Flag question
+                  </button>
                   <Button size="sm" onClick={handleNext}>
                     {currentIndex + 1 < questions.length ? (
                       <>
@@ -345,6 +355,12 @@ function QuizPlayPage() {
       >
         <p>Your progress will be lost. Are you sure you want to quit?</p>
       </Modal>
+
+      <FlagQuestionModal
+        isOpen={showFlagModal}
+        onClose={() => setShowFlagModal(false)}
+        question={currentQuestion}
+      />
     </div>
   )
 }

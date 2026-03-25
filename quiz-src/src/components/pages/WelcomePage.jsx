@@ -5,6 +5,7 @@ import { categories, allQuestions } from '../../data/index.js'
 import useStats from '../../hooks/useStats.js'
 import Button from '../shared/Button.jsx'
 import Card from '../shared/Card.jsx'
+import Leaderboard from '../shared/Leaderboard.jsx'
 
 function WelcomePage() {
   const { stats } = useStats()
@@ -89,6 +90,9 @@ function WelcomePage() {
             </Card>
           </motion.div>
         )}
+
+        {/* Leaderboard */}
+        <Leaderboard />
 
         {/* Category Grid */}
         <div>
