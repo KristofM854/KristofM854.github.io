@@ -35,18 +35,24 @@ function ReferencesPage() {
       })
 
       // Also capture sourceShort as a separate reference if present and different
-      if (q.sourceShort && !refMap.has(q.sourceShort)) {
-        // Only add if no detailed reference already covers it
+      if (q.sourceShort && q.sourceShort.trim()) {
         const alreadyCovered = refs.some((r) => (r.label || r).includes(q.sourceShort))
-        if (!alreadyCovered && q.sourceShort.trim()) {
-          refMap.set(q.sourceShort, {
-            label: q.sourceShort,
-            url: null,
-            type: null,
-            jurisdiction: q.jurisdiction || null,
-            categories: new Set([q.category]),
-            questionCount: 1,
-          })
+        if (!alreadyCovered) {
+          if (refMap.has(q.sourceShort)) {
+            // Update existing entry — accumulate categories and count
+            const existing = refMap.get(q.sourceShort)
+            existing.categories.add(q.category)
+            existing.questionCount++
+          } else {
+            refMap.set(q.sourceShort, {
+              label: q.sourceShort,
+              url: null,
+              type: null,
+              jurisdiction: q.jurisdiction || null,
+              categories: new Set([q.category]),
+              questionCount: 1,
+            })
+          }
         }
       }
     })

@@ -260,46 +260,6 @@ function QuizSessionProviderInner({ children }) {
     })
   }, [setSession])
 
-  const markForReview = useCallback((questionId) => {
-    setSession((prev) => {
-      const validated = validateSession(prev)
-      const queue = validated.session.reviewQueueIds || []
-      if (queue.includes(questionId)) return prev
-      return {
-        ...validated,
-        session: {
-          ...validated.session,
-          reviewQueueIds: [...queue, questionId],
-        },
-      }
-    })
-    addToReviewQueue(questionId, 'marked_for_review', validSession?.session?.id)
-  }, [setSession, validSession])
-
-  const abandonQuiz = useCallback(() => {
-    setSession((prev) => {
-      const validated = validateSession(prev)
-      return {
-        ...validated,
-        session: { ...validated.session, status: 'abandoned' },
-      }
-    })
-  }, [setSession])
-
-  const discardSession = useCallback(() => {
-    setSession(EMPTY_SESSION)
-  }, [setSession])
-
-  const resumeSession = useCallback(() => {
-    setSession((prev) => {
-      const validated = validateSession(prev)
-      if (validated.session.status === 'paused' || validated.session.status === 'active') {
-        return { ...validated, session: { ...validated.session, status: 'active' } }
-      }
-      return prev
-    })
-  }, [setSession])
-
   const addToReviewQueue = useCallback((questionId, reason, sourceSessionId) => {
     setReviewQueue((prev) => {
       const arr = Array.isArray(prev) ? prev : []
@@ -327,6 +287,46 @@ function QuizSessionProviderInner({ children }) {
       ]
     })
   }, [setReviewQueue])
+
+  const markForReview = useCallback((questionId) => {
+    setSession((prev) => {
+      const validated = validateSession(prev)
+      const queue = validated.session.reviewQueueIds || []
+      if (queue.includes(questionId)) return prev
+      return {
+        ...validated,
+        session: {
+          ...validated.session,
+          reviewQueueIds: [...queue, questionId],
+        },
+      }
+    })
+    addToReviewQueue(questionId, 'marked_for_review', validSession?.session?.id)
+  }, [setSession, addToReviewQueue, validSession])
+
+  const abandonQuiz = useCallback(() => {
+    setSession((prev) => {
+      const validated = validateSession(prev)
+      return {
+        ...validated,
+        session: { ...validated.session, status: 'abandoned' },
+      }
+    })
+  }, [setSession])
+
+  const discardSession = useCallback(() => {
+    setSession(EMPTY_SESSION)
+  }, [setSession])
+
+  const resumeSession = useCallback(() => {
+    setSession((prev) => {
+      const validated = validateSession(prev)
+      if (validated.session.status === 'paused' || validated.session.status === 'active') {
+        return { ...validated, session: { ...validated.session, status: 'active' } }
+      }
+      return prev
+    })
+  }, [setSession])
 
   const removeFromReviewQueue = useCallback((questionId) => {
     setReviewQueue((prev) => {

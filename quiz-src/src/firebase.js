@@ -61,7 +61,7 @@ export async function getTopScores(limit = 10) {
 
 // ---- Question Flags ----
 
-export async function submitFlag({ questionId, questionText, concern, flaggedAt }) {
+export async function submitFlag({ questionId, questionText, concern, flaggedAt, submitterName, submitterAffiliation, type }) {
   if (!db) return null
   const flagsRef = ref(db, 'flags')
   const newFlag = {
@@ -69,6 +69,9 @@ export async function submitFlag({ questionId, questionText, concern, flaggedAt 
     questionText: (questionText || '').slice(0, 200),
     concern: (concern || '').slice(0, 500),
     flaggedAt: flaggedAt || new Date().toISOString(),
+    type: type || 'flag',
+    submitterName: submitterName ? submitterName.slice(0, 50) : null,
+    submitterAffiliation: submitterAffiliation ? submitterAffiliation.slice(0, 100) : null,
   }
   await push(flagsRef, newFlag)
   return newFlag
