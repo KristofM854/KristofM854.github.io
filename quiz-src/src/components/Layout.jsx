@@ -52,18 +52,7 @@ function Layout() {
 
       <footer className="relative z-10 border-t border-white/8 py-8 mt-8">
         <div className="max-w-5xl mx-auto px-4 text-center text-text-tertiary text-sm">
-          <p>
-            Built by{' '}
-            <a
-              href="https://kristofmoeller.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-text-secondary hover:text-accent-teal transition-colors"
-            >
-              Kristof Moeller
-            </a>
-            {' '}&middot; Marine Biochemist &middot; IAEA Environment Laboratories
-          </p>
+          <p>Designed by Kristof Moeller</p>
         </div>
       </footer>
     </div>

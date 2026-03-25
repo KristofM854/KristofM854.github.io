@@ -36,6 +36,7 @@ function QuizPlayPage() {
     session,
     submitAnswer,
     markUnknown,
+    timeoutAnswer,
     nextQuestion,
     abandonQuiz,
     flagQuestion,
@@ -53,14 +54,14 @@ function QuizPlayPage() {
 
   const handleTimeExpire = useCallback(() => {
     if (!showFeedback && currentQuestion) {
-      const result = submitAnswer(null, config?.timePerQuestion || 0)
+      const result = timeoutAnswer(config?.timePerQuestion || 0)
       if (result) {
         setLastResult(result)
         setSrFeedback('Time expired. The correct answer was: ' +
           currentQuestion.answers.find((a) => a.id === currentQuestion.correctAnswer)?.text)
       }
     }
-  }, [showFeedback, currentQuestion, submitAnswer, config])
+  }, [showFeedback, currentQuestion, timeoutAnswer, config])
 
   const timer = useTimer(config?.timePerQuestion || 30, handleTimeExpire)
 

@@ -63,7 +63,7 @@ function QuizSetupPage() {
   }
 
   const handleStart = () => {
-    if (isInsufficient) return
+    if (isInsufficient || selectedCategories.length === 0) return
     const config = {
       categories: selectedCategories,
       difficulty,

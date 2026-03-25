@@ -26,6 +26,8 @@ export const getQuestionsByDifficulty = (difficulty) =>
   allQuestions.filter((q) => q.difficulty === difficulty)
 
 export const getFilteredQuestions = ({ categories: cats, difficulty }) => {
+  // If categories array is provided but empty, no questions match
+  if (Array.isArray(cats) && cats.length === 0) return []
   let filtered = allQuestions
   if (cats && cats.length > 0) {
     filtered = filtered.filter((q) => cats.includes(q.category))
