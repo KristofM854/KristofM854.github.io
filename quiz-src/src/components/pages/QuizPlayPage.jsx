@@ -1,10 +1,9 @@
 import { useEffect, useState, useCallback } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
-import { CheckCircle, XCircle, ArrowRight, LogOut, Flag, Flame } from 'lucide-react'
-import useQuiz from '../../hooks/useQuiz.js'
+import { CheckCircle, XCircle, ArrowRight, LogOut, Flag, Flame, HelpCircle, Bookmark } from 'lucide-react'
+import { useQuizSession } from '../../context/QuizSessionContext.jsx'
 import useTimer from '../../hooks/useTimer.js'
-import useStats from '../../hooks/useStats.js'
 import Badge from '../shared/Badge.jsx'
 import Button from '../shared/Button.jsx'
 import Card from '../shared/Card.jsx'
@@ -12,91 +11,125 @@ import ProgressRing from '../shared/ProgressRing.jsx'
 import Modal from '../shared/Modal.jsx'
 import { categories, getQuestionType } from '../../data/index.js'
 import { italicizeSpecies } from '../../utils/italicizeSpecies.jsx'
+import { MODE_CONFIG } from '../../utils/modes.js'
 import FlagQuestionModal from '../shared/FlagQuestionModal.jsx'
 
 const POSITION_LABELS = ['A', 'B', 'C', 'D']
 
 function QuizPlayPage() {
-  const location = useLocation()
   const navigate = useNavigate()
-  const config = location.state?.config
   const reducedMotion = useReducedMotion()
 
   const {
-    questions,
     currentQuestion,
-    currentIndex,
-    status,
+    isActive,
+    isCompleted,
     showFeedback,
     score,
     progress,
     answers,
-    startQuiz,
+    questions,
+    totalQuestions,
+    streak,
+    mode,
+    config,
+    session,
     submitAnswer,
+    markUnknown,
     nextQuestion,
     abandonQuiz,
-  } = useQuiz()
+    flagQuestion,
+    markForReview,
+  } = useQuizSession()
 
-  const { stats, recordAnswer, recordSession } = useStats()
+  const modeConfig = MODE_CONFIG[mode] || MODE_CONFIG.exam
   const [lastResult, setLastResult] = useState(null)
   const [showQuitModal, setShowQuitModal] = useState(false)
   const [showFlagModal, setShowFlagModal] = useState(false)
   const [questionStartTime, setQuestionStartTime] = useState(Date.now())
-  const [streak, setStreak] = useState(0)
+
+  // Screen reader feedback region
+  const [srFeedback, setSrFeedback] = useState('')
 
   const handleTimeExpire = useCallback(() => {
     if (!showFeedback && currentQuestion) {
-      const timeSpent = config?.timePerQuestion || 0
-      const result = submitAnswer(null, timeSpent)
+      const result = submitAnswer(null, config?.timePerQuestion || 0)
       if (result) {
         setLastResult(result)
-        setStreak(0)
-        recordAnswer(currentQuestion.category, false)
+        setSrFeedback('Time expired. The correct answer was: ' +
+          currentQuestion.answers.find((a) => a.id === currentQuestion.correctAnswer)?.text)
       }
     }
-  }, [showFeedback, currentQuestion, submitAnswer, recordAnswer, config])
+  }, [showFeedback, currentQuestion, submitAnswer, config])
 
   const timer = useTimer(config?.timePerQuestion || 30, handleTimeExpire)
 
-  // Start quiz on mount
+  // Redirect if no active session
   useEffect(() => {
-    if (config) {
-      startQuiz(config)
-    } else {
+    if (!isActive && !showFeedback && !isCompleted) {
       navigate('/setup')
     }
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [isActive, showFeedback, isCompleted, navigate])
 
   // Start timer for each question
   useEffect(() => {
-    if (status === 'active' && !showFeedback && config?.timedMode) {
+    if (isActive && !showFeedback && config?.timedMode) {
       timer.restart(config.timePerQuestion)
     }
-    if (status === 'active' && !showFeedback) {
+    if (isActive && !showFeedback) {
       setQuestionStartTime(Date.now())
     }
-  }, [currentIndex, showFeedback, status]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [session?.session?.currentIndex, showFeedback, isActive]) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Navigate to results when completed
   useEffect(() => {
-    if (status === 'completed') {
-      recordSession(score, questions.length, config)
-      navigate('/results', {
-        state: {
-          score,
-          total: questions.length,
-          answers,
-          questions,
-          config,
-        },
-      })
+    if (isCompleted) {
+      navigate('/results')
     }
-  }, [status]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [isCompleted, navigate])
 
-  // Keyboard shortcuts: A/B/C/D to answer, Enter/Space to advance
+  const handleAnswer = (answerId) => {
+    if (showFeedback) return
+    if (config?.timedMode) timer.stop()
+    const timeSpent = (Date.now() - questionStartTime) / 1000
+    const result = submitAnswer(answerId, timeSpent)
+    if (result) {
+      setLastResult(result)
+      const correctText = currentQuestion.answers.find((a) => a.id === currentQuestion.correctAnswer)?.text
+      setSrFeedback(
+        result.isCorrect
+          ? 'Correct!'
+          : `Incorrect. The correct answer was: ${correctText}`
+      )
+    }
+  }
+
+  const handleUnknown = () => {
+    if (showFeedback) return
+    if (config?.timedMode) timer.stop()
+    const timeSpent = (Date.now() - questionStartTime) / 1000
+    const result = markUnknown(timeSpent)
+    if (result) {
+      setLastResult(result)
+      const correctText = currentQuestion.answers.find((a) => a.id === currentQuestion.correctAnswer)?.text
+      setSrFeedback(`Marked as unknown. The correct answer was: ${correctText}`)
+    }
+  }
+
+  const handleNext = () => {
+    setLastResult(null)
+    setSrFeedback('')
+    nextQuestion()
+  }
+
+  const handleQuit = () => {
+    abandonQuiz()
+    navigate('/')
+  }
+
+  // Keyboard shortcuts
   useEffect(() => {
     const handleKeyDown = (e) => {
-      // Don't intercept if user is typing in an input/textarea or modal is open
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || showQuitModal || showFlagModal) return
 
       if (!showFeedback && currentQuestion) {
@@ -105,6 +138,11 @@ function QuizPlayPage() {
         if (idx !== undefined && currentQuestion.answers[idx]) {
           e.preventDefault()
           handleAnswer(currentQuestion.answers[idx].id)
+        }
+        // "I don't know" shortcut
+        if (e.key === '?' && modeConfig.allowUnknown) {
+          e.preventDefault()
+          handleUnknown()
         }
       } else if (showFeedback && (e.key === 'Enter' || e.key === ' ')) {
         e.preventDefault()
@@ -115,28 +153,6 @@ function QuizPlayPage() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [showFeedback, currentQuestion, showQuitModal, showFlagModal]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const handleAnswer = (answerId) => {
-    if (showFeedback) return
-    if (config?.timedMode) timer.stop()
-    const timeSpent = (Date.now() - questionStartTime) / 1000
-    const result = submitAnswer(answerId, timeSpent)
-    if (result) {
-      setLastResult(result)
-      setStreak(result.isCorrect ? streak + 1 : 0)
-      recordAnswer(currentQuestion.category, result.isCorrect)
-    }
-  }
-
-  const handleNext = () => {
-    setLastResult(null)
-    nextQuestion()
-  }
-
-  const handleQuit = () => {
-    abandonQuiz()
-    navigate('/')
-  }
-
   if (!config || !currentQuestion) {
     return (
       <div className="flex-1 flex items-center justify-center">
@@ -145,18 +161,22 @@ function QuizPlayPage() {
     )
   }
 
-  const categoryMeta = categories.find(
-    (c) => c.id === currentQuestion.category
-  )
+  const categoryMeta = categories.find((c) => c.id === currentQuestion.category)
+  const currentIndex = session?.session?.currentIndex || 0
 
   return (
     <div className="flex-1 flex flex-col items-center px-4 sm:px-6 py-8 sm:py-10">
+      {/* Screen reader live region */}
+      <div aria-live="polite" aria-atomic="true" className="sr-only">
+        {srFeedback}
+      </div>
+
       <div className="max-w-2xl w-full space-y-5">
-        {/* Top bar: progress + timer + quit */}
+        {/* Top bar */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <span className="font-mono text-sm text-text-secondary">
-              {currentIndex + 1}/{questions.length}
+              {currentIndex + 1}/{totalQuestions}
             </span>
             <div className="w-32 sm:w-48 h-2 bg-ocean-700 rounded-full overflow-hidden">
               <motion.div
@@ -168,7 +188,6 @@ function QuizPlayPage() {
           </div>
 
           <div className="flex items-center gap-3">
-            {/* Streak counter */}
             <AnimatePresence>
               {streak >= 2 && (
                 <motion.div
@@ -204,17 +223,19 @@ function QuizPlayPage() {
               onClick={() => setShowQuitModal(true)}
               className="text-text-tertiary hover:text-accent-danger transition-colors p-1"
               title="Quit quiz"
+              aria-label="Quit quiz"
             >
               <LogOut className="w-5 h-5" />
             </button>
           </div>
         </div>
 
-        {/* Score */}
-        <div className="text-center">
+        {/* Score + Mode badge */}
+        <div className="flex items-center justify-center gap-3">
           <span className="font-mono text-accent-amber text-sm">
             Score: {score}/{currentIndex + (showFeedback ? 1 : 0)}
           </span>
+          <Badge color="teal">{modeConfig.label}</Badge>
         </div>
 
         {/* Category + Difficulty badges */}
@@ -240,12 +261,11 @@ function QuizPlayPage() {
               <h2 className="font-body text-lg sm:text-xl font-medium text-text-primary leading-relaxed py-1">
                 {italicizeSpecies(currentQuestion.question)}
               </h2>
-              {/* Image display for "image" type questions */}
               {getQuestionType(currentQuestion) === 'image' && currentQuestion.image && (
                 <div className="mt-4 rounded-xl overflow-hidden border border-white/10">
                   <img
                     src={currentQuestion.image}
-                    alt="Identify this species"
+                    alt={currentQuestion.altText || 'Identify this species'}
                     className="w-full h-auto max-h-80 object-contain bg-ocean-900"
                   />
                 </div>
@@ -277,7 +297,7 @@ function QuizPlayPage() {
                     btnClass += ' bg-ocean-800/40 border-white/5 text-text-tertiary opacity-50'
                 } else {
                   btnClass +=
-                    ' bg-ocean-800/60 border-white/8 text-text-primary hover:bg-ocean-700/60 hover:border-accent-teal/30'
+                    ' bg-ocean-800/60 border-white/8 text-text-primary hover:bg-ocean-700/60 hover:border-accent-teal/30 focus-visible:outline-2 focus-visible:outline-accent-teal focus-visible:outline-offset-2'
                 }
 
                 return (
@@ -286,7 +306,6 @@ function QuizPlayPage() {
                     onClick={() => handleAnswer(answer.id)}
                     disabled={showFeedback}
                     whileTap={!showFeedback && !reducedMotion ? { scale: 0.98 } : {}}
-                    // Correct-answer pulse animation
                     animate={
                       showFeedback && isCorrect && !reducedMotion
                         ? { scale: [1, 1.03, 1], boxShadow: ['0 0 0 rgba(16,185,129,0)', '0 0 20px rgba(16,185,129,0.3)', '0 0 0 rgba(16,185,129,0)'] }
@@ -294,8 +313,8 @@ function QuizPlayPage() {
                     }
                     transition={showFeedback && isCorrect ? { duration: 0.4 } : {}}
                     className={btnClass}
+                    aria-label={`Answer ${POSITION_LABELS[answerIndex]}: ${answer.text}`}
                   >
-                    {/* Image choice answers */}
                     {answer.image && (
                       <div className="rounded-lg overflow-hidden mb-2 border border-white/5">
                         <img
@@ -321,6 +340,19 @@ function QuizPlayPage() {
                 )
               })}
             </div>
+
+            {/* "I don't know" button */}
+            {modeConfig.allowUnknown && !showFeedback && (
+              <div className="flex justify-center mt-4">
+                <button
+                  onClick={handleUnknown}
+                  className="flex items-center gap-1.5 text-text-tertiary hover:text-text-secondary transition-colors text-sm cursor-pointer"
+                >
+                  <HelpCircle className="w-4 h-4" />
+                  I don&apos;t know
+                </button>
+              </div>
+            )}
           </motion.div>
         </AnimatePresence>
 
@@ -346,19 +378,18 @@ function QuizPlayPage() {
                     <XCircle className="w-6 h-6 text-accent-danger flex-shrink-0 mt-0.5" />
                   )}
                   <div>
-                    <p
-                      className={`font-display font-semibold ${
-                        lastResult.isCorrect
-                          ? 'text-accent-success'
-                          : 'text-accent-danger'
-                      }`}
-                    >
-                      {lastResult.isCorrect ? 'Correct!' : 'Incorrect'}
+                    <p className={`font-display font-semibold ${
+                      lastResult.isCorrect ? 'text-accent-success' : 'text-accent-danger'
+                    }`}>
+                      {lastResult.outcome === 'unknown'
+                        ? 'Marked as Unknown'
+                        : lastResult.outcome === 'timeout'
+                        ? 'Time Expired'
+                        : lastResult.isCorrect ? 'Correct!' : 'Incorrect'}
                     </p>
                     <p className="text-text-secondary text-sm mt-2 leading-relaxed">
                       {italicizeSpecies(currentQuestion.explanation)}
                     </p>
-                    {/* References */}
                     {currentQuestion.references && (
                       <p className="text-text-tertiary text-xs mt-2 italic">
                         Source: {currentQuestion.references}
@@ -367,16 +398,26 @@ function QuizPlayPage() {
                   </div>
                 </div>
                 <div className="flex items-center justify-between mt-4">
-                  <button
-                    onClick={() => setShowFlagModal(true)}
-                    className="flex items-center gap-1.5 text-text-tertiary hover:text-accent-amber transition-colors text-xs cursor-pointer"
-                    title="Flag this question as inaccurate"
-                  >
-                    <Flag className="w-3.5 h-3.5" />
-                    Flag question
-                  </button>
+                  <div className="flex items-center gap-3">
+                    <button
+                      onClick={() => setShowFlagModal(true)}
+                      className="flex items-center gap-1.5 text-text-tertiary hover:text-accent-amber transition-colors text-xs cursor-pointer"
+                      title="Flag this question as inaccurate"
+                    >
+                      <Flag className="w-3.5 h-3.5" />
+                      Flag
+                    </button>
+                    <button
+                      onClick={() => markForReview(currentQuestion.id)}
+                      className="flex items-center gap-1.5 text-text-tertiary hover:text-accent-cyan transition-colors text-xs cursor-pointer"
+                      title="Mark for review later"
+                    >
+                      <Bookmark className="w-3.5 h-3.5" />
+                      Review later
+                    </button>
+                  </div>
                   <Button size="sm" onClick={handleNext}>
-                    {currentIndex + 1 < questions.length ? (
+                    {currentIndex + 1 < totalQuestions ? (
                       <>
                         Next <ArrowRight className="w-4 h-4" />
                       </>
@@ -394,11 +435,13 @@ function QuizPlayPage() {
         {!showFeedback && (
           <p className="text-text-tertiary text-xs text-center hidden sm:block">
             Press <kbd className="px-1.5 py-0.5 rounded bg-ocean-700 text-text-secondary font-mono text-xs">A</kbd>–<kbd className="px-1.5 py-0.5 rounded bg-ocean-700 text-text-secondary font-mono text-xs">D</kbd> to answer
+            {modeConfig.allowUnknown && (
+              <>, <kbd className="px-1.5 py-0.5 rounded bg-ocean-700 text-text-secondary font-mono text-xs">?</kbd> for &ldquo;I don&apos;t know&rdquo;</>
+            )}
           </p>
         )}
       </div>
 
-      {/* Quit modal */}
       <Modal
         isOpen={showQuitModal}
         onClose={() => setShowQuitModal(false)}
