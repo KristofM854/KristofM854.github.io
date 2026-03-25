@@ -1,43 +1,32 @@
 import { useNavigate } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
-import { Play, FlaskConical, Award, Target, Zap, Shuffle, BookOpen, GraduationCap, RotateCcw, AlertCircle, Trash2 } from 'lucide-react'
+import { Play, FlaskConical, Award, Target, Zap, Shuffle, BookOpen, GraduationCap, RotateCcw } from 'lucide-react'
 import { categories, allQuestions } from '../../data/index.js'
 import { useQuizSession } from '../../context/QuizSessionContext.jsx'
+import { useStartQuizGuard } from '../shared/StartQuizGuard.jsx'
 import Button from '../shared/Button.jsx'
 import Card from '../shared/Card.jsx'
 import Leaderboard from '../shared/Leaderboard.jsx'
+import ActiveSessionNotice from '../shared/ActiveSessionNotice.jsx'
 
 function WelcomePage() {
   const {
     stats,
-    hasUnfinishedSession,
     reviewQueue,
-    startQuiz,
-    resumeSession,
-    discardSession,
   } = useQuizSession()
   const hasHistory = stats.totalSessions > 0
   const navigate = useNavigate()
   const reducedMotion = useReducedMotion()
+  const { guardedStartQuiz, GuardModal } = useStartQuizGuard()
 
   const handleQuickStart = () => {
-    const count = startQuiz({
+    guardedStartQuiz({
       categories: categories.filter((c) => allQuestions.some((q) => q.category === c.id)).map((c) => c.id),
       difficulty: 'mixed',
       timedMode: false,
       timePerQuestion: 30,
       questionCount: 10,
     }, 'exam')
-    if (count > 0) navigate('/play')
-  }
-
-  const handleResume = () => {
-    resumeSession()
-    navigate('/play')
-  }
-
-  const handleDiscard = () => {
-    discardSession()
   }
 
   const handleModeSelect = (mode) => {
@@ -53,38 +42,8 @@ function WelcomePage() {
           {/* Main content column */}
           <div className="flex-1 min-w-0 space-y-12">
 
-            {/* Unfinished session card */}
-            {hasUnfinishedSession && (
-              <motion.div
-                initial={reducedMotion ? false : { opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4 }}
-              >
-                <Card className="border border-accent-amber/30 bg-accent-amber/5">
-                  <div className="flex items-start gap-3">
-                    <AlertCircle className="w-5 h-5 text-accent-amber flex-shrink-0 mt-0.5" />
-                    <div className="flex-1">
-                      <h2 className="font-display font-semibold text-lg text-text-primary mb-1">
-                        Resume Previous Quiz
-                      </h2>
-                      <p className="text-sm text-text-secondary mb-4">
-                        You have an unfinished quiz session. Would you like to continue where you left off?
-                      </p>
-                      <div className="flex items-center gap-3">
-                        <Button size="sm" onClick={handleResume}>
-                          <Play className="w-4 h-4" />
-                          Resume
-                        </Button>
-                        <Button size="sm" variant="danger" onClick={handleDiscard}>
-                          <Trash2 className="w-4 h-4" />
-                          Discard
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </Card>
-              </motion.div>
-            )}
+            {/* Active session notice */}
+            <ActiveSessionNotice />
 
             {/* Hero */}
             <motion.div
@@ -249,6 +208,7 @@ function WelcomePage() {
           </div>
         </div>
       </div>
+      {GuardModal}
     </div>
   )
 }

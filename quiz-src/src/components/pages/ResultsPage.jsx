@@ -11,6 +11,7 @@ import Button from '../shared/Button.jsx'
 import Card from '../shared/Card.jsx'
 import Badge from '../shared/Badge.jsx'
 import ScoreSubmitModal from '../shared/ScoreSubmitModal.jsx'
+import QuestionReferences from '../shared/QuestionReferences.jsx'
 import { isConfigured } from '../../firebase.js'
 
 function getGrade(percent) {
@@ -280,11 +281,11 @@ function ResultsPage() {
                       <p className="text-sm text-text-secondary leading-relaxed">
                         {italicizeSpecies(q.explanation)}
                       </p>
-                      {q.references && (
-                        <p className="text-text-tertiary text-xs italic">
-                          Source: {q.references}
-                        </p>
-                      )}
+                      <QuestionReferences
+                        references={q.references}
+                        sourceShort={q.sourceShort}
+                        jurisdiction={q.jurisdiction}
+                      />
                     </motion.div>
                   )}
                 </div>

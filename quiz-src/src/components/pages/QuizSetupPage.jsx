@@ -8,6 +8,8 @@ import { getAvailableQuestionCount } from '../../utils/selectors.js'
 import { MODE_CONFIG, DEFAULT_MODE } from '../../utils/modes.js'
 import Button from '../shared/Button.jsx'
 import Card from '../shared/Card.jsx'
+import ActiveSessionNotice from '../shared/ActiveSessionNotice.jsx'
+import { useStartQuizGuard } from '../shared/StartQuizGuard.jsx'
 
 const difficulties = [
   { id: 'beginner', label: 'Beginner' },
@@ -26,7 +28,8 @@ const activeCategories = categories.filter((c) =>
 function QuizSetupPage() {
   const navigate = useNavigate()
   const location = useLocation()
-  const { startQuiz, preferences } = useQuizSession()
+  const { preferences } = useQuizSession()
+  const { guardedStartQuiz, GuardModal } = useStartQuizGuard()
 
   // Mode from navigation state or default
   const mode = location.state?.mode || DEFAULT_MODE
@@ -71,13 +74,13 @@ function QuizSetupPage() {
       timePerQuestion,
       questionCount: cappedCount,
     }
-    const count = startQuiz(config, mode)
-    if (count > 0) navigate('/play')
+    guardedStartQuiz(config, mode)
   }
 
   return (
     <div className="flex-1 flex flex-col items-center px-4 sm:px-6 py-10 sm:py-14">
       <div className="max-w-2xl w-full space-y-8">
+        <ActiveSessionNotice />
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -261,6 +264,7 @@ function QuizSetupPage() {
           </Button>
         </div>
       </div>
+      {GuardModal}
     </div>
   )
 }
