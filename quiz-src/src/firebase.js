@@ -6,13 +6,13 @@ import { getDatabase, ref, push, query, orderByChild, limitToLast, get, set } fr
 // See the setup instructions provided by the developer.
 // ============================================================
 const firebaseConfig = {
-  apiKey: "REPLACE_ME",
-  authDomain: "REPLACE_ME.firebaseapp.com",
-  databaseURL: "https://REPLACE_ME-default-rtdb.firebaseio.com",
-  projectId: "REPLACE_ME",
-  storageBucket: "REPLACE_ME.firebasestorage.app",
-  messagingSenderId: "REPLACE_ME",
-  appId: "REPLACE_ME",
+  apiKey: "AIzaSyBBMJEimeUrQ8qsw2oKjysUo256CvuHiWw",
+  authDomain: "hab-quiz-ae5a8.firebaseapp.com",
+  databaseURL: "https://hab-quiz-ae5a8-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "hab-quiz-ae5a8",
+  storageBucket: "hab-quiz-ae5a8.firebasestorage.app",
+  messagingSenderId: "534502811365",
+  appId: "1:534502811365:web:6f6f114cdff6a54343560c",
 }
 
 // Only initialize if config has been set up
