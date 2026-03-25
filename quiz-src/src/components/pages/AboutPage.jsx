@@ -35,7 +35,7 @@ function AboutPage() {
             About the Content
           </h2>
           <p className="text-text-secondary">
-            The quiz covers 6 categories across harmful algal blooms and marine biotoxins: shellfish poisoning syndromes, causative organisms, biotoxin chemistry, monitoring & detection, environmental drivers, and human health & food safety. All questions have been reviewed for scientific accuracy.
+            The quiz covers 6 categories across harmful algal blooms and marine biotoxins: shellfish poisoning syndromes, causative organisms, biotoxin chemistry, monitoring & detection, environmental drivers, and human health & food safety.
           </p>
         </Card>
       </div>
