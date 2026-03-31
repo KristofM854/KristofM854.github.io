@@ -8,6 +8,12 @@
   <url><loc>https://kristofmoeller.com/news.html</loc><priority>0.8</priority></url>
   <url><loc>https://kristofmoeller.com/blog.html</loc><priority>0.7</priority></url>
   <url><loc>https://kristofmoeller.com/blog/post-1.html</loc><priority>0.6</priority></url>
+  <url><loc>https://kristofmoeller.com/blog/post-2.html</loc><priority>0.6</priority></url>
+  <url><loc>https://kristofmoeller.com/blog/post-3.html</loc><priority>0.6</priority></url>
+  <url><loc>https://kristofmoeller.com/blog/post-4.html</loc><priority>0.6</priority></url>
+  <url><loc>https://kristofmoeller.com/blog/post-5.html</loc><priority>0.6</priority></url>
+  <url><loc>https://kristofmoeller.com/blog/post-6.html</loc><priority>0.6</priority></url>
+  <url><loc>https://kristofmoeller.com/blog/post-7.html</loc><priority>0.6</priority></url>
   <url><loc>https://kristofmoeller.com/contact.html</loc><priority>0.5</priority></url>
   <url><loc>https://kristofmoeller.com/quiz/</loc><priority>0.8</priority></url>
 </urlset>

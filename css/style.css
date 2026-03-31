@@ -1004,6 +1004,17 @@ strong {
   content: '→';
 }
 
+.post-photo-placeholder {
+  background-color: #1E293B;
+  border: 2px dashed #334155;
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  color: #64748B;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
 /* ============================================================
    FOOTER
    ============================================================ */
