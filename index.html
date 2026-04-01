@@ -133,8 +133,8 @@
     <div class="container">
       <h2 class="section-title">Global reach</h2>
       <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
-        <button class="filter-btn active" id="map-btn-work">Countries I have worked or collaborated with</button>
-        <button class="filter-btn" id="map-btn-psp">Reported PSP events (HAEDAT)</button>
+        <button class="filter-btn active" id="map-btn-work">My network</button>
+        <button class="filter-btn" id="map-btn-psp">Reported PSP events</button>
         <button class="filter-btn" id="map-btn-both">Both</button>
       </div>
       <div style="position:relative;">
@@ -193,9 +193,9 @@
       ];
 
       var captions = {
-        work: "Countries that I have worked or collaborated with in the context of IAEA Technical Cooperation projects, Coordinated Research Projects and general scientific collaborations.",
+        work: "Countries supported or collaborated with through IAEA projects and research partnerships.",
         psp:  "Countries with documented Paralytic Shellfish Poisoning events (source: IOC-UNESCO HAEDAT).",
-        both: "Countries I have worked or collaborated with (teal), countries with reported PSP events (coral), and overlap (amber)."
+        both: "My network (teal), reported PSP events (coral), and overlap (amber)."
       };
 
       var workSet = new Set(workCountries);
@@ -330,44 +330,6 @@
       });
     })();
   </script>
-
-  <!-- SKILLS -->
-  <section class="section" style="padding-top: 0;">
-    <div class="container">
-      <h2 class="section-title">Skills</h2>
-      <div class="skills-grid">
-        <div class="skill-group">
-          <p class="skill-group-label">Marine Science</p>
-          <div class="skills-grid">
-            <span class="skill-tag">Harmful Algal Blooms</span>
-            <span class="skill-tag">Marine Biotoxins</span>
-            <span class="skill-tag">Environmental Monitoring</span>
-            <span class="skill-tag">Analytical Chemistry</span>
-            <span class="skill-tag">LC-MS/MS</span>
-            <span class="skill-tag">Bioassays</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <p class="skill-group-label">Data &amp; Analysis</p>
-          <div class="skills-grid">
-            <span class="skill-tag">R & Python & HTML</span>
-            <span class="skill-tag">Data Analysis & Visualisation</span>
-            <span class="skill-tag">Laboratory Automatisations</span>
-            <span class="skill-tag">Time Series Analysis</span>
-            <span class="skill-tag">Shiny App Development</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <p class="skill-group-label">Policy &amp; Coordination</p>
-          <div class="skills-grid">
-            <span class="skill-tag">International Relations</span>
-            <span class="skill-tag">Technical Cooperation</span>
-            <span class="skill-tag">Scientific Communication</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- FEATURED RESEARCH -->
   <section class="section" style="padding-top: 0;">
