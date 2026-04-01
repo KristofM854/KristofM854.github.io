@@ -13,6 +13,11 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  overflow-x: hidden;
+}
+
+html, body {
+  overflow-x: hidden;
 }
 
 body {
@@ -482,6 +487,65 @@ strong {
   text-transform: uppercase;
   letter-spacing: 0.07em;
   margin-bottom: 0.625rem;
+}
+
+/* ── Featured publications (homepage) ── */
+.featured-pub {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  background-color: #1E293B;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.featured-pub:hover {
+  border-color: #4F9CF9;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.featured-pub-content {
+  flex: 1;
+}
+
+.featured-pub-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #F8FAFC;
+  line-height: 1.5;
+  margin-bottom: 0.25rem;
+}
+
+.featured-pub-meta {
+  font-size: 0.875rem;
+  color: #4F9CF9;
+  font-style: italic;
+}
+
+.featured-pub-year {
+  flex-shrink: 0;
+  text-align: right;
+  color: #64748B;
+  font-size: 0.9rem;
+}
+
+.pub-doi {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #64748B;
+  border: 1px solid #334155;
+  border-radius: 4px;
+  padding: 0.1rem 0.4rem;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.pub-doi:hover {
+  color: #4F9CF9;
+  border-color: #4F9CF9;
 }
 
 /* ── Grouped skill labels (homepage) ── */
@@ -1147,6 +1211,8 @@ strong {
     right: 0;
     background-color: #0F172A;
     border-bottom: 1px solid #1E293B;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    z-index: 99;
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
@@ -1168,13 +1234,27 @@ strong {
   }
 
   .hero {
-    padding: 3.5rem 0 3rem;
+    padding: 2.5rem 0 2rem;
   }
 
   .hero-inner {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
     gap: 1.5rem;
+  }
+
+  .hero-avatar {
+    width: 140px;
+    margin: 0 auto;
+  }
+
+  .hero-bio {
+    text-align: left;
+  }
+
+  .hero-stats {
+    justify-content: center;
   }
 
   .hero-name {
@@ -1185,13 +1265,34 @@ strong {
     font-size: 0.9375rem;
   }
 
+  .featured-pub {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .featured-pub-year {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-align: left;
+  }
+
   .blog-grid {
     grid-template-columns: 1fr;
+  }
+
+  .skills-grid {
+    justify-content: center;
   }
 
   .footer-inner {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+    gap: 0.75rem 1rem;
   }
 
   .section {
