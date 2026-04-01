@@ -20,6 +20,7 @@
   <title>Kristof Moeller</title>
   <link rel="canonical" href="https://kristofmoeller.com">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="alternate" type="application/rss+xml" title="Kristof Moeller — Blog" href="https://kristofmoeller.com/feed.xml">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -67,6 +68,7 @@
         <li><a href="r-projects.html">Data &amp; Software</a></li>
         <li><a href="talks.html">Talks</a></li>
         <li><a href="blog.html">Blog</a></li>
+        <li><a href="services.html">Services</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
@@ -79,10 +81,10 @@
         <img class="hero-avatar" src="images/profile.jpg" alt="Kristof Moeller" style="border-radius:50%;">
         <div class="hero-content">
           <h1 class="hero-name">Kristof Moeller</h1>
-          <p class="hero-title">Marine Biochemist &amp; Data Scientist turning ocean toxin research into policy-ready science — at the IAEA Marine Environment Laboratories, Monaco.</p>
+          <p class="hero-title">I help organisations monitor, understand, and respond to harmful algal blooms — through research, data tools, and policy-ready science.</p>
           <div class="hero-bio">
-            <p>I work at the intersection of marine science, environmental monitoring, and public health at the IAEA Marine Environment Laboratories in Monaco. My research focuses on harmful algal blooms (HABs), marine biotoxins, and the monitoring systems that support food safety and policy response — combining fieldwork, analytical chemistry, and data analysis in R.</p>
-            <p>I'm particularly interested in roles that connect environmental science with policy design, programme coordination, or consulting, especially in the context of international cooperation and sustainable ocean governance. I am available for scientific consulting, expert advisory contributions, and invited talks.</p>
+            <p>Currently based at the IAEA Marine Environment Laboratories in Monaco, I work at the intersection of marine science, environmental monitoring, and public health. My research focuses on harmful algal blooms, marine biotoxins, and the analytical and data systems that support food safety and policy response — combining fieldwork, LC-MS/MS, and data analysis in R.</p>
+            <p><strong>I am available for scientific consulting, expert advisory contributions, and speaking engagements on harmful algal blooms, marine biotoxins, and environmental data analysis.</strong></p>
           </div>
           <div class="hero-stats">
             <div class="hero-stat">
@@ -125,6 +127,173 @@
     </div>
   </section>
 
+  <!-- GLOBAL REACH -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <h2 class="section-title">Global reach</h2>
+      <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
+        <button class="filter-btn active" id="map-btn-work">Countries I have worked with</button>
+        <button class="filter-btn" id="map-btn-psp">Reported PSP events (HAEDAT)</button>
+        <button class="filter-btn" id="map-btn-both">Both</button>
+      </div>
+      <div id="world-map" style="position:relative; width:100%; background:#1E293B; border-radius:8px; border:1px solid #334155; overflow:hidden;"></div>
+      <p id="map-caption" style="font-size:0.8125rem; color:#64748B; margin-top:0.75rem;"></p>
+    </div>
+  </section>
+  <style>
+    #map-tooltip {
+      position: absolute;
+      background: #0F172A;
+      border: 1px solid #334155;
+      border-radius: 4px;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.8125rem;
+      color: #F8FAFC;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+      white-space: nowrap;
+      z-index: 10;
+    }
+  </style>
+  <script>
+    (function () {
+      var workCountries = [
+        "Antigua and Barbuda", "Argentina", "Bangladesh", "Belize", "Brazil",
+        "Chile", "Colombia", "Cuba", "Ecuador", "El Salvador", "Indonesia",
+        "Kenya", "Mauritius", "Montenegro", "Pakistan", "Philippines",
+        "Thailand", "Tunisia", "Turkey", "Uruguay"
+      ];
+
+      // Countries with documented PSP events (IOC-UNESCO HAEDAT)
+      var pspCountries = [
+        "Argentina", "Australia", "Bangladesh", "Belgium", "Brazil", "Canada",
+        "Chile", "China", "Colombia", "Denmark", "Ecuador", "Finland", "France",
+        "Germany", "Greece", "Guatemala", "India", "Indonesia", "Ireland",
+        "Italy", "Japan", "Kenya", "Malaysia", "Mexico", "Morocco",
+        "Netherlands", "New Zealand", "Norway", "Peru", "Philippines",
+        "Portugal", "Russia", "South Korea", "Spain", "Sweden", "Thailand",
+        "Tunisia", "Turkey", "United Kingdom", "United States of America",
+        "Uruguay", "Venezuela"
+      ];
+
+      var captions = {
+        work: "20 countries supported through IAEA Technical Cooperation Project INT7022.",
+        psp:  "Countries with documented Paralytic Shellfish Poisoning events (source: IOC-UNESCO HAEDAT).",
+        both: "IAEA TC project countries (teal), countries with reported PSP events (coral), and overlap (amber)."
+      };
+
+      var workSet = new Set(workCountries);
+      var pspSet  = new Set(pspCountries);
+
+      var currentMode = "work";
+
+      function getColor(name, mode) {
+        var inWork = workSet.has(name);
+        var inPsp  = pspSet.has(name);
+        if (mode === "work") {
+          return inWork ? { fill: "#085041", stroke: "#1D9E75" } : { fill: "#1E293B", stroke: "#334155" };
+        }
+        if (mode === "psp") {
+          return inPsp ? { fill: "#712B13", stroke: "#D85A30" } : { fill: "#1E293B", stroke: "#334155" };
+        }
+        // both
+        if (inWork && inPsp) return { fill: "#854F0B", stroke: "#EF9F27" };
+        if (inWork)          return { fill: "#085041", stroke: "#1D9E75" };
+        if (inPsp)           return { fill: "#712B13", stroke: "#D85A30" };
+        return { fill: "#1E293B", stroke: "#334155" };
+      }
+
+      function setMode(mode) {
+        currentMode = mode;
+        document.getElementById("map-caption").textContent = captions[mode];
+        document.querySelectorAll("#world-map ~ div .filter-btn, #world-map").forEach(function () {});
+        // Update button states
+        ["work", "psp", "both"].forEach(function (m) {
+          var btn = document.getElementById("map-btn-" + m);
+          if (btn) btn.classList.toggle("active", m === mode);
+        });
+        // Recolor paths
+        if (window._mapSvg) {
+          window._mapSvg.selectAll("path.country").each(function (d) {
+            var name = d.properties && d.properties.name ? d.properties.name : "";
+            var c = getColor(name, mode);
+            d3.select(this).attr("fill", c.fill).attr("stroke", c.stroke);
+          });
+        }
+      }
+
+      document.getElementById("map-btn-work").addEventListener("click", function () { setMode("work"); });
+      document.getElementById("map-btn-psp").addEventListener("click",  function () { setMode("psp"); });
+      document.getElementById("map-btn-both").addEventListener("click", function () { setMode("both"); });
+
+      // Load D3 and TopoJSON then render
+      function loadScript(src, cb) {
+        var s = document.createElement("script");
+        s.src = src;
+        s.onload = cb;
+        document.head.appendChild(s);
+      }
+
+      loadScript("https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js", function () {
+        loadScript("https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js", function () {
+          d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json").then(function (world) {
+            var container = document.getElementById("world-map");
+            var W = 960, H = 500;
+
+            var tooltip = d3.select(container).append("div").attr("id", "map-tooltip");
+
+            var svg = d3.select(container)
+              .append("svg")
+              .attr("viewBox", "0 0 " + W + " " + H)
+              .attr("preserveAspectRatio", "xMidYMid meet")
+              .style("width", "100%")
+              .style("display", "block");
+
+            window._mapSvg = svg;
+
+            var projection = d3.geoNaturalEarth1()
+              .scale(153)
+              .translate([W / 2, H / 2]);
+
+            var path = d3.geoPath().projection(projection);
+
+            var countries = topojson.feature(world, world.objects.countries);
+
+            svg.selectAll("path.country")
+              .data(countries.features)
+              .enter()
+              .append("path")
+              .attr("class", "country")
+              .attr("d", path)
+              .attr("stroke-width", 0.5)
+              .each(function (d) {
+                var name = d.properties && d.properties.name ? d.properties.name : "";
+                var c = getColor(name, currentMode);
+                d3.select(this).attr("fill", c.fill).attr("stroke", c.stroke);
+              })
+              .on("mousemove", function (event, d) {
+                var name = d.properties && d.properties.name ? d.properties.name : "";
+                if (!name) return;
+                var rect = container.getBoundingClientRect();
+                tooltip
+                  .style("left", (event.clientX - rect.left + 12) + "px")
+                  .style("top",  (event.clientY - rect.top  - 28) + "px")
+                  .style("opacity", 1)
+                  .text(name);
+              })
+              .on("mouseleave", function () {
+                tooltip.style("opacity", 0);
+              });
+
+            // Set initial caption
+            document.getElementById("map-caption").textContent = captions[currentMode];
+          });
+        });
+      });
+    })();
+  </script>
+
   <!-- SKILLS -->
   <section class="section" style="padding-top: 0;">
     <div class="container">
@@ -148,7 +317,7 @@
             <span class="skill-tag">Data Analysis & visualisation</span>
             <span class="skill-tag">Laboratory automatisations</span>
             <span class="skill-tag">Time Series Analysis</span>
-            <span class="skill-tag">Vibe coding</span>
+            <span class="skill-tag">Shiny App Development</span>
           </div>
         </div>
         <div class="skill-group">
@@ -218,6 +387,7 @@
         <a href="talks.html">Talks</a>
         <a href="news.html">Updates</a>
         <a href="blog.html">Blog</a>
+        <a href="services.html">Services</a>
         <a href="contact.html">Contact</a>
       </nav>
     </div>
