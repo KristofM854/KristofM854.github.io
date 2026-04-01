@@ -133,11 +133,18 @@
     <div class="container">
       <h2 class="section-title">Global reach</h2>
       <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
-        <button class="filter-btn active" id="map-btn-work">Countries I have worked with</button>
+        <button class="filter-btn active" id="map-btn-work">Countries I have worked or collaborated with</button>
         <button class="filter-btn" id="map-btn-psp">Reported PSP events (HAEDAT)</button>
         <button class="filter-btn" id="map-btn-both">Both</button>
       </div>
-      <div id="world-map" style="position:relative; width:100%; background:#1E293B; border-radius:8px; border:1px solid #334155; overflow:hidden;"></div>
+      <div style="position:relative;">
+        <div id="world-map" style="position:relative; width:100%; background:#1E293B; border-radius:8px; border:1px solid #334155; overflow:hidden;"></div>
+        <div style="position:absolute; top:0.625rem; right:0.625rem; display:flex; flex-direction:column; gap:4px; z-index:5;">
+          <button id="map-zoom-in"  aria-label="Zoom in"  style="width:28px;height:28px;background:#0F172A;border:1px solid #334155;border-radius:4px;color:#94A3B8;font-size:1.125rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;">+</button>
+          <button id="map-zoom-out" aria-label="Zoom out" style="width:28px;height:28px;background:#0F172A;border:1px solid #334155;border-radius:4px;color:#94A3B8;font-size:1.125rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;">−</button>
+          <button id="map-zoom-reset" aria-label="Reset zoom" style="width:28px;height:28px;background:#0F172A;border:1px solid #334155;border-radius:4px;color:#94A3B8;font-size:0.65rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;">⌂</button>
+        </div>
+      </div>
       <p id="map-caption" style="font-size:0.8125rem; color:#64748B; margin-top:0.75rem;"></p>
     </div>
   </section>
@@ -160,10 +167,17 @@
   <script>
     (function () {
       var workCountries = [
-        "Antigua and Barbuda", "Argentina", "Bangladesh", "Belize", "Brazil",
-        "Chile", "Colombia", "Cuba", "Ecuador", "El Salvador", "Indonesia",
-        "Kenya", "Mauritius", "Montenegro", "Pakistan", "Philippines",
-        "Thailand", "Tunisia", "Turkey", "Uruguay"
+        "Antigua and Barbuda", "Argentina", "Australia", "Austria",
+        "Bangladesh", "Belize", "Brazil",
+        "Chile", "China", "Colombia", "Cuba",
+        "Denmark", "Ecuador", "Egypt", "El Salvador",
+        "France", "Germany", "Indonesia",
+        "Kenya", "Mauritius", "Mexico", "Montenegro",
+        "New Zealand", "Norway",
+        "Pakistan", "Philippines",
+        "South Africa", "Sri Lanka", "Sweden",
+        "Thailand", "Tunisia", "Turkey",
+        "United Kingdom", "United States of America", "Uruguay", "Venezuela"
       ];
 
       // Countries with documented PSP events (IOC-UNESCO HAEDAT)
@@ -179,9 +193,9 @@
       ];
 
       var captions = {
-        work: "20 countries supported through IAEA Technical Cooperation Project INT7022.",
+        work: "Countries that I have worked or collaborated with in the context of IAEA Technical Cooperation projects, Coordinated Research Projects and general scientific collaborations.",
         psp:  "Countries with documented Paralytic Shellfish Poisoning events (source: IOC-UNESCO HAEDAT).",
-        both: "IAEA TC project countries (teal), countries with reported PSP events (coral), and overlap (amber)."
+        both: "Countries I have worked or collaborated with (teal), countries with reported PSP events (coral), and overlap (amber)."
       };
 
       var workSet = new Set(workCountries);
@@ -249,9 +263,11 @@
               .attr("viewBox", "0 0 " + W + " " + H)
               .attr("preserveAspectRatio", "xMidYMid meet")
               .style("width", "100%")
-              .style("display", "block");
+              .style("display", "block")
+              .style("cursor", "grab");
 
-            window._mapSvg = svg;
+            var g = svg.append("g");
+            window._mapSvg = { selectAll: function(sel) { return g.selectAll(sel); } };
 
             var projection = d3.geoNaturalEarth1()
               .scale(153)
@@ -261,7 +277,7 @@
 
             var countries = topojson.feature(world, world.objects.countries);
 
-            svg.selectAll("path.country")
+            g.selectAll("path.country")
               .data(countries.features)
               .enter()
               .append("path")
@@ -286,6 +302,26 @@
               .on("mouseleave", function () {
                 tooltip.style("opacity", 0);
               });
+
+            // Zoom behaviour
+            var zoom = d3.zoom()
+              .scaleExtent([1, 8])
+              .on("zoom", function (event) {
+                g.attr("transform", event.transform);
+                svg.style("cursor", event.transform.k > 1 ? "grab" : "default");
+              });
+            svg.call(zoom);
+
+            // Button controls
+            document.getElementById("map-zoom-in").addEventListener("click", function () {
+              svg.transition().duration(300).call(zoom.scaleBy, 1.6);
+            });
+            document.getElementById("map-zoom-out").addEventListener("click", function () {
+              svg.transition().duration(300).call(zoom.scaleBy, 1 / 1.6);
+            });
+            document.getElementById("map-zoom-reset").addEventListener("click", function () {
+              svg.transition().duration(400).call(zoom.transform, d3.zoomIdentity);
+            });
 
             // Set initial caption
             document.getElementById("map-caption").textContent = captions[currentMode];
