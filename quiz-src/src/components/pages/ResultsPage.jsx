@@ -99,8 +99,11 @@ function ResultsPage() {
   const grade = getGrade(percent)
   const modeLabel = MODE_CONFIG[sessionMode]?.label || 'Quiz'
 
-  const handleShare = async () => {
-    const text = `HAB Quiz Result (${modeLabel}): ${score}/${total} (${percent}%) — ${grade.emoji} ${grade.label}\nTest your knowledge at kristofmoeller.com/quiz`
+  const quizUrl = 'https://kristofmoeller.com/quiz/'
+  const shareText = `I scored ${score}/${total} (${percent}%) on the HAB & Marine Biotoxins Quiz! ${grade.emoji} ${grade.label} — test your knowledge on harmful algal blooms and marine biotoxins:`
+
+  const handleCopy = async () => {
+    const text = `${shareText} ${quizUrl}`
     try {
       if (navigator.clipboard && window.isSecureContext) {
         await navigator.clipboard.writeText(text)
@@ -121,6 +124,16 @@ function ResultsPage() {
         navigator.share({ title: 'HAB Quiz Result', text }).catch(() => {})
       }
     }
+  }
+
+  const handleShareLinkedIn = () => {
+    const url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(quizUrl)}`
+    window.open(url, '_blank', 'noopener,noreferrer')
+  }
+
+  const handleShareTwitter = () => {
+    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(quizUrl)}`
+    window.open(url, '_blank', 'noopener,noreferrer')
   }
 
   const handlePracticeWeakest = () => {
@@ -302,9 +315,17 @@ function ResultsPage() {
               Submit to Leaderboard
             </Button>
           )}
-          <Button onClick={handleShare} variant="secondary" size="sm">
+          <Button onClick={handleShareLinkedIn} variant="secondary" size="sm">
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+            LinkedIn
+          </Button>
+          <Button onClick={handleShareTwitter} variant="secondary" size="sm">
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.254 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            Share on X
+          </Button>
+          <Button onClick={handleCopy} variant="secondary" size="sm">
             {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-            {copied ? 'Copied!' : 'Share Result'}
+            {copied ? 'Copied!' : 'Copy result'}
           </Button>
           <Button onClick={() => navigate('/setup')} size="sm">
             <RotateCcw className="w-4 h-4" />
