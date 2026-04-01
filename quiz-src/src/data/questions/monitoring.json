@@ -1,0 +1,996 @@
+[
+  {
+    "id": "mon-b-001",
+    "category": "monitoring",
+    "subcategory": "general",
+    "difficulty": "beginner",
+    "question": "What is the primary purpose of shellfish monitoring programs?",
+    "answers": [
+      {
+        "id": "a",
+        "text": "To count the number of shellfish in a harvest area"
+      },
+      {
+        "id": "b",
+        "text": "To measure biotoxin levels in shellfish tissue and close harvest areas when levels exceed regulatory limits"
+      },
+      {
+        "id": "c",
+        "text": "To assess the nutritional value of shellfish for consumers"
+      },
+      {
+        "id": "d",
+        "text": "To monitor water temperature for aquaculture"
+      }
+    ],
+    "correctAnswer": "b",
+    "explanation": "Shellfish monitoring programs are public health protection systems. They regularly test shellfish tissue for biotoxin concentrations and compare results against regulatory limits. When toxin levels exceed safe thresholds, harvest areas are closed to protect consumers. These programs are the primary line of defense against shellfish poisoning, since contaminated shellfish cannot be identified by appearance, taste, or smell.",
+    "tags": [
+      "monitoring",
+      "public_health",
+      "harvest_closure",
+      "regulatory"
+    ],
+    "references": [],
+    "sourceShort": "",
+    "learningObjective": "",
+    "lastReviewed": "",
+    "jurisdiction": ""
+  },
+  {
+    "id": "mon-b-002",
+    "category": "monitoring",
+    "subcategory": "methods",
+    "difficulty": "beginner",
+    "question": "What was the traditional biological method used for decades to test shellfish for PSP toxins, now being phased out in many countries?",
+    "answers": [
+      {
+        "id": "a",
+        "text": "Fish bioassay"
+      },
+      {
+        "id": "b",
+        "text": "Mouse bioassay (MBA)"
+      },
+      {
+        "id": "c",
+        "text": "Ames test"
+      },
+      {
+        "id": "d",
+        "text": "Microtox assay"
+      }
+    ],
+    "correctAnswer": "b",
+    "explanation": "The mouse bioassay (MBA) was the standard method for PSP toxin detection for over 60 years. Shellfish extract is injected intraperitoneally into mice, and death time is correlated to toxin concentration. While the MBA provides a measure of overall toxicity, it has been criticized for animal welfare concerns, limited sensitivity, poor precision, and inability to identify individual toxin analogues. It has been progressively replaced by instrumental methods.",
+    "tags": [
+      "mouse_bioassay",
+      "mba",
+      "psp",
+      "traditional_method",
+      "animal_testing"
+    ],
+    "references": [],
+    "sourceShort": "",
+    "learningObjective": "",
+    "lastReviewed": "",
+    "jurisdiction": ""
+  },
+  {
+    "id": "mon-b-003",
+    "category": "monitoring",
+    "subcategory": "remote_sensing",
+    "difficulty": "beginner",
+    "question": "Satellite remote sensing can be used to detect algal blooms by measuring which property of ocean or lake water?",
+    "answers": [
+      {
+        "id": "a",
+        "text": "Water temperature only"
+      },
+      {
+        "id": "b",
+        "text": "Ocean color (changes in water-leaving radiance due to pigments like chlorophyll)"
+      },
+      {
+        "id": "c",
+        "text": "Salinity"
+      },
+      {
+        "id": "d",
+        "text": "pH levels"
+      }
+    ],
+    "correctAnswer": "b",
+    "explanation": "Satellite sensors detect algal blooms by measuring ocean color — specifically changes in the spectral reflectance of water caused by photosynthetic pigments, particularly chlorophyll-a. High chlorophyll concentrations shift the color of the water. Specialized algorithms can also detect specific pigments like phycocyanin (for cyanobacteria). NASA's MODIS, Sentinel-3 OLCI, and other sensors are routinely used for bloom monitoring.",
+    "tags": [
+      "remote_sensing",
+      "satellite",
+      "ocean_color",
+      "chlorophyll",
+      "sentinel"
+    ],
+    "references": [],
+    "sourceShort": "",
+    "learningObjective": "",
+    "lastReviewed": "",
+    "jurisdiction": ""
+  },
+  {
+    "id": "mon-b-004",
+    "category": "monitoring",
+    "subcategory": "general",
+    "difficulty": "beginner",
+    "question": "Which organism is commonly used as a 'sentinel species' in shellfish monitoring programs because of its efficient toxin bioaccumulation?",
+    "answers": [
+      {
+        "id": "a",
+        "text": "Oysters"
+      },
+      {
+        "id": "b",
+        "text": "Sea urchins"
+      },
+      {
+        "id": "c",
+        "text": "Mussels"
+      },
+      {
+        "id": "d",
+        "text": "Lobsters"
+      }
+    ],
+    "correctAnswer": "c",
+    "explanation": "Mussels (particularly Mytilus species) are the most widely used sentinel organisms in shellfish monitoring programs worldwide. They are preferred because they filter large volumes of water, accumulate toxins rapidly, are sessile (don't move), are widely distributed in coastal areas, and are easy to collect. Many countries base their monitoring primarily on mussel toxin levels as an early warning system.",
+    "tags": [
+      "mussels",
+      "sentinel",
+      "mytilus",
+      "bioaccumulation",
+      "monitoring"
+    ],
+    "references": [],
+    "sourceShort": "",
+    "learningObjective": "",
+    "lastReviewed": "",
+    "jurisdiction": ""
+  },
+  {
+    "id": "mon-i-001",
+    "category": "monitoring",
+    "subcategory": "methods",
+    "difficulty": "intermediate",
+    "question": "What is the internationally recognized regulatory limit for PSP toxins in shellfish tissue (Codex Alimentarius)?",
+    "answers": [
+      {
+        "id": "a",
+        "text": "20 µg STX eq./kg"
+      },
+      {
+        "id": "b",
+        "text": "800 µg STX eq./kg (equivalent to 80 µg STX eq./100g)"
+      },
+      {
+        "id": "c",
+        "text": "8000 µg STX eq./kg"
+      },
+      {
+        "id": "d",
+        "text": "160 µg STX eq./kg"
+      }
+    ],
+    "correctAnswer": "b",
+    "explanation": "The Codex Alimentarius regulatory limit for PSP toxins is 800 µg saxitoxin equivalents per kg of shellfish meat (often also expressed as 80 µg STX eq. per 100g). This limit has been adopted by most countries worldwide and serves as the action level for closing shellfish harvest areas. The limit was originally established based on the sensitivity of the mouse bioassay.",
+    "tags": [
+      "regulatory_limit",
+      "codex",
+      "800",
+      "psp",
+      "stx_equivalents"
+    ],
+    "references": [],
+    "sourceShort": "",
+    "learningObjective": "",
+    "lastReviewed": "",
+    "jurisdiction": ""
+  },
+  {
+    "id": "mon-i-002",
+    "category": "monitoring",
+    "subcategory": "methods",
+    "difficulty": "intermediate",
+    "question": "What is the EU regulatory limit for domoic acid (ASP toxin) in shellfish?",
+    "answers": [
+      {
+        "id": "a",
+        "text": "2 mg/kg"
+      },
+      {
+        "id": "b",
+        "text": "20 mg/kg"
+      },
+      {
+        "id": "c",
+        "text": "100 mg/kg"
+      },
+      {
+        "id": "d",
+        "text": "0.2 mg/kg"
+      }
+    ],
+    "correctAnswer": "b",
+    "explanation": "The regulatory limit for domoic acid in shellfish is 20 mg/kg whole flesh. This limit was established based on the 1987 PEI outbreak data and a safety factor applied to the lowest observed adverse effect level. Interestingly, some regions (e.g., for Dungeness crab viscera) have debated different limits. For the edible parts of Pecten (scallop) adductor muscle, the limit is also 20 mg/kg but some jurisdictions allow higher levels in whole scallops if the viscera are removed.",
+    "tags": [
+      "domoic_acid",
+      "regulatory_limit",
+      "20mg",
+      "asp",
+      "eu"
+    ],
+    "references": [],
+    "sourceShort": "",
+    "learningObjective": "",
+    "lastReviewed": "",
+    "jurisdiction": ""
+  },
+  {
+    "id": "mon-i-003",
+    "category": "monitoring",
+    "subcategory": "methods",
+    "difficulty": "intermediate",
+    "question": "What does ELISA stand for, and why is it commonly used in HAB toxin screening?",
+    "answers": [
+      {
+        "id": "a",
+        "text": "Electronic Light-Induced Spectral Analysis — it uses laser spectroscopy"
+      },
+      {
+        "id": "b",
+        "text": "Enzyme-Linked Immunosorbent Assay — it uses antibodies to detect specific toxins quickly and at low cost"
+      },
+      {
+        "id": "c",
+        "text": "Electrolytic Ion Separation Analysis — it separates toxins by charge"
+      },
+      {
+        "id": "d",
+        "text": "Environmental Liquid Isotope Screening Assay — it uses isotope tracers"
+      }
+    ],
+    "correctAnswer": "b",
+    "explanation": "ELISA (Enzyme-Linked Immunosorbent Assay) is an immunological method that uses antibodies specific to target toxins. It is widely used for rapid screening of shellfish and water samples because it is relatively fast, inexpensive, requires minimal equipment, can process many samples simultaneously, and is sensitive. However, ELISA results are typically semi-quantitative and may show cross-reactivity with structurally similar compounds, so positive results often require confirmation by instrumental methods like LC-MS/MS.",
+    "tags": [
+      "elisa",
+      "immunoassay",
+      "screening",
+      "antibody",
+      "rapid_test"
+    ],
+    "references": [],
+    "sourceShort": "",
+    "learningObjective": "",
+    "lastReviewed": "",
+    "jurisdiction": ""
+  },
+  {
+    "id": "mon-i-004",
+    "category": "monitoring",
+    "subcategory": "methods",
+    "difficulty": "intermediate",
+    "question": "The receptor binding assay (RBA) for PSP toxins uses which biological receptor to detect saxitoxin and its analogues?",
+    "answers": [
+      {
+        "id": "a",
+        "text": "Acetylcholine receptors from muscle tissue"
+      },
+      {
+        "id": "b",
+        "text": "Voltage-gated sodium channels from rat brain membranes"
+      },
+      {
+        "id": "c",
+        "text": "GABA receptors from bovine brain"
+      },
+      {
+        "id": "d",
+        "text": "Glutamate receptors from hippocampal tissue"
+      }
+    ],
+    "correctAnswer": "b",
+    "explanation": "The receptor binding assay (RBA) for PSP toxins uses rat brain membrane preparations rich in voltage-gated sodium channels — the natural target of saxitoxin. Radiolabeled saxitoxin ([³H]-STX) competes with toxins in the sample for binding to site 1 on the sodium channel. The RBA measures the functional toxicity of the total toxin mixture, making it a biologically relevant alternative to the mouse bioassay that has been validated as an official method (AOAC 2011.27).",
+    "tags": [
+      "rba",
+      "receptor_binding",
+      "sodium_channel",
+      "rat_brain",
+      "tritiated_saxitoxin"
+    ],
+    "references": [],
+    "sourceShort": "",
+    "learningObjective": "",
+    "lastReviewed": "",
+    "jurisdiction": ""
+  },
+  {
+    "id": "mon-i-005",
+    "category": "monitoring",
+    "subcategory": "methods",
+    "difficulty": "intermediate",
+    "question": "HPLC (High-Performance Liquid Chromatography) methods for PSP toxin analysis commonly use which detection method?",
+    "answers": [
+      {
+        "id": "a",
+        "text": "UV absorption only"
+      },
+      {
+        "id": "b",
+        "text": "Fluorescence detection after pre- or post-column oxidation"
+      },
+      {
+        "id": "c",
+        "text": "Refractive index detection"
+      },
+      {
+        "id": "d",
+        "text": "Electrochemical detection"
+      }
+    ],
+    "correctAnswer": "b",
+    "explanation": "PSP toxins lack strong chromophores for direct UV detection, so HPLC methods typically use fluorescence detection after chemical oxidation. The Lawrence method (AOAC 2005.06) uses pre-column oxidation with periodate or hydrogen peroxide to convert PSP toxins to fluorescent derivatives before separation. Post-column oxidation methods (e.g., the PCOX method) oxidize the toxins after separation. These methods can identify and quantify individual PSP analogues, unlike the mouse bioassay.",
+    "tags": [
+      "hplc",
+      "fluorescence",
+      "oxidation",
+      "lawrence_method",
+      "pcox"
+    ],
+    "references": [],
+    "sourceShort": "",
+    "learningObjective": "",
+    "lastReviewed": "",
+    "jurisdiction": ""
+  },
+  {
+    "id": "mon-e-001",
+    "category": "monitoring",
+    "subcategory": "methods",
+    "difficulty": "expert",
+    "question": "Which analytical method replaced the mouse bioassay as the EU reference method for lipophilic marine biotoxins (DSP toxins, azaspiracids, yessotoxins) in 2011?",
+    "answers": [
+      {
+        "id": "a",
+        "text": "ELISA"
+      },
+      {
+        "id": "b",
+        "text": "LC-MS/MS (Liquid Chromatography-Tandem Mass Spectrometry)"
+      },
+      {
+        "id": "c",
+        "text": "HPLC-FLD (HPLC with Fluorescence Detection)"
+      },
+      {
+        "id": "d",
+        "text": "Receptor binding assay (RBA)"
+      }
+    ],
+    "correctAnswer": "b",
+    "explanation": "EU Regulation 15/2011 established LC-MS/MS as the reference method for lipophilic biotoxins, replacing the mouse bioassay from January 2015 onward. LC-MS/MS offers superior specificity, sensitivity, simultaneous quantification of multiple toxin groups, and eliminates the ethical concerns of animal testing. The method can distinguish individual analogues of okadaic acid, dinophysistoxins, pectenotoxins, yessotoxins, and azaspiracids in a single analytical run.",
+    "tags": [
+      "lc-ms/ms",
+      "eu_regulation_15/2011",
+      "lipophilic",
+      "reference_method"
+    ],
+    "references": [],
+    "sourceShort": "",
+    "learningObjective": "",
+    "lastReviewed": "",
+    "jurisdiction": ""
+  },
+  {
+    "id": "mon-e-002",
+    "category": "monitoring",
+    "subcategory": "methods",
+    "difficulty": "expert",
+    "question": "The AOAC Official Method 2011.27 for PSP toxins is based on which analytical approach?",
+    "answers": [
+      {
+        "id": "a",
+        "text": "LC-MS/MS with hydrophilic interaction chromatography (HILIC)"
+      },
+      {
+        "id": "b",
+        "text": "Receptor binding assay using radiolabeled saxitoxin"
+      },
+      {
+        "id": "c",
+        "text": "Pre-column oxidation HPLC (Lawrence method)"
+      },
+      {
+        "id": "d",
+        "text": "Capillary electrophoresis with UV detection"
+      }
+    ],
+    "correctAnswer": "b",
+    "explanation": "AOAC 2011.27 is the receptor binding assay (RBA) for PSP toxins. It was validated through a multi-laboratory study and adopted as a First Action Official Method. The method uses microplate-based competitive binding between [³H]-STX and sample toxins on rat brain sodium channels. It provides a composite measure of functional toxicity that correlates well with the mouse bioassay but offers better precision, throughput, and avoids animal sacrifice.",
+    "tags": [
+      "aoac_2011.27",
+      "rba",
+      "official_method",
+      "validation",
+      "microplate"
+    ],
+    "references": [],
+    "sourceShort": "",
+    "learningObjective": "",
+    "lastReviewed": "",
+    "jurisdiction": ""
+  },
+  {
+    "id": "mon-e-003",
+    "category": "monitoring",
+    "subcategory": "methods",
+    "difficulty": "expert",
+    "question": "When quantifying total PSP toxicity from HPLC or LC-MS/MS results, analysts must apply Toxicity Equivalency Factors (TEFs). What do these factors represent?",
+    "answers": [
+      {
+        "id": "a",
+        "text": "The molecular weight ratio of each analogue relative to saxitoxin"
+      },
+      {
+        "id": "b",
+        "text": "The relative toxicity of each PSP analogue compared to saxitoxin (STX = 1.0)"
+      },
+      {
+        "id": "c",
+        "text": "The recovery efficiency of each analogue during extraction"
+      },
+      {
+        "id": "d",
+        "text": "The stability half-life of each analogue at room temperature"
+      }
+    ],
+    "correctAnswer": "b",
+    "explanation": "Toxicity Equivalency Factors (TEFs) express the relative toxicity of each PSP analogue as a fraction of saxitoxin's toxicity (STX = 1.0). For example, neoSTX has a TEF of 0.93, GTX1 has a TEF of 0.99, while C1 has a TEF of only 0.006. When HPLC or LC-MS/MS quantifies individual analogues, each concentration is multiplied by its TEF and summed to give total toxicity in µg STX equivalents/kg. The EFSA 2009 TEF values are the most widely applied set.",
+    "tags": [
+      "tef",
+      "toxicity_equivalency_factor",
+      "stx_equivalents",
+      "efsa",
+      "quantification"
+    ],
+    "references": [],
+    "sourceShort": "",
+    "learningObjective": "",
+    "lastReviewed": "",
+    "jurisdiction": ""
+  },
+  {
+    "id": "mon-e-004",
+    "category": "monitoring",
+    "subcategory": "general",
+    "difficulty": "expert",
+    "question": "The IOC-UNESCO Harmful Algal Event Database (HAEDAT) serves which primary purpose?",
+    "answers": [
+      {
+        "id": "a",
+        "text": "Real-time bloom forecasting for shipping lanes"
+      },
+      {
+        "id": "b",
+        "text": "Recording and archiving HAB events and their impacts globally for trend analysis"
+      },
+      {
+        "id": "c",
+        "text": "Trading shellfish safety certificates between countries"
+      },
+      {
+        "id": "d",
+        "text": "Distributing certified reference materials for toxin analysis"
+      }
+    ],
+    "correctAnswer": "b",
+    "explanation": "HAEDAT (Harmful Algal Event Database) is maintained by the IOC-UNESCO Intergovernmental Oceanographic Commission as a global meta-database that records HAB events, including information on causative species, toxin types, affected areas, economic impacts, and public health consequences. It is a key resource for identifying long-term trends in HAB occurrence, geographic expansion, and impacts. It is part of the IOC's International Harmful Algal Bloom Programme (IOC-HAB).",
+    "tags": [
+      "haedat",
+      "ioc-unesco",
+      "database",
+      "global",
+      "trend_analysis"
+    ],
+    "references": [],
+    "sourceShort": "",
+    "learningObjective": "",
+    "lastReviewed": "",
+    "jurisdiction": ""
+  },
+  {
+    "id": "mon-b-005",
+    "category": "monitoring",
+    "subcategory": "general",
+    "difficulty": "beginner",
+    "question": "What is the main difference between a screening method and a confirmatory method in HAB toxin monitoring?",
+    "answers": [
+      {
+        "id": "a",
+        "text": "Screening methods are always more accurate than confirmatory methods"
+      },
+      {
+        "id": "b",
+        "text": "Screening methods rapidly triage samples, while confirmatory methods provide more specific identification and defensible quantification"
+      },
+      {
+        "id": "c",
+        "text": "Confirmatory methods are faster but less reliable"
+      },
+      {
+        "id": "d",
+        "text": "There is no practical difference — the terms are interchangeable"
+      }
+    ],
+    "correctAnswer": "b",
+    "explanation": "In monitoring workflows, screening methods (e.g., ELISA, lateral flow assays, RBA) rapidly triage large numbers of samples to identify those likely to exceed regulatory limits. Confirmatory methods (e.g., LC-MS/MS, HPLC-FLD) then provide specific, quantitative, and legally defensible results for positive screens. This tiered approach balances speed, cost, and analytical rigor.",
+    "tags": [
+      "screening",
+      "confirmatory",
+      "workflow",
+      "tiered_approach"
+    ],
+    "references": [
+      {
+        "label": "EFSA 2009. Marine biotoxins in shellfish – Summary on regulated marine biotoxins.",
+        "url": "https://doi.org/10.2903/j.efsa.2009.1306",
+        "type": "risk_assessment",
+        "jurisdiction": "EU"
+      }
+    ],
+    "sourceShort": "EFSA 2009 Summary",
+    "learningObjective": "Distinguish screening from confirmatory methods in monitoring workflows.",
+    "lastReviewed": "2026-03-25",
+    "jurisdiction": ""
+  },
+  {
+    "id": "mon-i-006",
+    "category": "monitoring",
+    "subcategory": "methods",
+    "difficulty": "intermediate",
+    "question": "What is a major strength of receptor binding assays (RBAs) compared with purely structural detection methods like LC-MS/MS?",
+    "answers": [
+      {
+        "id": "a",
+        "text": "RBAs are cheaper per sample than any other method"
+      },
+      {
+        "id": "b",
+        "text": "RBAs reflect the biological activity of the total toxin mixture at the target receptor"
+      },
+      {
+        "id": "c",
+        "text": "RBAs can identify every individual toxin analogue present"
+      },
+      {
+        "id": "d",
+        "text": "RBAs do not require any laboratory equipment"
+      }
+    ],
+    "correctAnswer": "b",
+    "explanation": "The key advantage of RBAs is that they measure functional toxicity — the combined effect of all toxin analogues in a sample at the biological target (e.g., the sodium channel for PSP toxins). This provides a biologically relevant composite measure. In contrast, LC-MS/MS identifies and quantifies individual analogues, requiring TEF conversion to estimate total toxicity. Both approaches are complementary.",
+    "tags": [
+      "rba",
+      "functional_assay",
+      "lc-ms",
+      "complementary_methods"
+    ],
+    "references": [
+      {
+        "label": "AOAC 2011.27",
+        "url": null,
+        "type": "method_standard",
+        "jurisdiction": null
+      },
+      {
+        "label": "EFSA 2009 Saxitoxin group",
+        "url": "https://doi.org/10.2903/j.efsa.2009.1019",
+        "type": "risk_assessment",
+        "jurisdiction": "EU"
+      }
+    ],
+    "sourceShort": "AOAC 2011.27 / EFSA 2009",
+    "learningObjective": "Explain the complementary value of functional vs structural assays.",
+    "lastReviewed": "2026-03-25",
+    "jurisdiction": ""
+  },
+  {
+    "id": "mon-i-007",
+    "category": "monitoring",
+    "subcategory": "methods",
+    "difficulty": "intermediate",
+    "question": "What is a major limitation of immunoassays such as ELISA for marine toxin analysis?",
+    "answers": [
+      {
+        "id": "a",
+        "text": "They are too slow for routine screening"
+      },
+      {
+        "id": "b",
+        "text": "Cross-reactivity with structurally similar compounds can bias results, and analogue recognition may be incomplete"
+      },
+      {
+        "id": "c",
+        "text": "They require mass spectrometry equipment"
+      },
+      {
+        "id": "d",
+        "text": "They can only detect one toxin family per test kit"
+      }
+    ],
+    "correctAnswer": "b",
+    "explanation": "ELISA kits use antibodies that may cross-react with structurally related compounds and may not recognize all analogues within a toxin group equally. This means ELISA results are semi-quantitative and can both over- or under-estimate total toxicity depending on the analogue profile. Positive ELISA screens typically require confirmation by instrumental methods such as LC-MS/MS or HPLC.",
+    "tags": [
+      "elisa",
+      "cross-reactivity",
+      "limitation",
+      "semi-quantitative"
+    ],
+    "references": [
+      {
+        "label": "EFSA 2009 Summary",
+        "url": "https://doi.org/10.2903/j.efsa.2009.1306",
+        "type": "risk_assessment",
+        "jurisdiction": "EU"
+      }
+    ],
+    "sourceShort": "EFSA 2009 Summary",
+    "learningObjective": "Identify the main analytical limitation of immunoassay-based toxin screening.",
+    "lastReviewed": "2026-03-25",
+    "jurisdiction": ""
+  },
+  {
+    "id": "mon-e-005",
+    "category": "monitoring",
+    "subcategory": "methods",
+    "difficulty": "expert",
+    "question": "Why are matrix effects an important consideration in LC-MS/MS analysis of shellfish biotoxins?",
+    "answers": [
+      {
+        "id": "a",
+        "text": "They improve signal strength and make quantification easier"
+      },
+      {
+        "id": "b",
+        "text": "Co-extracted matrix components can cause ion suppression or enhancement, biasing quantification of target toxins"
+      },
+      {
+        "id": "c",
+        "text": "They only affect freshwater samples, not marine shellfish"
+      },
+      {
+        "id": "d",
+        "text": "They are relevant only when using UV detection, not mass spectrometry"
+      }
+    ],
+    "correctAnswer": "b",
+    "explanation": "Matrix effects arise when co-extracted compounds from the shellfish tissue affect the ionization efficiency of target analytes in the mass spectrometer source. Ion suppression reduces apparent concentrations, while ion enhancement inflates them. These effects can vary significantly between shellfish species and tissues, necessitating matrix-matched calibration, standard addition, or isotope-labelled internal standards for accurate quantification.",
+    "tags": [
+      "matrix_effects",
+      "ion_suppression",
+      "lc-ms",
+      "quantification",
+      "calibration"
+    ],
+    "references": [
+      {
+        "label": "EU Regulation 15/2011",
+        "url": null,
+        "type": "regulation",
+        "jurisdiction": "EU"
+      },
+      {
+        "label": "EFSA method reviews",
+        "url": null,
+        "type": "risk_assessment",
+        "jurisdiction": "EU"
+      }
+    ],
+    "sourceShort": "EU Reg 15/2011",
+    "learningObjective": "Explain why matrix effects matter in LC-MS/MS biotoxin analysis.",
+    "lastReviewed": "2026-03-25",
+    "jurisdiction": "EU"
+  },
+  {
+    "id": "mon-e-006",
+    "category": "monitoring",
+    "subcategory": "quality",
+    "difficulty": "expert",
+    "question": "Why are certified reference materials (CRMs) and fit-for-purpose reference standards important in HAB toxin monitoring?",
+    "answers": [
+      {
+        "id": "a",
+        "text": "They are only needed for research publications, not routine monitoring"
+      },
+      {
+        "id": "b",
+        "text": "They ensure calibration accuracy, enable comparability between laboratories, and support quality control"
+      },
+      {
+        "id": "c",
+        "text": "They replace the need for method validation"
+      },
+      {
+        "id": "d",
+        "text": "They are only available for PSP toxins, not other toxin groups"
+      }
+    ],
+    "correctAnswer": "b",
+    "explanation": "Certified reference materials (CRMs) provide known, traceable concentrations of target analytes. They are essential for instrument calibration, method validation, and ongoing quality control. Producers such as NRC Canada (NRCC) supply CRMs for most regulated marine biotoxins. Without reliable reference materials, laboratories cannot demonstrate measurement accuracy or participate meaningfully in interlaboratory comparison exercises.",
+    "tags": [
+      "crm",
+      "reference_materials",
+      "calibration",
+      "quality_control",
+      "nrc"
+    ],
+    "references": [
+      {
+        "label": "NRC Canada marine biotoxin CRM programme",
+        "url": null,
+        "type": "programme",
+        "jurisdiction": null
+      },
+      {
+        "label": "ISO 17025 requirements",
+        "url": null,
+        "type": "method_standard",
+        "jurisdiction": null
+      }
+    ],
+    "sourceShort": "NRC CRM programme",
+    "learningObjective": "Explain the role of certified reference materials in analytical quality assurance.",
+    "lastReviewed": "2026-03-25",
+    "jurisdiction": ""
+  },
+  {
+    "id": "mon-i-008",
+    "category": "monitoring",
+    "subcategory": "general",
+    "difficulty": "intermediate",
+    "question": "Why is phytoplankton abundance in the water column alone not sufficient to assess seafood safety?",
+    "answers": [
+      {
+        "id": "a",
+        "text": "Because phytoplankton counts are always inaccurate"
+      },
+      {
+        "id": "b",
+        "text": "Because cell presence does not reliably predict the toxin burden actually accumulated in shellfish tissue"
+      },
+      {
+        "id": "c",
+        "text": "Because phytoplankton monitoring is too expensive to run routinely"
+      },
+      {
+        "id": "d",
+        "text": "Because only satellite data can assess safety"
+      }
+    ],
+    "correctAnswer": "b",
+    "explanation": "Phytoplankton monitoring provides early warning of potentially toxic species in the water, but toxin accumulation in shellfish depends on additional factors: cell toxicity (which varies between strains and conditions), shellfish feeding rates, depuration kinetics, and tissue distribution. Low cell counts can coexist with high shellfish toxicity if depuration is slow, and high cell counts do not always translate to dangerous tissue levels. Shellfish testing remains essential.",
+    "tags": [
+      "phytoplankton",
+      "shellfish_testing",
+      "early_warning",
+      "bioaccumulation"
+    ],
+    "references": [
+      {
+        "label": "EFSA 2009 Summary",
+        "url": "https://doi.org/10.2903/j.efsa.2009.1306",
+        "type": "risk_assessment",
+        "jurisdiction": "EU"
+      }
+    ],
+    "sourceShort": "EFSA 2009 Summary",
+    "learningObjective": "Explain why water-column monitoring complements but does not replace shellfish testing.",
+    "lastReviewed": "2026-03-25",
+    "jurisdiction": ""
+  },
+  {
+    "id": "mon-e-007",
+    "category": "monitoring",
+    "subcategory": "quality",
+    "difficulty": "expert",
+    "question": "Why are interlaboratory comparison exercises (proficiency tests) important in marine biotoxin analysis?",
+    "answers": [
+      {
+        "id": "a",
+        "text": "They are a formality with no practical value"
+      },
+      {
+        "id": "b",
+        "text": "They assess reproducibility and comparability of results across different laboratories using the same or different methods"
+      },
+      {
+        "id": "c",
+        "text": "They are only required for laboratories using the mouse bioassay"
+      },
+      {
+        "id": "d",
+        "text": "They test only the speed of analysis, not accuracy"
+      }
+    ],
+    "correctAnswer": "b",
+    "explanation": "Interlaboratory comparison exercises (proficiency tests) are a key quality assurance tool. They allow laboratories to evaluate whether their results are comparable with peer laboratories, identify systematic biases, and demonstrate competence to accreditation bodies. Organizations such as QUASIMEME and the EU Reference Laboratory for Marine Biotoxins coordinate regular proficiency testing rounds for regulated toxin groups.",
+    "tags": [
+      "proficiency_testing",
+      "interlaboratory",
+      "quality_assurance",
+      "quasimeme"
+    ],
+    "references": [
+      {
+        "label": "QUASIMEME proficiency testing programme",
+        "url": null,
+        "type": "programme",
+        "jurisdiction": null
+      },
+      {
+        "label": "EU-RL for Marine Biotoxins",
+        "url": null,
+        "type": null,
+        "jurisdiction": "EU"
+      }
+    ],
+    "sourceShort": "QUASIMEME / EU-RL",
+    "learningObjective": "Explain the purpose and value of interlaboratory comparison exercises.",
+    "lastReviewed": "2026-03-25",
+    "jurisdiction": ""
+  },
+  {
+    "id": "mon-i-009",
+    "category": "monitoring",
+    "subcategory": "general",
+    "difficulty": "intermediate",
+    "question": "In a resource-constrained monitoring programme, why might a screening-plus-confirmation workflow be preferable to using LC-MS/MS on every sample?",
+    "answers": [
+      {
+        "id": "a",
+        "text": "Because LC-MS/MS cannot detect any marine biotoxins"
+      },
+      {
+        "id": "b",
+        "text": "Because screening methods can rapidly identify negative samples at lower cost, reserving expensive confirmatory analysis for suspect positives"
+      },
+      {
+        "id": "c",
+        "text": "Because screening methods are always more accurate"
+      },
+      {
+        "id": "d",
+        "text": "Because international regulations prohibit LC-MS/MS for routine samples"
+      }
+    ],
+    "correctAnswer": "b",
+    "explanation": "A tiered screening-plus-confirmation approach is widely used to optimize monitoring efficiency. Rapid, low-cost screening methods (ELISA, RBA, lateral flow) can quickly clear the majority of samples that are well below regulatory limits. Only samples that screen positive or borderline are then submitted for confirmatory analysis by LC-MS/MS or HPLC, which is more time-consuming and expensive but provides definitive results.",
+    "tags": [
+      "tiered_workflow",
+      "screening",
+      "confirmation",
+      "cost_effectiveness",
+      "resource_limited"
+    ],
+    "references": [
+      {
+        "label": "EFSA 2009 Summary",
+        "url": "https://doi.org/10.2903/j.efsa.2009.1306",
+        "type": "risk_assessment",
+        "jurisdiction": "EU"
+      }
+    ],
+    "sourceShort": "EFSA 2009 Summary",
+    "learningObjective": "Justify a tiered monitoring workflow based on resource and performance trade-offs.",
+    "lastReviewed": "2026-03-25",
+    "jurisdiction": ""
+  },
+  {
+    "id": "mon-e-008",
+    "category": "monitoring",
+    "subcategory": "methods",
+    "difficulty": "expert",
+    "question": "Why can toxin interpretation differ depending on which shellfish tissue is analyzed?",
+    "answers": [
+      {
+        "id": "a",
+        "text": "Because all toxins distribute evenly across all tissues"
+      },
+      {
+        "id": "b",
+        "text": "Because toxins may concentrate in specific organs such as the hepatopancreas, and edible portions may have different toxin profiles than whole flesh"
+      },
+      {
+        "id": "c",
+        "text": "Because only the shell contains toxins"
+      },
+      {
+        "id": "d",
+        "text": "Because tissue type only matters for bacterial contaminants, not biotoxins"
+      }
+    ],
+    "correctAnswer": "b",
+    "explanation": "Marine biotoxins are often unevenly distributed among shellfish tissues. For example, DSP toxins and domoic acid tend to concentrate in the digestive gland (hepatopancreas), while PSP toxins may also accumulate in siphon or gill tissue. This has regulatory implications: some jurisdictions allow sale of scallop adductor muscle (with viscera removed) even when whole-animal toxin levels exceed limits, because the adductor alone may be below the threshold.",
+    "tags": [
+      "tissue_distribution",
+      "hepatopancreas",
+      "scallop",
+      "regulatory_implications"
+    ],
+    "references": [
+      {
+        "label": "EFSA 2009 Domoic acid",
+        "url": "https://doi.org/10.2903/j.efsa.2009.1181",
+        "type": "risk_assessment",
+        "jurisdiction": "EU"
+      },
+      {
+        "label": "EU Reg 853/2004",
+        "url": null,
+        "type": "regulation",
+        "jurisdiction": "EU"
+      }
+    ],
+    "sourceShort": "EFSA 2009 DA / EU 853/2004",
+    "learningObjective": "Explain why tissue selection affects toxin interpretation and regulatory decisions.",
+    "lastReviewed": "2026-03-25",
+    "jurisdiction": "EU"
+  },
+  {
+    "id": "mon-b-006",
+    "category": "monitoring",
+    "subcategory": "general",
+    "difficulty": "beginner",
+    "question": "What is the ultimate public-health purpose of marine biotoxin monitoring programmes?",
+    "answers": [
+      {
+        "id": "a",
+        "text": "To increase shellfish production and export revenue"
+      },
+      {
+        "id": "b",
+        "text": "To prevent contaminated seafood from reaching consumers"
+      },
+      {
+        "id": "c",
+        "text": "To eliminate all harmful algae from the ocean"
+      },
+      {
+        "id": "d",
+        "text": "To replace laboratory testing with visual inspection"
+      }
+    ],
+    "correctAnswer": "b",
+    "explanation": "The fundamental purpose of marine biotoxin monitoring is consumer protection: ensuring that shellfish and other seafood products reaching the market do not contain toxin levels that could cause illness. Monitoring programmes achieve this through regular sampling, laboratory analysis, and management actions (harvest area closures, product recalls) when contamination is detected.",
+    "tags": [
+      "consumer_protection",
+      "public_health",
+      "monitoring_purpose",
+      "prevention"
+    ],
+    "references": [
+      {
+        "label": "Codex Alimentarius",
+        "url": null,
+        "type": null,
+        "jurisdiction": "International"
+      },
+      {
+        "label": "national shellfish sanitation programmes",
+        "url": null,
+        "type": "programme",
+        "jurisdiction": null
+      }
+    ],
+    "sourceShort": "Codex Alimentarius",
+    "learningObjective": "State the fundamental public-health purpose of biotoxin monitoring.",
+    "lastReviewed": "2026-03-25",
+    "jurisdiction": ""
+  }
+]

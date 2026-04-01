@@ -56,7 +56,7 @@
       </header>
 
       <div class="post-body">
-        <p>There is a famous demonstration in statistics known as Anscombe's Quartet — four datasets that share identical summary statistics (mean, variance, correlation coefficient, linear regression line) but look completely different when plotted. The point is a simple one: summary statistics can be identical while the underlying data structures diverge in ways that matter.</p>
+        <p>There is a famous demonstration in statistics known as Anscombe's Quartet, which is composed of four datasets that share identical summary statistics (mean, variance, correlation coefficient, linear regression line) but look completely different when plotted. The point is a simple one: summary statistics can be identical while the underlying data structures diverge in ways that matter.</p>
 
         <p>Boxplots are the scientific equivalent of this problem for a large fraction of ecological and biological datasets. They are everywhere in published papers, universally understood, and capable of hiding almost everything that is interesting about your data.</p>
 
@@ -64,9 +64,9 @@
 
         <p>A boxplot displays five values: the median, the 25th and 75th percentiles (the box), and the whiskers (typically extending to 1.5 times the interquartile range), with outliers shown individually beyond that. It tells you nothing about sample size, nothing about modality, and nothing about where the data actually cluster within those quartile boundaries.</p>
 
-        <p>This becomes a real problem when two datasets have identical — or near-identical — boxplot appearances despite having very different distributions underneath.</p>
+        <p>This becomes a real problem when two datasets have identical or near-identical boxplot appearances despite having very different data distributions underneath.</p>
 
-        <p>Consider a simple example. Take two groups, each with the same median, same interquartile range, and same whisker extent. One group has a unimodal, roughly symmetric distribution. The other is bimodal — data cluster near the lower and upper quartile boundaries with a gap in the middle. A boxplot of both groups looks the same. The underlying biology, or toxicology, or whatever your measurement reflects, is completely different.</p>
+        <p>Consider a simple example. Take two groups, each with the same median, same interquartile range, and same whisker extent. One group has a unimodal, roughly symmetric distribution. The other is bimodal meaning that data cluster near the lower and upper quartile boundaries with a gap in the middle. A boxplot of both groups looks the same. The underlying biology, or toxicology, or whatever your measurement reflects, is completely different.</p>
 
         <h2>Why this matters in practice</h2>
 
@@ -76,7 +76,7 @@
 
         <h2>Better alternatives, depending on context</h2>
 
-        <p>The right choice depends on your sample size and your question. For small datasets (n &lt; 30), showing all data points directly — either as a strip chart or as a dot plot — is almost always better. There is no reason to summarise five or ten observations.</p>
+        <p>The right choice depends on your sample size and your question. For small datasets (n &lt; 30), showing all data points directly, for instance as a dot plot, is almost always better. There is no reason to summarise five or ten observations.</p>
 
         <p>For moderate sample sizes, a combination approach works well: violin plots or kernel density estimates for distributional shape, overlaid with a boxplot or individual points for the quantile summary. This is now straightforward to produce in ggplot2 using <code>geom_violin()</code> + <code>geom_boxplot()</code> with appropriate width adjustments.</p>
 
@@ -96,7 +96,7 @@
           <svg class="fig-svg" style="background:#1E293B; border-radius:8px; display:block; border:1px solid #334155;"></svg>
         </div>
 
-        <p>The first example is deliberately dramatic. But the problem is just as real when the differences are subtler. In the next figure, all four boxplots are again virtually identical — but this time, the underlying distributions differ in modality rather than shape family. The difference is invisible to the boxplot and only emerges in the violin view.</p>
+        <p>The first example is deliberately dramatic. But the problem is just as real when the differences are subtler. In the next figure, all four boxplots are again virtually identical but this time, the underlying distributions differ in modality rather than shape family. The difference is invisible to the boxplot and only emerges in the violin view.</p>
 
         <!-- Figure 2 -->
         <div id="fig2-violin-reveal" style="margin: 1.5rem 0 2.5rem;">
@@ -108,13 +108,12 @@
           <svg class="fig-svg" style="background:#1E293B; border-radius:8px; display:block; border:1px solid #334155;"></svg>
         </div>
 
-        <p>The lesson is not that boxplots are bad — they are efficient and interpretable and appropriate in many contexts. The lesson is that they are a summary, and like all summaries, they discard information. The question worth asking before publishing or presenting a boxplot is: what would I see if I showed the distribution directly? If the answer is "something meaningfully different", then the boxplot is the wrong choice.</p>
+        <p>The lesson is not that boxplots are bad as they are efficient, interpretable and appropriate in many contexts. The lesson is that they are a summary, and like all summaries, they discard information. The question worth asking before publishing or presenting a boxplot is: what would I see if I showed the distribution directly? If the answer is "something meaningfully different", then the boxplot is the wrong choice.</p>
 
         <h2>A note on ggplot2</h2>
 
         <p>All of the visualisation approaches mentioned here are straightforward to implement in ggplot2. For anyone working in R who currently defaults to boxplots out of habit, the jump to violin + jitter or ridge plots is a few lines of code. The <a href="https://wilkelab.org/ggridges/" target="_blank" rel="noopener noreferrer">ggridges</a> and <a href="https://github.com/eclarke/ggbeeswarm" target="_blank" rel="noopener noreferrer">ggbeeswarm</a> packages are both on CRAN and well-documented.</p>
 
-        <!-- CODE PLACEHOLDER: Add GitHub link to the R script generating the comparison figure once it exists in the repo. -->
       </div>
     </div>
   </main>
