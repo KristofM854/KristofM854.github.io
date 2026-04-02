@@ -826,5 +826,5 @@ figcaption {
 /* Imageless project card fallback */
 .project-card:not([style*="background-image"]) .project-card__overlay {
   opacity: 1;
-  background: var(--color-text);
+  background: var(--color-card-overlay, rgba(26, 26, 46, 0.85));
 }
