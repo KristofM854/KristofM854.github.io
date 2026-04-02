@@ -31,10 +31,10 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-paginate
+  - jekyll-redirect-from
 
 # Exclude from Jekyll processing
 exclude:
-  - quiz
   - quiz-src
   - node_modules
   - README.md
