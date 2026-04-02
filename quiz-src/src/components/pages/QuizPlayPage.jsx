@@ -266,11 +266,11 @@ function QuizPlayPage() {
                 {italicizeSpecies(currentQuestion.question)}
               </h2>
               {getQuestionType(currentQuestion) === 'image' && currentQuestion.image && (
-                <div className="mt-4 rounded-xl overflow-hidden border border-white/10">
+                <div className="mt-4 rounded-xl overflow-hidden border border-gray-200">
                   <img
                     src={currentQuestion.image}
                     alt={currentQuestion.altText || 'Identify this species'}
-                    className="w-full h-auto max-h-80 object-contain bg-ocean-900"
+                    className="w-full h-auto max-h-80 object-contain bg-gray-100"
                   />
                 </div>
               )}
@@ -294,14 +294,14 @@ function QuizPlayPage() {
                   'w-full text-left p-5 rounded-xl border transition-all cursor-pointer min-h-[48px] flex items-center'
                 if (showFeedback) {
                   if (isCorrect)
-                    btnClass += ' bg-accent-success/15 border-accent-success/40 text-accent-success'
+                    btnClass += ' bg-green-50 border-green-400 text-green-800'
                   else if (isWrong)
-                    btnClass += ' bg-accent-danger/15 border-accent-danger/40 text-accent-danger'
+                    btnClass += ' bg-red-50 border-red-400 text-red-800'
                   else
-                    btnClass += ' bg-ocean-800/40 border-white/5 text-text-tertiary opacity-50'
+                    btnClass += ' bg-gray-50 border-gray-100 text-text-tertiary opacity-50'
                 } else {
                   btnClass +=
-                    ' bg-ocean-800/60 border-white/8 text-text-primary hover:bg-ocean-700/60 hover:border-accent-teal/30 focus-visible:outline-2 focus-visible:outline-accent-teal focus-visible:outline-offset-2'
+                    ' bg-white border-gray-200 text-text-primary hover:bg-blue-50 hover:border-blue-300 focus-visible:outline-2 focus-visible:outline-accent-teal focus-visible:outline-offset-2'
                 }
 
                 return (
@@ -320,22 +320,22 @@ function QuizPlayPage() {
                     aria-label={`Answer ${POSITION_LABELS[answerIndex]}: ${answer.text}`}
                   >
                     {answer.image && (
-                      <div className="rounded-lg overflow-hidden mb-2 border border-white/5">
+                      <div className="rounded-lg overflow-hidden mb-2 border border-gray-200">
                         <img
                           src={answer.image}
                           alt={answer.text}
-                          className="w-full h-32 sm:h-40 object-cover bg-ocean-900"
+                          className="w-full h-32 sm:h-40 object-cover bg-gray-100"
                         />
                       </div>
                     )}
                     <span className={`inline-flex items-center justify-center w-7 h-7 rounded-full font-mono text-sm font-semibold mr-3 flex-shrink-0 ${
                       showFeedback && isCorrect
-                        ? 'bg-accent-success/20 text-accent-success'
+                        ? 'bg-green-100 text-green-700'
                         : showFeedback && isWrong
-                        ? 'bg-accent-danger/20 text-accent-danger'
+                        ? 'bg-red-100 text-red-700'
                         : showFeedback
-                        ? 'bg-white/5 text-text-tertiary'
-                        : 'bg-accent-teal/15 text-accent-teal'
+                        ? 'bg-gray-100 text-text-tertiary'
+                        : 'bg-blue-100 text-blue-700'
                     }`}>
                       {POSITION_LABELS[answerIndex]}
                     </span>
@@ -411,7 +411,7 @@ function QuizPlayPage() {
                       <AlertTriangle className="w-3.5 h-3.5" />
                       Report issue
                     </button>
-                    <span className="text-white/10">|</span>
+                    <span className="text-gray-300">|</span>
                     <button
                       onClick={() => markForReview(currentQuestion.id)}
                       className="flex items-center gap-1 text-text-tertiary hover:text-accent-cyan transition-colors text-xs cursor-pointer"
@@ -420,7 +420,7 @@ function QuizPlayPage() {
                       <Bookmark className="w-3.5 h-3.5" />
                       Review later
                     </button>
-                    <span className="text-white/10">|</span>
+                    <span className="text-gray-300">|</span>
                     <button
                       onClick={() => setShowSuggestModal(true)}
                       className="flex items-center gap-1 text-text-tertiary hover:text-accent-amber transition-colors text-xs cursor-pointer"
@@ -448,9 +448,9 @@ function QuizPlayPage() {
         {/* Keyboard hint */}
         {!showFeedback && (
           <p className="text-text-tertiary text-xs text-center hidden sm:block">
-            Press <kbd className="px-1.5 py-0.5 rounded bg-ocean-700 text-text-secondary font-mono text-xs">A</kbd>–<kbd className="px-1.5 py-0.5 rounded bg-ocean-700 text-text-secondary font-mono text-xs">D</kbd> to answer
+            Press <kbd className="px-1.5 py-0.5 rounded bg-gray-100 border border-gray-300 text-text-secondary font-mono text-xs">A</kbd>–<kbd className="px-1.5 py-0.5 rounded bg-gray-100 border border-gray-300 text-text-secondary font-mono text-xs">D</kbd> to answer
             {modeConfig.allowUnknown && (
-              <>, <kbd className="px-1.5 py-0.5 rounded bg-ocean-700 text-text-secondary font-mono text-xs">?</kbd> for &ldquo;I don&apos;t know&rdquo;</>
+              <>, <kbd className="px-1.5 py-0.5 rounded bg-gray-100 border border-gray-300 text-text-secondary font-mono text-xs">?</kbd> for &ldquo;I don&apos;t know&rdquo;</>
             )}
           </p>
         )}

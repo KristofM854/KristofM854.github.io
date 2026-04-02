@@ -1,9 +1,9 @@
 function Card({ className = '', hover = false, glow = false, children, ...props }) {
   return (
     <div
-      className={`bg-ocean-800/60 backdrop-blur-sm border border-white/8 rounded-2xl p-7 sm:p-9 ${
-        hover ? 'hover:bg-ocean-700/60 hover:border-white/12 transition-all duration-200' : ''
-      } ${glow ? 'animate-glow-pulse' : ''} ${className}`}
+      className={`bg-white border border-gray-200 rounded-2xl p-7 sm:p-9 shadow-sm ${
+        hover ? 'hover:border-gray-300 hover:shadow-md transition-all duration-200 cursor-default' : ''
+      } ${className}`}
       {...props}
     >
       {children}

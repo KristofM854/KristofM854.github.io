@@ -1,13 +1,11 @@
 import { Outlet, Link, useLocation } from 'react-router-dom'
 import { Waves, FlaskConical, Info, RotateCcw } from 'lucide-react'
 import { useQuizSession } from '../context/QuizSessionContext.jsx'
-import BackgroundEffects from './shared/BackgroundEffects.jsx'
 
 function Layout() {
   const location = useLocation()
   const { reviewQueue } = useQuizSession()
 
-  // Count normalized review queue
   const reviewCount = reviewQueue?.length || 0
 
   const navLinks = [
@@ -18,17 +16,18 @@ function Layout() {
   ]
 
   return (
-    <div className="relative min-h-[100dvh] flex flex-col">
-      <BackgroundEffects />
+    <div className="relative min-h-[100dvh] flex flex-col bg-white">
+      {/* Accent line at top — matches site theme */}
+      <div style={{ height: '3px', background: 'linear-gradient(90deg, #2563EB, #7C3AED, #0891B2)', width: '100%' }} />
 
       {/* Preview banner */}
-      <div className="relative z-10 bg-accent-amber/10 border-b border-accent-amber/20 py-1.5 text-center">
-        <p className="text-accent-amber text-xs font-medium">
+      <div className="bg-amber-50 border-b border-amber-200 py-1.5 text-center">
+        <p className="text-amber-700 text-xs font-medium">
           Preview version — feel free to try it out.
         </p>
       </div>
 
-      <header className="relative z-10 border-b border-white/8">
+      <header className="border-b border-gray-200">
         <div className="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2 group">
             <Waves className="w-6 h-6 text-accent-teal group-hover:animate-float transition-colors" />
@@ -46,14 +45,14 @@ function Layout() {
                   to={to}
                   className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
                     isActive
-                      ? 'text-accent-teal bg-accent-teal/10'
-                      : 'text-text-secondary hover:text-text-primary hover:bg-white/5'
+                      ? 'text-accent-teal bg-blue-50'
+                      : 'text-text-secondary hover:text-text-primary hover:bg-gray-100'
                   }`}
                 >
                   <Icon className="w-4 h-4" />
                   <span className="hidden sm:inline">{label}</span>
                   {badge > 0 && (
-                    <span className="inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 text-[10px] font-mono font-semibold rounded-full bg-accent-amber text-ocean-950">
+                    <span className="inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 text-[10px] font-mono font-semibold rounded-full bg-accent-amber text-white">
                       {badge}
                     </span>
                   )}
@@ -64,13 +63,18 @@ function Layout() {
         </div>
       </header>
 
-      <main className="relative z-10 flex-1 flex flex-col">
+      <main className="flex-1 flex flex-col">
         <Outlet />
       </main>
 
-      <footer className="relative z-10 border-t border-white/8 py-6 mt-auto">
-        <div className="max-w-5xl mx-auto px-4 text-center text-text-tertiary text-sm">
-          <p>Designed by Kristof Moeller</p>
+      <footer className="border-t border-gray-200 py-6 mt-auto">
+        <div className="max-w-5xl mx-auto px-4 text-center space-y-2">
+          <p className="text-text-tertiary text-sm">Designed by Kristof Moeller</p>
+          <p className="text-sm">
+            <a href="/" style={{ color: '#2563EB', textDecoration: 'none', fontWeight: 500 }}>
+              ← Back to kristofmoeller.com
+            </a>
+          </p>
         </div>
       </footer>
     </div>

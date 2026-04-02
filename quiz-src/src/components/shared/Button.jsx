@@ -2,11 +2,11 @@ import { forwardRef } from 'react'
 
 const variants = {
   primary:
-    'bg-accent-teal text-ocean-950 hover:bg-accent-teal/90 font-semibold shadow-[0_0_20px_rgba(0,212,170,0.15)] hover:shadow-[0_0_30px_rgba(0,212,170,0.3)]',
+    'bg-accent-teal text-white hover:bg-accent-teal/90 font-semibold shadow-sm',
   secondary:
-    'bg-ocean-700 text-text-primary hover:bg-ocean-600 border border-white/8',
+    'bg-white text-text-primary hover:bg-ocean-900 border border-ocean-700 shadow-sm',
   ghost:
-    'bg-transparent text-text-secondary hover:text-text-primary hover:bg-white/5',
+    'bg-transparent text-text-secondary hover:text-text-primary hover:bg-ocean-800',
   danger:
     'bg-accent-danger/10 text-accent-danger hover:bg-accent-danger/20 border border-accent-danger/20',
 }
