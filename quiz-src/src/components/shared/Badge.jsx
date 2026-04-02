@@ -1,11 +1,11 @@
 const colorMap = {
-  teal: 'bg-accent-teal/15 text-accent-teal border-accent-teal/25',
-  cyan: 'bg-accent-cyan/15 text-accent-cyan border-accent-cyan/25',
-  amber: 'bg-accent-amber/15 text-accent-amber border-accent-amber/25',
-  danger: 'bg-accent-danger/15 text-accent-danger border-accent-danger/25',
-  success: 'bg-accent-success/15 text-accent-success border-accent-success/25',
-  purple: 'bg-purple-500/15 text-purple-400 border-purple-500/25',
-  pink: 'bg-pink-500/15 text-pink-400 border-pink-500/25',
+  teal: 'bg-blue-50 text-blue-700 border-blue-200',
+  cyan: 'bg-cyan-50 text-cyan-700 border-cyan-200',
+  amber: 'bg-amber-50 text-amber-700 border-amber-200',
+  danger: 'bg-red-50 text-red-700 border-red-200',
+  success: 'bg-green-50 text-green-700 border-green-200',
+  purple: 'bg-violet-50 text-violet-700 border-violet-200',
+  pink: 'bg-pink-50 text-pink-700 border-pink-200',
 }
 
 const difficultyColors = {

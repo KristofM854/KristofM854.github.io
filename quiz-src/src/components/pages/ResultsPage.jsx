@@ -246,11 +246,11 @@ function ResultsPage() {
               return (
                 <div
                   key={q.id}
-                  className="border border-white/5 rounded-xl overflow-hidden"
+                  className="border border-gray-100 rounded-xl overflow-hidden"
                 >
                   <button
                     onClick={() => setExpandedQuestion(isExpanded ? null : i)}
-                    className="w-full flex items-start gap-3 p-4 text-left hover:bg-ocean-700/30 transition-colors cursor-pointer"
+                    className="w-full flex items-start gap-3 p-4 text-left hover:bg-gray-50 transition-colors cursor-pointer"
                     aria-expanded={isExpanded}
                   >
                     {isCorrect ? (

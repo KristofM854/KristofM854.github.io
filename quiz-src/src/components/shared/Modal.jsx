@@ -10,7 +10,7 @@ function Modal({ isOpen, onClose, title, children, actions }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm"
           onClick={onClose}
         >
           <motion.div
@@ -18,7 +18,7 @@ function Modal({ isOpen, onClose, title, children, actions }) {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.95, opacity: 0 }}
             onClick={(e) => e.stopPropagation()}
-            className="bg-ocean-800 border border-white/10 rounded-2xl p-6 max-w-md w-full shadow-2xl"
+            className="bg-white border border-gray-200 rounded-2xl p-6 max-w-md w-full shadow-xl"
           >
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-display font-semibold text-lg text-text-primary">
