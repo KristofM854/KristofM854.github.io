@@ -1,0 +1,52 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title and page.title != "Home" %}{{ page.title }} — {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+
+  <!-- SEO -->
+  {% seo %}
+
+  <!-- Feed -->
+  {% feed_meta %}
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/favicon.svg' | relative_url }}">
+
+  <!-- JSON-LD Person Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Kristof Moeller",
+    "givenName": "Kristof",
+    "familyName": "Moeller",
+    "jobTitle": "Associate Research Scientist",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "IAEA Marine Environment Laboratories",
+      "url": "https://www.iaea.org"
+    },
+    "url": "https://kristofmoeller.com",
+    "sameAs": [
+      "https://github.com/KristofM854",
+      "https://scholar.google.com/citations?user=PtkVV8oAAAAJ&hl=de&oi=sra",
+      "https://orcid.org/0000-0002-4590-6223",
+      "https://www.linkedin.com/in/kristof-moeller"
+    ],
+    "description": "Marine scientist specialising in harmful algal blooms, marine biotoxins, and LC-MS/MS method development. Working at the intersection of research, capacity building, and international science policy.",
+    "knowsAbout": ["Harmful algal blooms","Marine biotoxins","LC-MS/MS","Receptor binding assay","Marine environmental monitoring","Capacity building","R programming","Data visualisation"],
+    "alumniOf": {
+      "@type": "EducationalOrganization",
+      "name": "Alfred-Wegener-Institute, Helmholtz Centre for Polar and Marine Research"
+    }
+  }
+  </script>
+</head>

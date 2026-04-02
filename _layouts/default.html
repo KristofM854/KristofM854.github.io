@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include head.html %}
+<body>
+  {% include nav.html %}
+  <main class="page-content">
+    {{ content }}
+  </main>
+  {% include footer.html %}
+
+  <!-- Mobile nav toggle -->
+  <script>
+    document.querySelector('.site-nav__toggle').addEventListener('click', function() {
+      document.querySelector('.site-nav__links').classList.toggle('is-open');
+    });
+  </script>
+</body>
+</html>
