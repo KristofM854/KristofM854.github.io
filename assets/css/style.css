@@ -470,3 +470,361 @@ figcaption {
   margin-top: var(--space-sm);
   text-align: center;
 }
+
+/* ============================================
+   LEGACY PAGE BRIDGE STYLES
+   For pages converted from old dark-theme HTML
+   ============================================ */
+
+/* Container wrapper */
+.container {
+  max-width: var(--wide-width);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+/* Section wrapper */
+.cv-section {
+  margin-bottom: var(--space-2xl);
+}
+
+/* Section headings */
+.section-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Card component */
+.card {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: var(--space-xl);
+  margin-bottom: var(--space-md);
+}
+
+.card-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+}
+
+.card-description {
+  color: var(--color-text-light);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: var(--space-sm);
+}
+
+.card-link {
+  color: var(--color-accent);
+  font-weight: 500;
+  font-size: 0.9rem;
+  display: inline-block;
+  margin-top: var(--space-sm);
+}
+.card-link:hover { color: var(--color-accent-hover); text-decoration: underline; }
+
+/* Card/services grid */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  margin-bottom: var(--space-2xl);
+}
+
+/* Timeline */
+.timeline { list-style: none; margin-bottom: var(--space-lg); }
+
+.timeline-item {
+  border-left: 2px solid var(--color-border);
+  padding: 0 0 var(--space-xl) var(--space-xl);
+  position: relative;
+}
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-item::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  position: absolute;
+  left: -6px;
+  top: 4px;
+}
+
+.timeline-date {
+  font-size: 0.85rem;
+  color: var(--color-text-lighter);
+  font-weight: 500;
+  margin-bottom: var(--space-xs);
+}
+
+.timeline-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-xs);
+}
+
+.timeline-subtitle {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  margin-bottom: var(--space-sm);
+}
+
+.timeline-body {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  line-height: 1.7;
+}
+.timeline-body p { margin-bottom: var(--space-sm); }
+.timeline-body ul { padding-left: var(--space-lg); margin-top: var(--space-sm); }
+.timeline-body li { margin-bottom: var(--space-xs); }
+
+/* CV skills */
+.cv-skills-group { margin-bottom: var(--space-lg); }
+.cv-skills-group h4 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-lighter);
+  margin-bottom: var(--space-sm);
+}
+.cv-list { display: flex; flex-direction: column; gap: var(--space-xs); }
+.cv-list-item {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  padding: var(--space-xs) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* CV download row */
+.cv-download-row { margin-top: var(--space-lg); }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+}
+.btn-primary { background: var(--color-accent); color: #fff; }
+.btn-primary:hover { background: var(--color-accent-hover); color: #fff; }
+
+/* Filter buttons */
+.filter-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text-light);
+  transition: all 0.2s;
+  margin-right: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--color-accent);
+  color: #fff;
+  border-color: var(--color-accent);
+}
+
+/* Talk cards */
+.talk-card {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: var(--space-xl);
+  margin-bottom: var(--space-md);
+}
+
+.talk-type {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  margin-bottom: var(--space-sm);
+}
+.talk-type.oral  { background: #dbeafe; color: #1d4ed8; }
+.talk-type.poster { background: #fce7f3; color: #9d174d; }
+
+.talk-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-xs);
+  line-height: 1.5;
+}
+.talk-event {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  margin-bottom: 2px;
+}
+.talk-location {
+  font-size: 0.875rem;
+  color: var(--color-text-lighter);
+}
+.talk-download { margin-top: var(--space-sm); }
+
+.download-link {
+  color: var(--color-accent);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.download-link:hover { color: var(--color-accent-hover); text-decoration: underline; }
+
+/* Award callout */
+.award-callout {
+  background: #fffbeb;
+  border: 1px solid #fcd34d;
+  border-radius: 8px;
+  padding: var(--space-lg) var(--space-xl);
+  margin-bottom: var(--space-2xl);
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+.award-callout__icon { font-size: 1.5rem; flex-shrink: 0; color: #b45309; }
+.award-callout__label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #b45309;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.25rem;
+}
+.award-callout__title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.4;
+}
+.award-callout__meta {
+  font-size: 0.875rem;
+  color: var(--color-text-light);
+  margin-top: 0.25rem;
+}
+
+/* Award badge (inline) */
+.award-badge {
+  display: inline-block;
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fcd34d;
+  border-radius: 6px;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: var(--space-sm);
+}
+
+/* Project status badge */
+.project-status {
+  display: inline-block;
+  background: #dcfce7;
+  color: #166534;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  margin-bottom: var(--space-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* News grid */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-lg);
+  margin-bottom: var(--space-2xl);
+}
+
+.news-card {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: var(--space-xl);
+}
+.news-card h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+  line-height: 1.4;
+}
+.news-card p {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  line-height: 1.7;
+  margin-bottom: var(--space-sm);
+}
+
+.news-card-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+.news-date {
+  font-size: 0.8rem;
+  color: var(--color-text-lighter);
+  font-weight: 500;
+}
+.news-category {
+  font-size: 0.75rem;
+  color: var(--color-accent);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Footer pages nav */
+.site-footer__pages {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-md);
+  list-style: none;
+}
+.site-footer__pages a {
+  color: var(--color-text-lighter);
+  font-size: 0.85rem;
+  transition: color 0.2s;
+}
+.site-footer__pages a:hover { color: var(--color-accent); }
+
+/* Mobile touch: always show project card overlays on touch devices */
+@media (hover: none) {
+  .project-card__overlay { opacity: 1; }
+}
+
+/* Imageless project card fallback */
+.project-card:not([style*="background-image"]) .project-card__overlay {
+  opacity: 1;
+  background: var(--color-text);
+}
