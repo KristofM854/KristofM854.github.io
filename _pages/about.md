@@ -17,6 +17,6 @@ At the IAEA, I work at the intersection of marine science, environmental monitor
 
 My research spans harmful algal bloom ecology, marine biotoxin detection by LC-MS/MS, toxicological risk assessment of microalgal species, and data analysis in R. I received the 2023 ISSHA Maureen Keller Award for Best Oral Student Presentation at the International Conference on Harmful Algae in Hiroshima.
 
-I am available for scientific consulting, expert advisory contributions, and speaking engagements on harmful algal blooms, marine biotoxins, and environmental data analysis.
+I am available for scientific consulting, expert advisory contributions, and speaking engagements on harmful algal blooms, marine biotoxins, and environmental data analysis. More details on what I offer and how engagements work are on my [services page](/services/).
 
 </div>

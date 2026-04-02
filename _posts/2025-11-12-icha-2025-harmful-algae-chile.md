@@ -15,7 +15,7 @@ The IAEA Marine Environment Laboratories used the conference as a platform to pr
 We also held a dedicated side meeting for INT7022 — *Strengthening Ocean Health for Sustainable Development: A Global Approach Using Nuclear and Isotopic Techniques* — bringing together project counterparts attending ICHA to discuss progress, coordinate upcoming activities, and align priorities for the remainder of the project cycle. Holding this meeting at the conference margins was efficient and productive, as many counterparts were already present and the scientific programme provided immediate shared context.
 
 <figure>
-  <img src="/assets/images/blog/Workshop_Cuba.jpeg" alt="Participants of the INT7022 side meeting at ICHA 2025, Punta Arenas, Chile">
+  <img src="/assets/images/blog/workshop_group_photo.jpg" alt="Participants of the INT7022 side meeting at ICHA 2025, Punta Arenas, Chile">
   <figcaption>INT7022 side meeting participants at ICHA 2025, Punta Arenas, Chile.</figcaption>
 </figure>
 
