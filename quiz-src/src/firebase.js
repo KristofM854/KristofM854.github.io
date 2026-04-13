@@ -2,21 +2,21 @@ import { initializeApp } from 'firebase/app'
 import { getDatabase, ref, push, query, orderByChild, limitToLast, get, set } from 'firebase/database'
 
 // ============================================================
-// FIREBASE CONFIG — Replace these values with your own!
-// See the setup instructions provided by the developer.
+// FIREBASE CONFIG — loaded from quiz-src/.env (never committed)
+// Copy quiz-src/.env.example → quiz-src/.env and fill in values.
 // ============================================================
 const firebaseConfig = {
-  apiKey: "AIzaSyBBMJEimeUrQ8qsw2oKjysUo256CvuHiWw",
-  authDomain: "hab-quiz-ae5a8.firebaseapp.com",
-  databaseURL: "https://hab-quiz-ae5a8-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "hab-quiz-ae5a8",
-  storageBucket: "hab-quiz-ae5a8.firebasestorage.app",
-  messagingSenderId: "534502811365",
-  appId: "1:534502811365:web:6f6f114cdff6a54343560c",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 }
 
-// Only initialize if config has been set up
-const isConfigured = firebaseConfig.apiKey !== 'REPLACE_ME'
+// Only initialize if the API key env var has been provided
+const isConfigured = !!firebaseConfig.apiKey
 
 let app = null
 let db = null
