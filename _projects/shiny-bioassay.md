@@ -1,7 +1,6 @@
 ---
 title: "Competitive Binding Assay Analysis Suite"
 subtitle: "R Shiny application for automated bioassay data processing"
-image: "/assets/images/projects/shiny-bioassay.jpg"
 date: 2025-06-01
 ---
 

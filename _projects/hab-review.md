@@ -1,7 +1,6 @@
 ---
 title: "A. pseudogonyaulax Time Series Analysis"
 subtitle: "Multi-country monitoring data analysis across Northern Europe"
-image: "/assets/images/projects/hab-review.jpg"
 date: 2026-01-01
 ---
 
