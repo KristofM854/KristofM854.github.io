@@ -1,7 +1,6 @@
 ---
 title: "HAB & Marine Biotoxins Quiz"
 subtitle: "Interactive educational quiz application"
-image: "/assets/images/projects/hab-quiz.jpg"
 date: 2025-03-01
 ---
 
